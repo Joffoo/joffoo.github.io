@@ -325,7 +325,7 @@
 <p>之前（<em>快一年了</em>）做过一个网页版的电影票根设计项目 EverStub，需要自己上传海报、手动填写电影的中英文名、场次、票价和影院信息。以我现在的懒惰程度，这种交互几乎是无法接受、无法原谅的。</p>
 <span id="more"></span>
 <p><img src="/2026/10/18/movie-ticket-stub/blog-261018-002.png" alt></p>
-<p>最近给 Agent 提供了之前版本的源码，重构成了 <a target="_blank" rel="noopener" href="https://github.com/Joffoo/movie-ticket-stub">Skill</a>（<code>movie-ticket-stub</code>）。</p>
+<p>最近给 Agent 提供了之前版本的源码，重构成了一个 Skill movie-ticket-stub<sup><a href="#fn_1" id="reffn_1">1</a></sup>。</p>
 <p>现在不需要自己填信息了。不管是一张订单截图，还是随手拍一张纸质票发过去，Agent 都能自动跑完识票、找海报、风格转绘到排版归档的全流程。</p>
 <p><img src="/2026/10/18/movie-ticket-stub/blog-261018-003.png" alt></p>
 <blockquote>
@@ -356,12 +356,18 @@
 <p><img src="/2026/10/18/movie-ticket-stub/blog-261018-005.png" alt></p>
 <p>其实和我前面写的这 4 步没什么区别，无非是多加了一些让 Agent 在信息拿不准时主动停下来求证的步骤，把排版交给本地脚本保证确定性。总而言之，是让 Agent 养成一些好习惯。</p>
 <h2 id="重组-Skill：顺手做个光栅卡"><a href="#重组-Skill：顺手做个光栅卡" class="headerlink" title="重组 Skill：顺手做个光栅卡"></a>重组 Skill：顺手做个光栅卡</h2><p>把工具封装成 Skill 的另一个好处，是你随时可以把它嵌进其他工作流。</p>
-<p>比如我之前见过一个生成 3D 光栅卡的技能 <a target="_blank" rel="noopener" href="https://github.com/EverettFish/holo-card-studio">holo-card-studio</a>。完全不需要改代码，直接让 Agent 结合这两个技能做一张电影票根，执行过程中的 Agent 会主动让你选择光栅样式。</p>
+<p>比如我之前见过一个生成 3D 光栅卡的技能 holo-card-studio<sup><a href="#fn_2" id="reffn_2">2</a></sup>。完全不需要改代码，直接让 Agent 结合这两个技能做一张电影票根，执行过程中的 Agent 会主动让你选择光栅样式。</p>
 <p>哪怕完全不干预参数，效果也挺有意思：</p>
 <p><img src="/2026/10/18/movie-ticket-stub/blog-261018-006.gif" alt></p>
 <h2 id="项目开源地址"><a href="#项目开源地址" class="headerlink" title="项目开源地址"></a>项目开源地址</h2><p>你可以在 GitHub 找到这个技能的开源版本。</p>
 <p>项目遵循通用的 Agent Skill 目录规范（直接克隆到 <code>.agents/skills/</code> 下即可调用）。我平时在 Antigravity 里直接用自带的生图工具跑；如果你使用其他 Agent 客户端或第三方生图 API，只需要引导 Agent 修改一下配置文件即可无缝接管。</p>
 <p><img src="/2026/10/18/movie-ticket-stub/blog-261018-007.png" alt></p>
+<blockquote id="fn_1">
+<sup>1</sup>. movie-ticket-stub: <a target="_blank" rel="noopener" href="https://github.com/Joffoo/movie-ticket-stub">https://github.com/Joffoo/movie-ticket-stub</a><a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_2">
+<sup>2</sup>. holo-card-studio: <a target="_blank" rel="noopener" href="https://github.com/EverettFish/holo-card-studio">https://github.com/EverettFish/holo-card-studio</a><a href="#reffn_2" title="Jump back to footnote [2] in the text."> &#8617;</a>
+</blockquote>
 
       
     </div>
