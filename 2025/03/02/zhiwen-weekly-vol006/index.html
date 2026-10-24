@@ -339,7 +339,7 @@
 
 <p><strong>写作的每个阶段需要不同的AI工具（至少是不同的AI窗口）</strong>，因为每个阶段的思考方式不同，类似于人类写作时立论、资料搜集和写作是分开进行的，以保持文章的逻辑性和连贯性。</p>
 <p align="right">——《评论尸的 AI 生产力经验》
-  <a href="https://fengyukongzhou.github.io/2025/01/11/zhiwen-weekly-vol002/">之前</a>推荐过这篇文章
+  <a target="_blank" rel="noopener" href="https://fengyukongzhou.github.io/2025/01/11/zhiwen-weekly-vol002/">之前</a>推荐过这篇文章
 </p>
 
 <p><strong>多工作业不是人类新掌握的技能</strong>，以便适应现代晚期信息社会的需求。<strong>更确切地说，它代表了一种倒退</strong>。当动物身处野外捕猎区时，普遍存在多任务处理。这种注意力的管理技术是荒野求生的必备技能。</p>
@@ -348,7 +348,7 @@
 <h2 id="💻-操作台"><a href="#💻-操作台" class="headerlink" title="💻 操作台"></a>💻 操作台</h2><h3 id="⌨️-段码字"><a href="#⌨️-段码字" class="headerlink" title="⌨️ 段码字"></a>⌨️ 段码字</h3><p><img src="/2025/03/02/zhiwen-weekly-vol006/zw006-3.gif" alt></p>
 <p>昨天在 B 站看到一个讲解段码字的视频，比较常见的是电梯里的那些数字显示，但也可以显示一些字母，甚至个别汉字。感觉挺有意思的，决定把它作为 AI 编程的一个练手素材。</p>
 <p>原本想用 Cursor 的 <code>Claude 3.7</code> 来尝试，但因为用量限制，无法试用，所以最终还是用 <code>Claude 3.5</code> 完成了这个项目。</p>
-<p>和<a href="https://fengyukongzhou.github.io/2025/01/20/power-of-ignorance/">上次</a>一样，最大的挑战不是我不会编程，而是如何准确地向 AI 描述我想要的实现效果。比如米字 16 段码的斜线方向，即便截图也很难让 AI 完全理解。最后用 lmarena.ai 的 <code>Claude3.7</code> 试用版，修改了斜线对应的样式，然后手动调整了角度，才达到理想效果。</p>
+<p>和<a target="_blank" rel="noopener" href="https://fengyukongzhou.github.io/2025/01/20/power-of-ignorance/">上次</a>一样，最大的挑战不是我不会编程，而是如何准确地向 AI 描述我想要的实现效果。比如米字 16 段码的斜线方向，即便截图也很难让 AI 完全理解。最后用 lmarena.ai 的 <code>Claude3.7</code> 试用版，修改了斜线对应的样式，然后手动调整了角度，才达到理想效果。</p>
 <p>还有就是多亏网上有人列出了<a target="_blank" rel="noopener" href="https://blog.csdn.net/icifan/article/details/126477145">真值表</a>，避免了重复造轮子。</p>
 <p>另外，这段据说好用的提示词，确实可以试试：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">反思 5-7 个可能的问题来源，将其提炼为 1-2 个最可能的来源，</span><br><span class="line">然后测试验证您的假设，然后再实施实际的代码修复。</span><br></pre></td></tr></table></figure>
