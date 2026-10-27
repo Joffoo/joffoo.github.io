@@ -297,6 +297,331 @@
 
   
     
+    <h3 class="article-title"><a href="/2026/10/26/ai-taste-back-translation/"><span>谁解AI味：为什么AI写的东西这么难读？AI翻译会不会影响AI率？</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2026/10/26/ai-taste-back-translation/" rel="bookmark">
+        <time class="entry-date published" datetime="2026-10-25T16:00:00.000Z">
+          2026-10-26
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p><img src="/2026/10/26/ai-taste-back-translation/blog-ai-taste1026-002.png" alt></p>
+<p>我读过研究生，后来也当过论文编辑，AI 率一直是一种“惘惘的威胁”。</p>
+<p>编辑部会让助理编辑通过几种渠道计算 AI 率，但没有人知道算出来的是什么，只知道测出来 AI 率高，就要发邮件联系作者。</p>
+<p>但我感觉连这一步都多余，因为作者只要回复说用 AI 翻译或者润色过，也就没有什么可说的了，最多让作者在“致谢”里加上一句。</p>
+<p>这引出了两个疑问：</p>
+<p>第一，先不讨论检测软件算出来的数值，为什么我们在读大模型写出的文字时，常会觉得别扭、费劲？</p>
+<p>第二，网上很早就流传一种给论文降重的方法，即把中文翻译成外语，再从外语翻译回中文。在大模型普及后，不少人把这种“回译”当成去掉 AI 味的技巧。既然作者常拿“用 AI 翻译过”当解释，那回译到底能不能改变文本的 AI 特征呢？</p>
+<h2 id="论文里的观点：AI-为什么把句子写得绕口？"><a href="#论文里的观点：AI-为什么把句子写得绕口？" class="headerlink" title="论文里的观点：AI 为什么把句子写得绕口？"></a>论文里的观点：AI 为什么把句子写得绕口？</h2><p><img src="/2026/10/26/ai-taste-back-translation/blog-ai-taste1026-003.png" alt></p>
+<p>最近纽约大学和得克萨斯大学奥斯汀分校发了一篇预印本（<em>Why is AI-generated language so hard to understand?</em>, arXiv:2610.29162）。虽然这篇论文给出的不是定论，但它对我们理解这种“难读”很有参考价值。</p>
+<p>论文作者分析了多个主流大语言模型在聊天、写代码和议论文写作中的语料，指出大模型频繁使用几类容易增加人类阅读负担的英文句法特征：</p>
+<ol>
+<li><strong>省略关系代词的定语从句</strong>：在从句中省略 that/which 等连接词，使读者缺乏句法缓冲。</li>
+<li><strong>无生命主语搭配通常属于人类或生物的动作</strong>：例如用抽象名词去作为具体动作的主语。</li>
+<li><strong>多个名词连续堆叠</strong>：将两三个名词连在一起使用，缺乏介词连接。</li>
+<li><strong>把名词直接当动词使用</strong>。</li>
+<li><strong>较长的句法依赖</strong>：主语与核心谓语动词之间插入了较长的修饰成分。</li>
+</ol>
+<p>为了检验这些特征究竟是因为“话题本身太难写”，还是“模型主动选择”，论文作者做了一个英日回译实验：把 AI 写的英文通过机器翻译翻成日语，再从日语翻译回英文。</p>
+<p>结果显示，回译之后的文本表达了同样的意思，但上述那些绕口的句法特征明显减少了。论文作者据此推测：<strong>同样的意思本可以用更平实、常规的句式表达，是模型在生成时主动偏向了这些更绕口的句法</strong>。</p>
+<p>对于背后的原因，论文提出了一种解释，这与人类的语言习惯以及大模型的训练方式有关。</p>
+<p>人类在日常沟通中，习惯把信息均匀分布在各个句子中。这在语言学上叫“<strong>均匀信息密度假说</strong>”（UID）。多说一两个过渡词，是为了配合听者有限的短期记忆，让人脑有时间缓冲和消化。</p>
+<p>但现代大模型的优化目标却恰恰相反。</p>
+<p>大模型在基础预训练完成后，会经历“后训练”（Post-training）阶段。早期的后训练主要依赖<strong>人类反馈强化学习（RLHF）</strong>——由人类标注员给模型的回答打分，教模型说更通顺、更有礼貌的人话。</p>
+<p>但随着模型需要解决更复杂的数学推导和代码任务，训练范式逐步转向了<strong>基于可验证奖励的强化学习（RLVR）</strong>。在这一阶段，不再由人类主观打分，而是由代码测试或数学题的标准答案进行客观奖惩。</p>
+<p>与此同时，模型还受到上下文窗口大小以及“长度惩罚”等机制的约束。在必须做对难题、又必须控制篇幅的压力下，模型逐渐摸索出了一种高信息密度的表述策略。</p>
+<p>为了用尽量少的 Token 塞进同样的信息，模型开始主动省略“因此”、“从而”等起缓冲作用的连接词，把长动作压缩成多层嵌套的名词短语，甚至把名词直接当动词用。</p>
+<p>一篇文章翻看下来，满眼是紧绷的句子，缺少呼吸的节奏。</p>
+<h2 id="中文回译实测：它真的能去掉-AI-味吗？"><a href="#中文回译实测：它真的能去掉-AI-味吗？" class="headerlink" title="中文回译实测：它真的能去掉 AI 味吗？"></a>中文回译实测：它真的能去掉 AI 味吗？</h2><p><img src="/2026/10/26/ai-taste-back-translation/blog-ai-taste1026-004.png" alt></p>
+<p>论文观察到的是英语中的微观句法现象，那在中文语境下，把文本翻译成外语再译回中文，能否改变检测软件的判断？</p>
+<p>我做了一组对照实验，记录回译前后字符数、Token 数量的变化，并观察腾讯朱雀 AIGC 检测接口给出的数值。</p>
+<h3 id="1-实验素材与工具"><a href="#1-实验素材与工具" class="headerlink" title="1. 实验素材与工具"></a>1. 实验素材与工具</h3><p>测试选取了三篇由大模型（Gemini 3.8 Flash）直接生成的中文文本，涵盖三种常见类型：</p>
+<ul>
+<li><strong>算法说理</strong>（哈希表树化机制分析，387 字）</li>
+<li><strong>公文写作</strong>（制造业数字化转型报告，444 字）</li>
+<li><strong>文学随笔</strong>（深秋早晨菜市场白描，369 字）</li>
+</ul>
+<p>作为人类写作的参照，同时选取了两个出版译本的片段：海明威《老人与海》（樊飞玉译，412 字）与约瑟夫·德夫林的《英文写作课》（309 字）。</p>
+<p>翻译工具选用 DeepL，分别测试“中文 $\to$ 日文 $\to$ 中文”和“中文 $\to$ 英文 $\to$ 中文”两条路径。</p>
+<p>之所以不用对话式大模型，是为了避免模型在翻译过程中主动改写内容，只保留机器翻译在跨语言转换时对句式的被动调整。</p>
+<h3 id="2-两个观测指标"><a href="#2-两个观测指标" class="headerlink" title="2. 两个观测指标"></a>2. 两个观测指标</h3><p>实验主要记录两项数据：</p>
+<ul>
+<li><strong>Token 数与膨胀率</strong>：使用 <code>cl100k_base</code> 编码器统计回译前后的 Token 变化，观察句子是否在语义空间中变长。</li>
+<li><strong>腾讯朱雀检测数值</strong>：调用朱雀 AIGC 接口获取置信度（0 到 1）。数值越接近 1，判定为 AI 生成的确定程度越高；越接近 0，越倾向于人类写作。</li>
+</ul>
+<h2 id="实测结果：句子舒展了，但朱雀不认"><a href="#实测结果：句子舒展了，但朱雀不认" class="headerlink" title="实测结果：句子舒展了，但朱雀不认"></a>实测结果：句子舒展了，但朱雀不认</h2><p>实验的测试数据如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">样本类别与编号</th>
+<th style="text-align:left">文本主题</th>
+<th style="text-align:center">处理条件</th>
+<th style="text-align:center">字符数 (变动)</th>
+<th style="text-align:center">Token 数 (膨胀率)</th>
+<th style="text-align:center">朱雀 AI 置信度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>AI 原生：算法说理</strong> (S1)</td>
+<td style="text-align:left">哈希表树化分析</td>
+<td style="text-align:center">原始文本</td>
+<td style="text-align:center">387 字</td>
+<td style="text-align:center">434 T</td>
+<td style="text-align:center"><strong>0.9979</strong></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:center">中 $\to$ 日 $\to$ 中</td>
+<td style="text-align:center">445 (+58)</td>
+<td style="text-align:center">478 (<strong>+10.1%</strong>)</td>
+<td style="text-align:center"><strong>0.9981</strong></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:center">中 $\to$ 英 $\to$ 中</td>
+<td style="text-align:center">478 (+91)</td>
+<td style="text-align:center">518 (<strong>+19.4%</strong>)</td>
+<td style="text-align:center"><strong>0.9974</strong></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>AI 原生：公文写作</strong> (S2)</td>
+<td style="text-align:left">数字化转型分析</td>
+<td style="text-align:center">原始文本</td>
+<td style="text-align:center">444 字</td>
+<td style="text-align:center">530 T</td>
+<td style="text-align:center"><strong>0.9960</strong></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:center">中 $\to$ 日 $\to$ 中</td>
+<td style="text-align:center">539 (+95)</td>
+<td style="text-align:center">612 (<strong>+15.5%</strong>)</td>
+<td style="text-align:center"><strong>0.9964</strong></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:center">中 $\to$ 英 $\to$ 中</td>
+<td style="text-align:center">524 (+80)</td>
+<td style="text-align:center">600 (<strong>+13.2%</strong>)</td>
+<td style="text-align:center"><strong>0.9988</strong></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>AI 原生：文学随笔</strong> (S3)</td>
+<td style="text-align:left">菜市场白描</td>
+<td style="text-align:center">原始文本</td>
+<td style="text-align:center">369 字</td>
+<td style="text-align:center">597 T</td>
+<td style="text-align:center"><strong>0.9994</strong></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:center">中 $\to$ 日 $\to$ 中</td>
+<td style="text-align:center">454 (+85)</td>
+<td style="text-align:center">717 (<strong>+20.1%</strong>)</td>
+<td style="text-align:center"><strong>0.9979</strong></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:center">中 $\to$ 英 $\to$ 中</td>
+<td style="text-align:center">470 (+101)</td>
+<td style="text-align:center">723 (<strong>+21.1%</strong>)</td>
+<td style="text-align:center"><strong>0.9988</strong></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>人类对照：名家译文</strong> (S4)</td>
+<td style="text-align:left">《老人与海》出版译本</td>
+<td style="text-align:center">原始文本</td>
+<td style="text-align:center">412 字</td>
+<td style="text-align:center">579 T</td>
+<td style="text-align:center"><strong>0.0011</strong></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:center">中 $\to$ 日 $\to$ 中</td>
+<td style="text-align:center">428 (+16)</td>
+<td style="text-align:center">607 (<strong>+4.8%</strong>)</td>
+<td style="text-align:center"><strong>0.0819</strong></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:center">中 $\to$ 英 $\to$ 中</td>
+<td style="text-align:center">427 (+15)</td>
+<td style="text-align:center">589 (<strong>+1.7%</strong>)</td>
+<td style="text-align:center"><strong>0.0022</strong></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>人类对照：名家译文</strong> (S5)</td>
+<td style="text-align:left">《英文写作课》出版译本</td>
+<td style="text-align:center">原始文本</td>
+<td style="text-align:center">309 字</td>
+<td style="text-align:center">425 T</td>
+<td style="text-align:center"><strong>0.0010</strong></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:center">中 $\to$ 日 $\to$ 中</td>
+<td style="text-align:center">321 (+12)</td>
+<td style="text-align:center">441 (<strong>+3.8%</strong>)</td>
+<td style="text-align:center"><strong>0.0152</strong></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:center">中 $\to$ 英 $\to$ 中</td>
+<td style="text-align:center">316 (+7)</td>
+<td style="text-align:center">433 (<strong>+1.9%</strong>)</td>
+<td style="text-align:center"><strong>0.0018</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="/2026/10/26/ai-taste-back-translation/blog-ai-taste1026-005.png" alt></p>
+<p>实测数据呈现出几项清晰的结果：</p>
+<h3 id="事实一：AI-翻译人类文本，不会产生高-AI-率"><a href="#事实一：AI-翻译人类文本，不会产生高-AI-率" class="headerlink" title="事实一：AI 翻译人类文本，不会产生高 AI 率"></a>事实一：AI 翻译人类文本，不会产生高 AI 率</h3><p>在对照组中（不是图中的实验结果），我让<strong>大模型直接翻译</strong>《老人与海》和《英文写作课》的英文原文，测出的朱雀数值分别为 <strong>0.0020</strong> 和 <strong>0.0319</strong>。</p>
+<p>这个数值与人类出版译文（0.0011 与 0.0010）处在同一水平，均被判定为人类写作。这说明只要底层的论述与表达逻辑源自人类，单纯经过机器翻译，检测器通常不会将其判定为 AI。</p>
+<p>我的理解是，<strong>翻译任务的约束够强，让 AI 没有多少自由发挥、展示真我的空间</strong>。</p>
+<p>如果让 AI 接着人类写好的前半段往下续写，这种约束还剩多少？</p>
+<p>于是，我做了一个接力测试。底稿选用德夫林《英文写作课》中译本的前两段，文段的朱雀检测值只有 0.0010。</p>
+<p>还是用 Gemini 3.8 Flash，让它模仿作者语言、顺着语境自然往下接。</p>
+<p>随后我对不同文本切片做了检测：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>测试切片</th>
+<th>文本构成与来源</th>
+<th>字符数</th>
+<th>朱雀 AI 置信度</th>
+<th>判定分类 (Label)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>基线 A：纯人类前半段</strong></td>
+<td>德夫林原著译文</td>
+<td>309 字</td>
+<td><strong>0.0010</strong></td>
+<td><strong>Label 0（纯人类创作）</strong></td>
+</tr>
+<tr>
+<td><strong>测试 B：仅 AI 续写下半段</strong></td>
+<td>Gemini 3.8 Flash 自由续写</td>
+<td>259 字</td>
+<td><strong>0.9998</strong></td>
+<td><strong>Label 1（纯 AI 生成）</strong></td>
+</tr>
+<tr>
+<td><strong>测试 C：人机拼接全文</strong></td>
+<td>前半段人类 (54%) + 后半段 AI (46%)</td>
+<td>568 字</td>
+<td><strong>0.7498</strong></td>
+<td><strong>Label 2（疑似/人机混合）</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>可以看到，如果不是翻译，只靠简短的原文约束根本不够，AI 的续写依然信马由缰。</p>
+<p>这是不同上文字数得到的续写结果 AI 率的折线图，也没有呈现出下降趋势。</p>
+<p><img src="/2026/10/26/ai-taste-back-translation/blog-ai-taste1026-006.png" alt></p>
+<h3 id="事实二：AI-文本回译后，Token-数明显增加"><a href="#事实二：AI-文本回译后，Token-数明显增加" class="headerlink" title="事实二：AI 文本回译后，Token 数明显增加"></a>事实二：AI 文本回译后，Token 数明显增加</h3><p>三篇 AI 样本经过回译后，Token 数量普遍增加了 <strong>10.1% 到 21.1%</strong>，字数净增 58 到 101 字。</p>
+<p>对比之下，人类译者译文经过同样的回译，Token 仅增加了 <strong>1.7% 到 4.8%</strong>，字数变动只有 7 到 16 字。这与论文的观察高度吻合：<strong>AI 原生文本的信息往往被高度压缩，机器翻译在跨语言转换时，会将原本紧凑的句式逐步展开</strong>。</p>
+<h3 id="事实三：回译对降低-AI-检测率没有效果"><a href="#事实三：回译对降低-AI-检测率没有效果" class="headerlink" title="事实三：回译对降低 AI 检测率没有效果"></a>事实三：回译对降低 AI 检测率没有效果</h3><p>无论字数增加了多少，三篇 AI 原生文本在回译后的朱雀检测数值始终维持在 <strong>0.9964 到 0.9988</strong> 之间，几乎没有变动。</p>
+<h2 id="文本对比：回译改变了什么？"><a href="#文本对比：回译改变了什么？" class="headerlink" title="文本对比：回译改变了什么？"></a>文本对比：回译改变了什么？</h2><p>仔细对照回译前后的具体句子，能清楚看到文本层面的变化。</p>
+<p>比如 S1 样本中，AI 原始句为：</p>
+<blockquote>
+<p>“空间维度上，红黑树节点占用内存约是链表节点的两倍（增加了父节点、左右子指针及颜色位），初始即用树结构会造成严重的内存浪费。”</p>
+</blockquote>
+<p>经过回译后，句子被转译为：</p>
+<blockquote>
+<p>“从空间角度来看，红黑树节点占用的内存约为链表节点的两倍（因为增加了父节点、左右子节点指针以及颜色位），如果一开始就使用树结构，将会导致严重的内存浪费。”</p>
+</blockquote>
+<p>DeepL 翻译时受限于目标语言语法，通常无法完整保留中文里复杂的复合名词短语，因而拆解了结构，补上了“从……角度来看”、“因为”、“如果……将会”等连接词与标记。这也是回译后 Token 增长 10% 到 20% 的主要原因。</p>
+<p><img src="/2026/10/26/ai-taste-back-translation/blog-ai-taste1026-007.png" alt></p>
+<p>单看局部，句子读起来确实顺畅了一些，不再那么紧绷。</p>
+<p>有趣的是，在文学随笔 S3 样本中，回译也带来了词义偏差的问题。例如原文中的“老面馒头”，在日文回译中变成了“天然酵母面包”，在英文回译中则变成了“酸面团包子”……</p>
+<p><img src="/2026/10/26/ai-taste-back-translation/blog-ai-taste1026-008.png" alt></p>
+<p>那么，既然句子拉长了，连词也补齐了，为什么朱雀依然判定为 AI？</p>
+<p>回译确实打散了长定语、增加了关联词，降低了局部的理解成本。但像朱雀这类基于神经网络的检测模型，关注的重点往往不是局部的连接词或定语长度，而是更为抽象的统计分布。</p>
+<p>翻译工具为确保译文通顺，倾向于选择常见的高概率词汇组合，缺少人类自然写作中常见的起伏与停顿。因此，回译虽然改变了句子的外部形态，却没有实质改变模型生成文本时的统计特征。</p>
+<p>这也说明，<strong>基于全局统计特征的神经网络检测模型，很难通过简单的机械规则加以绕过</strong>。即使某些局部调整在特定段落中短暂降低了数值，换一段往往就会失效。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>回到开头提的那两个问题，结合论文和实测，大致可以得出这么几点结论：</p>
+<ol>
+<li><strong>AI 写的东西难读，往往是因为句子被过分压缩了</strong>。在强化学习和长度限制的训练下，模型习惯把信息高密度地塞进句子，缺少人类日常表达里应有的缓冲节奏。</li>
+<li><strong>拿“AI 翻译过”当借口并不成立</strong>。如果底稿由人类写成，单纯交给 AI 翻译，并不会被测出很高的 AI 率；相反，如果是 AI 原生写出的文本，不管怎么翻译、回译，都掩盖不住 AI 特征。</li>
+<li><strong>回译能改善句式，但骗不过检测软件</strong>。通过中英或中日回译，机器翻译确实会把被压缩的短语拆开、补上关联词，让句子读起来没那么紧绷（Token 普遍膨胀了 10% 到 20%）。但像朱雀这样的检测器识别的是深层的词汇统计概率，而不是表面字数。句子舒展了，底层的“AI 味”依旧在。</li>
+</ol>
+<p>之后，我还会继续尝试网上流传的其他“去 AI 味”方法，看看它们到底效果如何。如果你也对 AI 味问题感兴趣，欢迎保持关注。</p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/AI/">AI</a><a href="/tags/%E7%BF%BB%E8%AF%91/">翻译</a>
+    </span>
+    
+
+    </div>
+
+    
+    <div class="article-meta pull-right">
+      <span>
+        <i class="icon-comments"></i>
+        <span>
+          <a href="/2026/10/26/ai-taste-back-translation/#comment">评论</a>
+        </span>
+      </span>
+    </div>
+    
+  </div>
+</article>
+
+
+
+  <article>
+
+  
+    
     <h3 class="article-title"><a href="/2026/10/22/toiletpaper-style-distillation/"><span>用Agent逆向视觉风格：从311张《TOILETPAPER》大片蒸馏出Skill</span></a></h3>
     
   
@@ -843,7 +1168,7 @@
 
     <span class="post-tags">
       <i class="icon-tags"></i>
-        <a href="/tags/AI/">AI</a><a href="/tags/%E8%AE%BE%E8%AE%A1/">设计</a><a href="/tags/%E8%89%BA%E6%9C%AF/">艺术</a><a href="/tags/%E7%BF%BB%E8%AF%91/">翻译</a>
+        <a href="/tags/AI/">AI</a><a href="/tags/%E7%BF%BB%E8%AF%91/">翻译</a><a href="/tags/%E8%AE%BE%E8%AE%A1/">设计</a><a href="/tags/%E8%89%BA%E6%9C%AF/">艺术</a>
     </span>
     
 
@@ -925,77 +1250,6 @@
         <i class="icon-comments"></i>
         <span>
           <a href="/2026/05/29/zhiwen-weekly-vol022/#comment">评论</a>
-        </span>
-      </span>
-    </div>
-    
-  </div>
-</article>
-
-
-
-  <article>
-
-  
-    
-    <h3 class="article-title"><a href="/2026/05/27/shujuku-li-de-chouka-yishi/"><span>数据库里的抽卡仪式：AI 提示词背后的灵韵消亡与数据库消费</span></a></h3>
-    
-  
-
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/2026/05/27/shujuku-li-de-chouka-yishi/" rel="bookmark">
-        <time class="entry-date published" datetime="2026-05-26T16:00:00.000Z">
-          2026-05-27
-        </time>
-      </a>
-    </span>
-  </div>
-
-
-  
-
-  <div class="article-content">
-    <div class="entry">
-      
-        <p><img src="/2026/05/27/shujuku-li-de-chouka-yishi/blog-2605300528-001.png" alt></p>
-<p>“那么，是将大叙事所赋予的意义看作宿命，还是将从有限的可能性中选择出组合的偶然性当作宿命，这或许不仅仅是小说与电子小说游戏之间的差异，更象征性地展现出现代生存技法与后现代生存技法之间的差异。”</p>
-<p align="right">——东浩纪《动物化的后现代》</p>
-        
-      
-    </div>
-
-  </div>
-
-  <div class="article-footer">
-    <div class="article-meta pull-left">
-
-    
-      
-
-    <span class="post-categories">
-      <i class="icon-categories"></i>
-        <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
-    </span>
-    
-
-    
-    
-
-    <span class="post-tags">
-      <i class="icon-tags"></i>
-        <a href="/tags/AI/">AI</a><a href="/tags/%E8%89%BA%E6%9C%AF/">艺术</a>
-    </span>
-    
-
-    </div>
-
-    
-    <div class="article-meta pull-right">
-      <span>
-        <i class="icon-comments"></i>
-        <span>
-          <a href="/2026/05/27/shujuku-li-de-chouka-yishi/#comment">评论</a>
         </span>
       </span>
     </div>
@@ -1114,7 +1368,7 @@
                         return result;
                     };
                     
-                    const groupedData = groupByYear([["2024-06-23",1],["2024-06-30",1],["2024-07-06",1],["2024-08-19",1],["2024-09-02",1],["2024-09-12",1],["2024-09-24",1],["2024-10-12",1],["2024-11-05",1],["2024-12-04",1],["2024-12-26",1],["2025-01-04",1],["2025-01-11",1],["2025-01-20",1],["2025-01-22",1],["2025-01-24",1],["2025-01-31",1],["2025-02-07",1],["2025-02-21",1],["2025-03-02",1],["2025-03-15",1],["2025-05-25",1],["2025-06-13",1],["2025-06-16",1],["2025-06-22",1],["2025-06-26",1],["2025-07-12",1],["2025-07-27",1],["2025-08-31",1],["2025-09-07",1],["2025-09-21",1],["2025-10-04",1],["2025-11-02",1],["2025-11-22",1],["2025-11-30",1],["2025-12-06",1],["2025-12-12",1],["2025-12-20",1],["2026-01-11",1],["2026-01-24",1],["2026-02-13",1],["2026-02-19",1],["2026-03-14",1],["2026-04-11",1],["2026-04-24",1],["2026-05-02",1],["2026-05-10",1],["2026-05-15",1],["2026-05-17",1],["2026-05-27",1],["2026-05-29",1],["2026-06-27",1],["2026-07-11",1],["2026-08-21",1],["2026-09-12",1],["2026-10-10",1],["2026-10-14",1],["2026-10-18",1],["2026-10-22",1]]);
+                    const groupedData = groupByYear([["2024-06-23",1],["2024-06-30",1],["2024-07-06",1],["2024-08-19",1],["2024-09-02",1],["2024-09-12",1],["2024-09-24",1],["2024-10-12",1],["2024-11-05",1],["2024-12-04",1],["2024-12-26",1],["2025-01-04",1],["2025-01-11",1],["2025-01-20",1],["2025-01-22",1],["2025-01-24",1],["2025-01-31",1],["2025-02-07",1],["2025-02-21",1],["2025-03-02",1],["2025-03-15",1],["2025-05-25",1],["2025-06-13",1],["2025-06-16",1],["2025-06-22",1],["2025-06-26",1],["2025-07-12",1],["2025-07-27",1],["2025-08-31",1],["2025-09-07",1],["2025-09-21",1],["2025-10-04",1],["2025-11-02",1],["2025-11-22",1],["2025-11-30",1],["2025-12-06",1],["2025-12-12",1],["2025-12-20",1],["2026-01-11",1],["2026-01-24",1],["2026-02-13",1],["2026-02-19",1],["2026-03-14",1],["2026-04-11",1],["2026-04-24",1],["2026-05-02",1],["2026-05-10",1],["2026-05-15",1],["2026-05-17",1],["2026-05-27",1],["2026-05-29",1],["2026-06-27",1],["2026-07-11",1],["2026-08-21",1],["2026-09-12",1],["2026-10-10",1],["2026-10-14",1],["2026-10-18",1],["2026-10-22",1],["2026-10-26",1]]);
                     const years = Object.keys(groupedData).reverse();
                     
                     var initYear = parseInt(heatmapChartDom.getAttribute('year')) || new Date().getFullYear();
@@ -1237,7 +1491,7 @@
                         series: [{
                             name: 'Articles',
                             type: 'line',
-                            data: [2,1,1,3,1,1,2,6,2,2,1,4,2,1,2,1,3,3,2,2,1,2,6,1,1,1,1,4],
+                            data: [2,1,1,3,1,1,2,6,2,2,1,4,2,1,2,1,3,3,2,2,1,2,6,1,1,1,1,5],
                             smooth: true,
                             lineStyle: { color: '#5470C6', width: 2 },
                             itemStyle: { color: '#5470C6' },
@@ -1274,7 +1528,7 @@
                         series: [{
                             type: 'pie',
                             radius: '60%',
-                            data: [{"name":"AI","value":44},{"name":"现代生活","value":13},{"name":"翻译","value":12},{"name":"设计","value":11},{"name":"读小说","value":10},{"name":"艺术","value":9},{"name":"Github","value":9},{"name":"写作方法","value":5}],
+                            data: [{"name":"AI","value":45},{"name":"翻译","value":13},{"name":"现代生活","value":13},{"name":"设计","value":11},{"name":"读小说","value":10},{"name":"艺术","value":9},{"name":"Github","value":9},{"name":"写作方法","value":5}],
                             label: {
                                 position: 'outside',
                                 formatter: '{b} {c} ({d}%)',
@@ -1288,7 +1542,7 @@
                         legend: {
                             bottom: '0',
                             left: 'center',
-                            data: [{"name":"AI","value":44},{"name":"现代生活","value":13},{"name":"翻译","value":12},{"name":"设计","value":11},{"name":"读小说","value":10},{"name":"艺术","value":9},{"name":"Github","value":9},{"name":"写作方法","value":5}].map(tag => tag.name),
+                            data: [{"name":"AI","value":45},{"name":"翻译","value":13},{"name":"现代生活","value":13},{"name":"设计","value":11},{"name":"读小说","value":10},{"name":"艺术","value":9},{"name":"Github","value":9},{"name":"写作方法","value":5}].map(tag => tag.name),
                             textStyle: { fontSize: 14, fontWeight: 'bold', fontFamily: 'Microsoft YaHei, SimSun, serif' }
                         }
                     });
@@ -1310,13 +1564,13 @@
                         xAxis: { type: 'value', splitLine: { lineStyle: { type: 'dashed', color: '#ccc' } } },
                         yAxis: { 
                             type: 'category', 
-                            data: [{"name":"咫闻周刊","value":25},{"name":"计算笔记","value":21},{"name":"读书笔记","value":13}].map(category => category.name).reverse(), 
+                            data: [{"name":"咫闻周刊","value":25},{"name":"计算笔记","value":22},{"name":"读书笔记","value":13}].map(category => category.name).reverse(), 
                             axisLabel: { fontSize: 14, fontWeight: 'bold', fontFamily: 'Microsoft YaHei, SimSun, serif' }
                         },
                         series: [{
                             name: 'Category Count',
                             type: 'bar',
-                            data: [{"name":"咫闻周刊","value":25},{"name":"计算笔记","value":21},{"name":"读书笔记","value":13}].map(category => category.value).reverse(),
+                            data: [{"name":"咫闻周刊","value":25},{"name":"计算笔记","value":22},{"name":"读书笔记","value":13}].map(category => category.value).reverse(),
                             label: {
                                 show: true,
                                 position: 'right',
@@ -1365,7 +1619,7 @@
                         },
                         series: [{
                             type: 'tree',
-                            data: [{"name":"Categories","children":[{"name":"计算笔记","children":[],"count":21,"path":"计算笔记"},{"name":"读书笔记","children":[],"count":13,"path":"读书笔记"},{"name":"咫闻周刊","children":[],"count":25,"path":"咫闻周刊"}],"count":0,"path":""}],
+                            data: [{"name":"Categories","children":[{"name":"计算笔记","children":[],"count":22,"path":"计算笔记"},{"name":"读书笔记","children":[],"count":13,"path":"读书笔记"},{"name":"咫闻周刊","children":[],"count":25,"path":"咫闻周刊"}],"count":0,"path":""}],
                             initialTreeDepth: -1,
                             top: '5%',
                             bottom: '10%',
