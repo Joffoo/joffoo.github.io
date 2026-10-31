@@ -1,0 +1,1242 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>去AI味之我见 | Joffoo&#39;s blog | The ethereal flight, oft rehearsed in the theater of one&#39;s dreams...</title>
+
+  
+    <link rel="icon" href="/favicon_io/favicon.ico">
+    <link rel="apple-touch-icon" href="/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon_io/android-chrome-192x192.png">
+    <link rel="manifest" href="/favicon_io/site.webmanifest">
+  
+
+  
+  <meta name="author" content="Fengyukongzhou">
+  
+
+  
+  <meta name="description" content="在想出这套去 AI 味工作流之前，我做了两个假设：
+一是，好的汉语，也应当好听。
+二是，提升 AI 的写作水平，就要教会它作家的写作方式。">
+  
+
+  
+  
+  <meta name="keywords" content="AI,尝试集,写作方法">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="去AI味之我见"/>
+
+  <meta property="og:site_name" content="Joffoo&#39;s blog"/>
+
+  
+  <meta property="og:image" content="/favicon.ico"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Joffoo&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap">
+  <script>
+    // 主题切换功能
+    function initTheme() {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const savedTheme = localStorage.getItem('darkMode');
+      const darkModeEnabled = savedTheme !== null ? savedTheme === 'true' : prefersDark;
+      document.documentElement.setAttribute('data-theme', darkModeEnabled ? 'dark' : 'light');
+      const themeToggle = document.getElementById('theme-toggle');
+      if (themeToggle) {
+        themeToggle.innerHTML = darkModeEnabled ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+      }
+    }
+
+    function toggleTheme() {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('darkMode', newTheme === 'dark');
+      const themeToggle = document.getElementById('theme-toggle');
+      themeToggle.innerHTML = newTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    }
+    
+    // 回到顶部功能
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+    
+    // 控制回到顶部按钮的显示和隐藏
+    function toggleScrollTopButton() {
+      const scrollTopBtn = document.getElementById('scroll-top');
+      if (window.scrollY > 300) {
+        scrollTopBtn.classList.add('visible');
+      } else {
+        scrollTopBtn.classList.remove('visible');
+      }
+    }
+
+    // 在页面加载时初始化主题
+    document.addEventListener('DOMContentLoaded', function() {
+      initTheme();
+      // 监听滚动事件
+      window.addEventListener('scroll', toggleScrollTopButton);
+    });
+
+    // 监听系统主题变化
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+      if (localStorage.getItem('darkMode') === null) {
+        document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+          themeToggle.innerHTML = e.matches ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        }
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('figure.highlight').forEach(function(block) {
+        // 添加 MAC 风格按钮
+        const macButtons = document.createElement('div');
+        macButtons.className = 'mac-buttons';
+        macButtons.innerHTML = `
+          <span class="red"></span>
+          <span class="yellow"></span>
+          <span class="green"></span>
+        `;
+        block.appendChild(macButtons);
+        
+        // 获取代码语言
+        let language = '';
+        // 尝试从 class 获取语言
+        const classes = Array.from(block.classList);
+        const languageClass = classes.find(cls => cls !== 'highlight');
+        if (languageClass) {
+          language = languageClass;
+        }
+        // 尝试从 figcaption 获取语言
+        const figcaption = block.querySelector('figcaption');
+        if (!language && figcaption) {
+          language = figcaption.textContent.trim();
+        }
+        // 尝试从代码块的第一个元素获取语言
+        if (!language) {
+          const firstLine = block.querySelector('.code .line:first-child');
+          if (firstLine) {
+            const text = firstLine.textContent.trim();
+            if (text.startsWith('```')) {
+              language = text.replace('```', '').trim();
+            }
+          }
+        }
+        
+        // 添加语言标签
+        if (language) {
+          const langLabel = document.createElement('span');
+          langLabel.className = 'lang-label';
+          // 首字母大写
+          language = language.charAt(0).toUpperCase() + language.slice(1);
+          langLabel.textContent = language;
+          block.appendChild(langLabel);
+        }
+        
+        // 添加复制按钮
+        const copyButton = document.createElement('button');
+        copyButton.className = 'copy-button';
+        copyButton.innerHTML = '<i class="fas fa-copy"></i>';
+        block.appendChild(copyButton);
+
+        // 复制功能
+        copyButton.addEventListener('click', async function() {
+          try {
+            // 获取代码内容
+            let codeLines = [];
+            
+            // 获取所有代码行
+            if (block.querySelector('table')) {
+              // 如果是带行号的代码块，直接从 .line 元素获取内容
+              const rows = block.querySelectorAll('.code .line');
+              rows.forEach(row => {
+                // 移除每行开头的所有空白字符
+                const lineContent = row.textContent.replace(/^\s+/, '');
+                if (lineContent) {
+                  codeLines.push(lineContent);
+                }
+              });
+            } else {
+              // 如果是普通代码块
+              const codeBlock = block.querySelector('code');
+              const lines = codeBlock.textContent.split('\n');
+              lines.forEach(line => {
+                // 移除每行开头的所有空白字符
+                const lineContent = line.replace(/^\s+/, '');
+                if (lineContent) {
+                  codeLines.push(lineContent);
+                }
+              });
+            }
+            
+            // 组合处理后的代码
+            const processedCode = codeLines.join('\n').trim();
+            
+            // 使用 Clipboard API
+            await navigator.clipboard.writeText(processedCode);
+            
+            // 显示成功状态
+            copyButton.innerHTML = '<i class="fas fa-check"></i>';
+            
+            // 2秒后恢复
+            setTimeout(function() {
+              copyButton.innerHTML = '<i class="fas fa-copy"></i>';
+            }, 2000);
+          } catch (err) {
+            // 如果 Clipboard API 失败，使用传统方法
+            const textarea = document.createElement('textarea');
+            textarea.value = processedCode;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+              document.execCommand('copy');
+              copyButton.innerHTML = '<i class="fas fa-check"></i>';
+              setTimeout(function() {
+                copyButton.innerHTML = '<i class="fas fa-copy"></i>';
+              }, 2000);
+            } catch (err) {
+              console.error('复制失败:', err);
+            }
+            document.body.removeChild(textarea);
+          }
+        });
+      });
+    });
+  </script>
+  <style>
+    .floating-btn {
+      position: fixed;
+      bottom: 20px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--theme-color, #f03838);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2em;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .floating-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+    
+    #theme-toggle {
+      right: 20px;
+    }
+    
+    #scroll-top {
+      right: 70px; /* 位于夜间模式按钮旁边 */
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+    }
+    
+    #scroll-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+<button id="theme-toggle" class="floating-btn" onclick="toggleTheme()" aria-label="切换主题">
+  <i class="fas fa-moon"></i>
+</button>
+<button id="scroll-top" class="floating-btn" onclick="scrollToTop()" aria-label="回到顶部">
+  <i class="fas fa-arrow-up"></i>
+</button>
+<div class="blog">
+  <div class="content">
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">Joffoo&#39;s blog</a>
+    </h1>
+    <p class="site-description">The ethereal flight, oft rehearsed in the theater of one&#39;s dreams...</p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">主页</a></li>
+      
+        <li><a href="/archives">归档</a></li>
+      
+        <li><a href="/categories">分类</a></li>
+      
+        <li><a href="/tags">标签</a></li>
+      
+    </ul>
+  </nav>
+</header>
+    
+    <main class="site-main posts-loop">
+      <article>
+
+  
+    
+    <h3 class="article-title"><span>去AI味之我见</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2026/10/31/qu-ai-wei-zhi-wo-jian/" rel="bookmark">
+        <time class="entry-date published" datetime="2026-10-30T16:00:00.000Z">
+          2026-10-31
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p><img src="/2026/10/31/qu-ai-wei-zhi-wo-jian/blog-261031-001.jpg" alt="Qikou 让 AI 用“嘴”写作"></p>
+<p>在想出这套去 AI 味工作流之前，我做了两个假设：</p>
+<p>一是，好的汉语，也应当好听。</p>
+<p>二是，提升 AI 的写作水平，就要教会它作家的写作方式。</p>
+<span id="more"></span>
+<h2 id="用嘴写作的作家"><a href="#用嘴写作的作家" class="headerlink" title="用嘴写作的作家"></a>用嘴写作的作家</h2><p>2022 年 8 月，作家王朔推出长篇新作《起初·纪年》。新书付梓前，编辑团队希望他写篇自序，未料王朔是这样回绝的：“<strong>现在写不了，最近烟抽得多，嗓子不好</strong>。”</p>
+<p>写字关嗓子什么事？</p>
+<p>他在后来的序言里写道：“我是拿口语所谓新北京话写作的作者，检查文字也须拿口语来回溜，没磕啵儿，才觉得通顺。”嗓子哑了，落笔前就少了一道质检。</p>
+<p>作家阿城在《闲话闲说》里也谈过语言的节律：</p>
+<blockquote>
+<p>世界语言最重要的是节奏。我们学西方的长句子造成很多人不知道应该在哪儿断句，不知道怎么断。我采取笨方法，标点符号不仅仅是语法的作用，同时是节奏点的作用。</p>
+</blockquote>
+<p>在古汉语里，标点的前身叫句读。古人停顿断句，顺应的是说话换气的生理节拍，不单是按语法切分句子。</p>
+<p>很多文章让人读出公文腔、翻译腔或者扑面而来的 AI 味，不是说语法有什么问题，毛病出在文字没有留出换气的空间。</p>
+<p>层层套叠的修饰从句、整齐机械的排比、连绵不断的转折连词，这些去 AI 味的提示词里所指出的，好像都是“气口”的问题。</p>
+<p>就像歌手对现阶段 AI 音乐的诟病之一，就是 AI 唱起歌来，不换气。</p>
+<h2 id="把文字拉进声音里"><a href="#把文字拉进声音里" class="headerlink" title="把文字拉进声音里"></a>把文字拉进声音里</h2><p>顺着这个思路，我自制了去 AI 味 Skill <strong>Qikou</strong>（气口），把“用嘴写作”的直觉落实为“先读后听”的工作流。</p>
+<p>引入了 TTS 用以音频生成，再利用上 Gemini 模型的多模态能力。</p>
+<p><img src="/2026/10/31/qu-ai-wei-zhi-wo-jian/blog-261031-002.png" alt="Qikou 双 Agent 物理发声与盲听隔离架构"></p>
+<p>Agent 1 专门负责拆解文本中的关键信息。</p>
+<p>这一步的规则，源于安德烈·卡帕西（Andrej Karpathy）提及的一套航空工程标准——简明技术英语规范（ASD-STE100）。</p>
+<p>我借用了最核心的原子化陈述约束：一句话只陈述一个独立事实，保留确切数字、参数、实体、专有名词与逻辑因果链；彻底剥离所有主观修饰词、文学比喻和套路过渡词，全程严禁随意轮换同义词。最终交付给下游的，是一份说明书般的原子事实清单。</p>
+<p>本地脚本通过系统级 TTS 接口，将原始文本合成 16-bit PCM 格式的真实音频文件（<code>.wav</code>），之后交付给 Agent 2。</p>
+<p>Agent 2 处于严格的物理隔离中，上下文中看不到任何原始文本。它的输入只有两样：本地调入的音频文件，以及 Agent 1 整理出的原子事实清单。</p>
+<p>除了音频转写之外，提示词部分还参考了 lieflat-less-ai-tone 这个 Skill。要求句子遵循口语交谈的逻辑，正面给出结论，剔除各类翻案预设。拿掉破折号与各种提示性冒号，完全根据换气节拍安放逗号。</p>
+<p>相比其他去 AI 味 Skill，负面清单已经相当精简。</p>
+<p>我尝试去找一下理论作证，但 Agent 表示没有什么论文用过这个思路。</p>
+<p>在我看来（只能在我看来），让多模态大模型“听写”之所以能改变文字质感，原因在于语料库的底层分布。</p>
+<p>多模态音频语料中，真实的人类口语对白、播客交流与现场广播依旧占据主体，受机器生成文本的二次污染相对轻微。多模态模型以听觉信号作为感知入口时，激活的是其在海量人类真实口语语料中预训练出的声学节律，避开了纯文本自回归中最容易陷入的语言套路。</p>
+<p>这和作家用嘴写作的原理没什么不同。</p>
+<p>如果你要写口语白话，或者就是小说里的对话，再或者就是演讲稿，那你当然要亲耳听一下语言是否过关。因为你在生活中听到的多是“人话”，少有书面语、翻译腔或者 AI 味，除非你经常听番茄小说什么的。</p>
+<h2 id="三款技能的横向实测"><a href="#三款技能的横向实测" class="headerlink" title="三款技能的横向实测"></a>三款技能的横向实测</h2><p>自己造出来的理论不能算数，还是要实际验证一下。</p>
+<p>但根据我的经验，直接和朱雀大模型硬碰硬，犹如大战风车，荒谬绝伦。你优化十几轮，骗过了朱雀，得到冗长的工作流。用在其他语段上，发现全然无效，才醒悟，原来我全无胜算。</p>
+<p>在我看来，人工智能发展史告诉我们，叠加规则打不过神经网络，你又何必在自己渺小半径里一再重复这一悲剧呢？</p>
+<p>但测试还是要做，退而求其次，我们把 Qikou 与业内两款典型的开源去 AI 工具，做对比测试就行了。</p>
+<p>第一位参赛选手是 <strong>humanizer-zh</strong>。单次提示词驱动，依托 31 条反套话规则清单做局部精剪，最大化保留原文内容，耗时很短。</p>
+<p>第二位是<strong>lieflat-less-ai-tone</strong>。基于数百篇语料对照总结的三层体系，<strong>静态脚本</strong>打标配合<strong>语义判读</strong>，改前生成分级报告由<strong>人工确认</strong>，耗时比 humanizer 还有 Qikou 都更长。</p>
+<p>测试基于 Antigravity 平台，底座模型严格锁定为 Gemini 3.8 Flash（思维强度设定为 low）。</p>
+<p>评测工具采用腾讯朱雀（Zhuque）AIGC 文本检测接口。核心量化指标为 <code>softmax_confidence</code>，取值 <code>0.0 ~ 1.0</code>，数值越低代表越接近人类真实书写，<code>&lt; 0.50</code> 为判定为人类自然创作的安全区。</p>
+<p><img src="/2026/10/31/qu-ai-wei-zhi-wo-jian/blog-261031-003.png" alt="腾讯朱雀 AIGC 置信度全量评测"></p>
+<h3 id="长文测试"><a href="#长文测试" class="headerlink" title="长文测试"></a>长文测试</h3><p>长文测试样本选自之前发过的纯 AI 写作长篇散文《数据库里的抽卡仪式》中的 4 个小节（S1 至 S4），每节 600 至 1000 字。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">测试样本</th>
+<th style="text-align:center">原文基线</th>
+<th style="text-align:center">Qikou</th>
+<th style="text-align:center">humanizer-zh</th>
+<th style="text-align:center">lieflat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>S1</strong>（灵韵散场）</td>
+<td style="text-align:center"><code>0.9838</code></td>
+<td style="text-align:center"><strong><code>0.5135</code></strong></td>
+<td style="text-align:center"><code>0.9884</code></td>
+<td style="text-align:center"><code>0.6944</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>S2</strong>（真迹不死）</td>
+<td style="text-align:center"><code>0.9999</code></td>
+<td style="text-align:center"><code>0.9779</code></td>
+<td style="text-align:center"><code>0.9824</code></td>
+<td style="text-align:center"><code>0.9999</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>S3</strong>（超平面）</td>
+<td style="text-align:center"><code>0.9999</code></td>
+<td style="text-align:center"><strong><code>0.0860</code></strong></td>
+<td style="text-align:center"><code>0.4077</code></td>
+<td style="text-align:center"><code>0.9999</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>S4</strong>（抽卡布道）</td>
+<td style="text-align:center"><code>0.9921</code></td>
+<td style="text-align:center"><strong><code>0.6637</code></strong></td>
+<td style="text-align:center"><code>0.9924</code></td>
+<td style="text-align:center"><code>0.7561</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>平均置信度</strong></td>
+<td style="text-align:center"><strong><code>0.9939</code></strong></td>
+<td style="text-align:center"><strong><code>0.5603</code></strong> <em>(降 43.6%)</em></td>
+<td style="text-align:center"><strong><code>0.8427</code></strong> <em>(降 15.2%)</em></td>
+<td style="text-align:center"><strong><code>0.8626</code></strong> <em>(降 13.2%)</em></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>在叙事细节相对具象的 S3 片段中，Qikou 凭借盲听重构将置信度打到了 <code>0.0860</code>，直接被朱雀分类器判定为 <strong>Label 0 纯人类创作</strong>。humanizer-zh 依靠局部精简也将得分压至 <code>0.4077</code>。</p>
+<p>当进入抽象哲学概念密集的 S2 片段时，三款工具的得分全部悬在 <code>0.97</code> 以上的高位。看来，如果文本通篇堆砌概念，缺少落脚的细节，单靠修剪字句或口语重述，还是很难撼动分类器的统计概率。</p>
+<h3 id="短文测试"><a href="#短文测试" class="headerlink" title="短文测试"></a>短文测试</h3><p>找了 3 张带有对白字幕的视频截图，都是之前发过的，生成配图文案（P1 人机并跑、P2 冥想心智、P3 金钱心理学）。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">测试样本</th>
+<th style="text-align:center">原文基线</th>
+<th style="text-align:center">Qikou</th>
+<th style="text-align:center">humanizer-zh</th>
+<th style="text-align:center">lieflat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>P1</strong>（人机并跑）</td>
+<td style="text-align:center"><code>0.9810</code></td>
+<td style="text-align:center"><strong><code>0.2986</code></strong></td>
+<td style="text-align:center"><code>0.7184</code></td>
+<td style="text-align:center"><code>0.7122</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>P2</strong>（冥想心智）</td>
+<td style="text-align:center"><code>0.9766</code></td>
+<td style="text-align:center"><code>0.6185</code></td>
+<td style="text-align:center"><code>0.6225</code></td>
+<td style="text-align:center"><code>0.7644</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>P3</strong>（金钱心理学）</td>
+<td style="text-align:center"><code>0.9930</code></td>
+<td style="text-align:center"><strong><code>0.7667</code></strong></td>
+<td style="text-align:center"><code>0.9991</code></td>
+<td style="text-align:center"><code>0.9975</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>平均置信度</strong></td>
+<td style="text-align:center"><strong><code>0.9835</code></strong></td>
+<td style="text-align:center"><strong><code>0.5613</code></strong> <em>(降 42.9%)</em></td>
+<td style="text-align:center"><strong><code>0.7800</code></strong> <em>(降 20.7%)</em></td>
+<td style="text-align:center"><strong><code>0.8247</code></strong> <em>(降 16.1%)</em></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>短文精炼，语法框架更容易显得僵硬。在 P1 样本中，Qikou 通过口语化事实串联，将置信度降至 <code>0.2986</code>，同样进入了 Label 0 纯人类创作区间。</p>
+<p>在 P2 样本中，humanizer-zh（<code>0.6225</code>）与 Qikou（<code>0.6185</code>）的效果基本相当。面对浮夸成语与套路连接词构成的轻度病灶，轻量级的局部规则修剪同样能干脆利落地见效。</p>
+<h3 id="文本细读"><a href="#文本细读" class="headerlink" title="文本细读"></a>文本细读</h3><p>以 P2 为例，不同工具在微观层面的处理思路截然不同。</p>
+<p><img src="/2026/10/31/qu-ai-wei-zhi-wo-jian/blog-261031-004.png" alt="帕斯卡尔名言的四重改写对比"></p>
+<p>底稿是典型的 AI 生成文字。首句使用冒号强行报幕，“溃不成军”、“翻江倒海”、“如坐针毡”三个四字成语在紧凑节奏中密集轰炸，读者在默读时几乎找不到停顿换气的地方。</p>
+<p><strong>Qikou</strong> 拆掉了报幕式冒号，用逗号承接引用。将极端的四字词替换为“难以过关”、“坐立难安”等平实口语。通过合理切分句子留出自然的呼吸间隙。</p>
+<p><strong>humanizer-zh</strong> 极度利落，直接剔除掉蜂巢等夸张文学比喻，保留事实主干，文字压缩得很干净。</p>
+<p><strong>lieflat-less-ai-tone</strong> 走稳健的白盒规则修复路线，替换极值词汇，尽量不惊动原作者的原有语序。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>必须如实交代，有不少案例三个技能都无法让 AI 率下降分毫。这些无效案例就不写在这浪费大家时间了。</p>
+<p>降 AI 率的前提，是内容本身得有一定的信息量在。很遗憾，有些内容不管怎么换词，都是行不通的。</p>
+<p>AI 率就像是进阶版的图灵测试，只是判断者被替换成了机器。</p>
+<p>所以，我也不认为降 AI 率是很要紧的事，AI 并没有反感 AI 味，你让它判断做什么呢，能让自己读起来不反感就行了。</p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/AI/">AI</a><a href="/tags/%E5%B0%9D%E8%AF%95%E9%9B%86/">尝试集</a><a href="/tags/%E5%86%99%E4%BD%9C%E6%96%B9%E6%B3%95/">写作方法</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+  
+
+
+
+
+	<section id="comment" class="comment">
+		<div id="utterances">
+			<script
+					src="https://utteranc.es/client.js"
+					repo="fengyukongzhou/fengyukongzhou.github.io"
+					issue-term="qu-ai-wei-zhi-wo-jian"
+					crossorigin="anonymous"
+					theme="preferred-color-scheme"
+					async
+			></script>
+		</div>
+	</section>
+
+
+
+
+
+
+<div class="like-button-container">
+  <button class="like-button" data-path="2026/10/31/qu-ai-wei-zhi-wo-jian/">
+    <i class="fas fa-heart"></i>
+    <span class="like-count">0</span>
+  </button>
+  <div class="like-message">
+    <img src="/images/luoziwuhui.svg" alt="落子无悔" class="luoziwuhui-svg">
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/leancloud-storage@4.12.0/dist/av-min.js"></script>
+<script>
+// 初始化 LeanCloud
+try {
+  
+  AV.init({
+    appId: "2wNgIGj8UmE5AAQRTtIBZ4Mn-gzGzoHsz",
+    appKey: "gMFzQ0eRohuOkA8QcewcUjGA",
+    serverURL: "https://2wngigj8.lc-cn-n1-shared.com"
+  });
+  console.log('LeanCloud 初始化成功');
+  
+} catch (error) {
+  console.error('LeanCloud 初始化失败:', error);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const likeButton = document.querySelector('.like-button');
+  const likeCount = document.querySelector('.like-count');
+  const path = likeButton.dataset.path;
+  
+  // 检查是否已经点赞过
+  function hasLiked() {
+    const likedPosts = JSON.parse(localStorage.getItem('likedPosts') || '[]');
+    return likedPosts.includes(path);
+  }
+  
+  // 标记文章已点赞
+  function markAsLiked() {
+    const likedPosts = JSON.parse(localStorage.getItem('likedPosts') || '[]');
+    likedPosts.push(path);
+    localStorage.setItem('likedPosts', JSON.stringify(likedPosts));
+    updateLikeButtonState(true);
+  }
+  
+  // 取消文章点赞标记
+  function unmarkAsLiked() {
+    const likedPosts = JSON.parse(localStorage.getItem('likedPosts') || '[]');
+    const index = likedPosts.indexOf(path);
+    if (index > -1) {
+      likedPosts.splice(index, 1);
+      localStorage.setItem('likedPosts', JSON.stringify(likedPosts));
+    }
+    updateLikeButtonState(false);
+  }
+  
+  // 更新按钮状态
+  function updateLikeButtonState(isLiked) {
+    requestAnimationFrame(() => {
+      if (isLiked) {
+        likeButton.classList.add('liked');
+        likeButton.title = '点击取消点赞';
+      } else {
+        likeButton.classList.remove('liked');
+        likeButton.title = '点赞';
+      }
+    });
+  }
+  
+  // 查询当前文章的点赞数
+  async function getLikes() {
+    try {
+      const query = new AV.Query('Likes');
+      query.equalTo('path', path);
+      const result = await query.first();
+      console.log('查询结果:', result);
+      if (!result) {
+        const Like = AV.Object.extend('Likes');
+        const newLike = new Like();
+        newLike.set('path', path);
+        newLike.set('count', 0);
+        return newLike;
+      }
+      return result;
+    } catch (error) {
+      console.error('获取点赞数失败:', error);
+      return null;
+    }
+  }
+  
+  // 更新点赞显示
+  async function updateLikeCount() {
+    try {
+      const like = await getLikes();
+      if (like) {
+        const count = like.get('count') || 0;
+        console.log('当前点赞数:', count);
+        requestAnimationFrame(() => {
+          likeCount.textContent = count;
+        });
+      }
+    } catch (error) {
+      console.error('更新点赞显示失败:', error);
+    }
+  }
+  
+  // 处理点赞事件
+  async function handleLike(event) {
+    // 阻止默认行为和冒泡
+    event.preventDefault();
+    event.stopPropagation();
+    
+    const isLiked = hasLiked();
+    console.log('当前点赞状态:', isLiked);
+    
+    try {
+      let like = await getLikes();
+      if (!like) {
+        console.error('无法获取点赞对象');
+        return;
+      }
+      
+      if (isLiked) {
+        // 取消点赞前检查当前点赞数
+        const currentCount = like.get('count');
+        if (currentCount > 0) {
+          like.increment('count', -1);
+          await like.save();
+          unmarkAsLiked();
+        } else {
+          console.warn('点赞数已经为0，无法继续减少');
+          unmarkAsLiked();
+          return;
+        }
+      } else {
+        // 添加点赞
+        like.increment('count');
+        await like.save();
+        markAsLiked();
+      }
+      
+      const newCount = like.get('count');
+      console.log('操作成功，新的点赞数:', newCount);
+      requestAnimationFrame(() => {
+        likeCount.textContent = newCount;
+      });
+      
+    } catch (error) {
+      console.error('操作失败:', error);
+    }
+  }
+  
+  // 绑定点击和触摸事件
+  likeButton.addEventListener('click', handleLike);
+  likeButton.addEventListener('touchend', handleLike);
+  console.log('点赞按钮事件绑定成功');
+  
+  // 防止触摸滚动
+  likeButton.addEventListener('touchstart', (e) => e.preventDefault());
+  likeButton.addEventListener('touchmove', (e) => e.preventDefault());
+  
+  // 初始化
+  updateLikeCount();
+  updateLikeButtonState(hasLiked());
+});
+</script> 
+
+<div class="post-toc">
+  <div class="toc-toggle">
+    <i class="fas fa-chevron-left"></i>
+  </div>
+  <div class="post-toc-content">
+    <h2>文章目录</h2>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E5%98%B4%E5%86%99%E4%BD%9C%E7%9A%84%E4%BD%9C%E5%AE%B6"><span class="toc-text">用嘴写作的作家</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%8A%E6%96%87%E5%AD%97%E6%8B%89%E8%BF%9B%E5%A3%B0%E9%9F%B3%E9%87%8C"><span class="toc-text">把文字拉进声音里</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E6%AC%BE%E6%8A%80%E8%83%BD%E7%9A%84%E6%A8%AA%E5%90%91%E5%AE%9E%E6%B5%8B"><span class="toc-text">三款技能的横向实测</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%95%BF%E6%96%87%E6%B5%8B%E8%AF%95"><span class="toc-text">长文测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%AD%E6%96%87%E6%B5%8B%E8%AF%95"><span class="toc-text">短文测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E7%BB%86%E8%AF%BB"><span class="toc-text">文本细读</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-text">结语</span></a></li></ol>
+  </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const tocToggle = document.querySelector('.toc-toggle');
+  const postToc = document.querySelector('.post-toc');
+  const tocLinks = document.querySelectorAll('.toc-link');
+  const headers = document.querySelectorAll('article h1[id], article h2[id], article h3[id], article h4[id], article h5[id], article h6[id]');
+  let activeLink = null;
+  let isScrolling = false;
+  
+  // 检测是否是移动设备
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  
+  // 切换目录显示/隐藏
+  tocToggle.addEventListener('click', function() {
+    postToc.classList.toggle('toc-hidden');
+    tocToggle.classList.toggle('toc-toggle-hidden');
+    
+    // 在移动端，点击后立即应用样式
+    if (isMobile) {
+      requestAnimationFrame(() => {
+        tocToggle.querySelector('i').style.color = postToc.classList.contains('toc-hidden') ? '#F03838' : '';
+      });
+    }
+  });
+
+  // 点击目录项平滑滚动
+  tocLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = decodeURIComponent(link.getAttribute('href')).slice(1);
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        isScrolling = true;
+        const offset = 80; // 头部固定导航的高度
+        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - offset;
+        
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+
+        // 更新激活状态
+        if (activeLink) {
+          activeLink.classList.remove('active');
+        }
+        link.classList.add('active');
+        activeLink = link;
+
+        // 滚动结束后重置标志
+        setTimeout(() => {
+          isScrolling = false;
+        }, 1000);
+      }
+    });
+  });
+
+  // 滚动时高亮当前目录项
+  function updateActiveLink() {
+    if (isScrolling) return; // 如果是点击导航引起的滚动，不更新高亮
+
+    let currentSection = '';
+    let minDistance = Infinity;
+    const scrollPosition = window.scrollY + 100; // 考虑顶部偏移
+
+    headers.forEach(header => {
+      const distance = Math.abs(header.getBoundingClientRect().top);
+      if (distance < minDistance) {
+        minDistance = distance;
+        currentSection = '#' + header.id;
+      }
+    });
+
+    if (activeLink) {
+      activeLink.classList.remove('active');
+    }
+    
+    tocLinks.forEach(link => {
+      if (decodeURIComponent(link.getAttribute('href')) === currentSection) {
+        link.classList.add('active');
+        activeLink = link;
+        
+        // 确保当前项在视图中
+        const tocContainer = document.querySelector('.post-toc');
+        const linkRect = link.getBoundingClientRect();
+        const containerRect = tocContainer.getBoundingClientRect();
+        
+        if (linkRect.bottom > containerRect.bottom || linkRect.top < containerRect.top) {
+          link.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+            inline: 'nearest'
+          });
+        }
+      }
+    });
+  }
+
+  // 使用 requestAnimationFrame 优化滚动事件
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        updateActiveLink();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
+  // 初始化高亮
+  updateActiveLink();
+});
+</script>
+
+
+    
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+    
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2026 Fengyukongzhou
+    
+  </p>
+</footer>
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HSFDFFL0HT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HSFDFFL0HT');
+</script>
+
+    
+<script>
+    var _hmt = _hmt || [];
+    ( function () {
+        var hm = document.createElement( "script" );
+        hm.src = "https://hm.baidu.com/hm.js?b6d2577512b94cef71ed3db1d1ae70e4";
+        var s = document.getElementsByTagName( "script" )[ 0 ];
+        s.parentNode.insertBefore( hm, s );
+    } )();
+</script>
+
+    
+    
+    
+    <script src="/js/lang-detector.js"></script>
+    
+    
+    <script src="/js/footnote-popup.js"></script>
+    
+
+    <!-- Mermaid.js CDN 引入 -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+      // 初始化 mermaid
+      mermaid.initialize({ startOnLoad: true });
+      document.addEventListener('DOMContentLoaded', function() {
+        // 查找所有 mermaid 代码块
+        document.querySelectorAll('pre code.language-mermaid, pre code.mermaid').forEach(function(block) {
+          var div = document.createElement('div');
+          div.className = 'mermaid';
+          div.textContent = block.textContent;
+          block.parentNode.parentNode.replaceWith(div);
+        });
+        // 重新初始化 mermaid
+        if (window.mermaid) {
+          mermaid.init(undefined, document.querySelectorAll('.mermaid'));
+        }
+      });
+    </script>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const heatmapChartDom = document.getElementById('heatmapChart');
+                if(heatmapChartDom){
+                    const heatmapChart = echarts.init(heatmapChartDom, 'light');
+                    const cellSize = [18, 18];
+                    
+                    const groupByYear = (data) => {
+                        const result = {};
+                        data.forEach(([date, value]) => {
+                            const [year] = date.split('-').map(Number);
+                            if (!result[year]) {
+                                result[year] = [];
+                            }
+                            result[year].push([date, value]);
+                        });
+                        return result;
+                    };
+                    
+                    const groupedData = groupByYear([["2024-06-23",1],["2024-06-30",1],["2024-07-06",1],["2024-08-19",1],["2024-09-02",1],["2024-09-12",1],["2024-09-24",1],["2024-10-12",1],["2024-11-05",1],["2024-12-04",1],["2024-12-26",1],["2025-01-04",1],["2025-01-11",1],["2025-01-20",1],["2025-01-22",1],["2025-01-24",1],["2025-01-31",1],["2025-02-07",1],["2025-02-21",1],["2025-03-02",1],["2025-03-15",1],["2025-05-25",1],["2025-06-13",1],["2025-06-16",1],["2025-06-22",1],["2025-06-26",1],["2025-07-12",1],["2025-07-27",1],["2025-08-31",1],["2025-09-07",1],["2025-09-21",1],["2025-10-04",1],["2025-11-02",1],["2025-11-22",1],["2025-11-30",1],["2025-12-06",1],["2025-12-12",1],["2025-12-20",1],["2026-01-11",1],["2026-01-24",1],["2026-02-13",1],["2026-02-19",1],["2026-03-14",1],["2026-04-11",1],["2026-04-24",1],["2026-05-02",1],["2026-05-10",1],["2026-05-15",1],["2026-05-17",1],["2026-05-27",1],["2026-05-29",1],["2026-06-27",1],["2026-07-11",1],["2026-08-21",1],["2026-09-12",1],["2026-10-10",1],["2026-10-14",1],["2026-10-18",1],["2026-10-22",1],["2026-10-26",1],["2026-10-31",1]]);
+                    const years = Object.keys(groupedData).reverse();
+                    
+                    var initYear = parseInt(heatmapChartDom.getAttribute('year')) || new Date().getFullYear();
+                    const minYear = years[years.length - 1];
+                    const maxYear = years[0];
+                    if (initYear < minYear || initYear > maxYear) {
+                        initYear = maxYear;
+                    }
+                    console.log('[hexo-graph]generateHeatmapChart|initYear:', initYear, 'minYear:', minYear, 'maxYear:', maxYear);
+                    
+                    heatmapChart.setOption({
+                        grid: {},
+                        tooltip: { 
+                            position: 'top', 
+                            formatter: params => `${params.value[0]}: ${params.value[1]} Articles` 
+                        },
+                        calendar: { 
+                            top: '10%',
+                            left: 'left', 
+                            right: '8%',
+                            range: initYear,
+                            cellSize: cellSize, 
+                            splitLine: { lineStyle: { color: '#E0E0E0', width: 1 } }, 
+                            itemStyle: { borderWidth: 1, borderColor: '#E0E0E0' }, 
+                            dayLabel: { show: false },
+                            monthLabel: { show: true },
+                            yearLabel: { show: false },
+                        },
+                        visualMap: { 
+                            show: true,
+                            right: '8%',
+                            bottom: '5%',
+                            type: 'piecewise',
+                            orient: 'horizontal',
+                            text: ['More', 'Less'],
+                            min: 0,
+                            max: Math.max(...groupedData[initYear].map(item => item[1])),
+                            inRange: { color: ["#ACE7AE","#69C16D","#549F57"] }
+                        },
+                        legend: {
+                            type: 'scroll',
+                            icon: 'none',
+                            data: years,
+                            orient: 'vertical',
+                            top: '5%',
+                            right: 'right',
+                            itemWidth: 20,
+                            itemHeight: 20,
+                            itemGap: 10,
+                            pageIconSize: 10,
+                            pageTextStyle: { fontSize: 14 },
+                            selectedMode: 'single',
+                        },
+                        series: years.map(year => ({
+                            type: 'heatmap',
+                            coordinateSystem: 'calendar',
+                            data: groupedData[year],
+                            name: year,
+                            emphasis: {
+                                disabled: true,
+                            },
+                            silent: year !== initYear,
+                        })),
+                    });
+                    
+                    // init selected year
+                    heatmapChart.dispatchAction({
+                        type: 'legendSelect',
+                        name: initYear,
+                    });
+                    
+                    heatmapChart.on('legendselectchanged', function(params) {
+                        console.log('[hexo-graph]generateHeatmapChart|legendselectchanged:', params);
+                        const selectedYear = Object.keys(params.selected).find(key => params.selected[key]);
+                        if (selectedYear && groupedData[selectedYear]) {
+                            heatmapChart.setOption({
+                                calendar: {
+                                    range: selectedYear,
+                                },
+                                visualMap: {
+                                    max: Math.max(...groupedData[selectedYear].map(item => item[1])),
+                                },
+                                series: years.map(year => ({
+                                    type: 'heatmap',
+                                    coordinateSystem: 'calendar',
+                                    data: groupedData[year],
+                                    name: year,
+                                    emphasis: {
+                                        disabled: true,
+                                    },
+                                    silent: year !== selectedYear,
+                                })),
+                            });
+                        }
+                    });
+                    
+                    heatmapChart.on('click', function (params) {
+                        if (params.componentType === 'series') {
+                            const [year, month] = params.value[0].split('-');
+                            window.location.href = '/archives/' + year + '/' + month;
+                        }
+                    });
+                }
+            });
+        </script>
+    
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const monthlyChartDom = document.getElementById('monthlyChart');
+                if(monthlyChartDom){
+                    const monthlyChart = echarts.init(monthlyChartDom, 'light');
+                    monthlyChart.setOption({
+                        xAxis: { 
+                            type: 'category', 
+                            data: ["2024-06","2024-07","2024-08","2024-09","2024-10","2024-11","2024-12","2025-01","2025-02","2025-03","2025-05","2025-06","2025-07","2025-08","2025-09","2025-10","2025-11","2025-12","2026-01","2026-02","2026-03","2026-04","2026-05","2026-06","2026-07","2026-08","2026-09","2026-10"], 
+                            axisLabel: { fontSize: 14, fontWeight: 'bold', fontFamily: 'Microsoft YaHei, SimSun, serif' }
+                        },
+                        yAxis: { type: 'value', splitLine: { lineStyle: { type: 'dashed', color: '#ccc' } } },
+                        series: [{
+                            name: 'Articles',
+                            type: 'line',
+                            data: [2,1,1,3,1,1,2,6,2,2,1,4,2,1,2,1,3,3,2,2,1,2,6,1,1,1,1,6],
+                            smooth: true,
+                            lineStyle: { color: '#5470C6', width: 2 },
+                            itemStyle: { color: '#5470C6' },
+                            areaStyle: { color: 'rgba(84, 112, 198, 0.4)' },
+                            symbolSize: 10,
+                            label: {
+                                show: true,
+                                position: 'top',
+                                formatter: params => params.value,
+                                fontSize: 14,
+                                color: '#000',
+                                fontWeight: 'bold',
+                                fontFamily: 'Microsoft YaHei, SimSun, serif'
+                            }
+                        }]
+                    });
+
+                    monthlyChart.on('click', function (params) {
+                        const [year, month] = params.name.split('-');
+                        window.location.href = '/archives/' + year + '/' + month;
+                    });
+                }
+            })
+        </script>
+    
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const tagsChartDom = document.getElementById('tagsChart');
+                if(tagsChartDom){
+                    const tagsChart = echarts.init(tagsChartDom, 'light');
+                    tagsChart.setOption({
+                        tooltip: { trigger: 'item', formatter: '{b}: {c} ({d}%)' },
+                        series: [{
+                            type: 'pie',
+                            radius: '60%',
+                            data: [{"name":"AI","value":46},{"name":"翻译","value":13},{"name":"现代生活","value":13},{"name":"设计","value":11},{"name":"读小说","value":10},{"name":"艺术","value":9},{"name":"Github","value":9},{"name":"写作方法","value":6}],
+                            label: {
+                                position: 'outside',
+                                formatter: '{b} {c} ({d}%)',
+                                fontSize: 14,
+                                fontWeight: 'bold',
+                                fontFamily: 'Microsoft YaHei, SimSun, serif'
+                            },
+                            color: ["#5470C6","#91CC75","#FAC858","#EE6666","#73C0DE","#3BA272","#FC8452","#9A60B4"],
+                            labelLine: { show: true }
+                        }],
+                        legend: {
+                            bottom: '0',
+                            left: 'center',
+                            data: [{"name":"AI","value":46},{"name":"翻译","value":13},{"name":"现代生活","value":13},{"name":"设计","value":11},{"name":"读小说","value":10},{"name":"艺术","value":9},{"name":"Github","value":9},{"name":"写作方法","value":6}].map(tag => tag.name),
+                            textStyle: { fontSize: 14, fontWeight: 'bold', fontFamily: 'Microsoft YaHei, SimSun, serif' }
+                        }
+                    });
+
+                    tagsChart.on('click', function (params) {
+                        window.location.href = '/tags/' + params.name;
+                    });
+                }
+            })
+        </script>
+    
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const categoriesChartDom = document.getElementById('categoriesChart');
+                if(categoriesChartDom){
+                    const categoriesChart = echarts.init(categoriesChartDom, 'light');
+                    categoriesChart.setOption({
+                        xAxis: { type: 'value', splitLine: { lineStyle: { type: 'dashed', color: '#ccc' } } },
+                        yAxis: { 
+                            type: 'category', 
+                            data: [{"name":"咫闻周刊","value":25},{"name":"计算笔记","value":23},{"name":"读书笔记","value":13}].map(category => category.name).reverse(), 
+                            axisLabel: { fontSize: 14, fontWeight: 'bold', fontFamily: 'Microsoft YaHei, SimSun, serif' }
+                        },
+                        series: [{
+                            name: 'Category Count',
+                            type: 'bar',
+                            data: [{"name":"咫闻周刊","value":25},{"name":"计算笔记","value":23},{"name":"读书笔记","value":13}].map(category => category.value).reverse(),
+                            label: {
+                                show: true,
+                                position: 'right',
+                                formatter: params => params.value,
+                                fontSize: 14,
+                                color: '#000',
+                                fontWeight: 'bold',
+                                fontFamily: 'Microsoft YaHei, SimSun, serif'
+                            },
+                            itemStyle: {
+                                color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
+                                    { offset: 0, color: '#91CC75' },
+                                    { offset: 1, color: '#73C0DE' }
+                                ])
+                            }
+                        }]
+                    });
+
+                    categoriesChart.on('click', function (params) {
+                        window.location.href = '/categories/' + params.name;
+                    });
+                }
+            });
+        </script>
+    
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const categoriesTreeChartDom = document.getElementById('categoriesTreeChart');
+                if(categoriesTreeChartDom){
+                    const treeChart = echarts.init(categoriesTreeChartDom, 'light');
+                    treeChart.setOption({
+                        title: {
+                            text: '操作提示：单击展开分类，双击进入具体分类页面',
+                            textStyle: {
+                                fontSize: 12,
+                                color: '#999',
+                                fontWeight: 'normal'
+                            },
+                            bottom: 0,
+                            left: 'center'
+                        },
+                        tooltip: {
+                            trigger: 'item',
+                            triggerOn: 'mousemove'
+                        },
+                        series: [{
+                            type: 'tree',
+                            data: [{"name":"Categories","children":[{"name":"计算笔记","children":[],"count":23,"path":"计算笔记"},{"name":"读书笔记","children":[],"count":13,"path":"读书笔记"},{"name":"咫闻周刊","children":[],"count":25,"path":"咫闻周刊"}],"count":0,"path":""}],
+                            initialTreeDepth: -1,
+                            top: '5%',
+                            bottom: '10%',
+                            left: '0%',
+                            right: '0%',
+                            symbolSize: 15,
+                            layout: 'orthogonal',
+                            orient: 'TB',
+                            itemStyle: {
+                                color: '#91CC75',
+                                borderColor: '#73C0DE'
+                            },
+                            label: {
+                                position: 'bottom',
+                                verticalAlign: 'middle',
+                                align: 'center',
+                                fontSize: 14,
+                                distance: 28,
+                                formatter: function(params) {
+                                    return params.data.name + (params.data.count ? ' (' + params.data.count + ')' : '');
+                                }
+                            },
+                            leaves: {
+                                label: {
+                                    position: 'top',
+                                    verticalAlign: 'middle',
+                                    align: 'center'
+                                }
+                            },
+                            emphasis: {
+                                focus: 'descendant'
+                            },
+                            expandAndCollapse: true
+                        }]
+                    });
+
+                    treeChart.on('dblclick', function (params) {
+                        if (params.data && params.data.path) {
+                            window.location.href = '/categories/' + params.data.path;
+                        }
+                    });
+                }
+            });
+        </script>
+    
+    </body>
+</html>
