@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>去AI味之我见：让 Agent 学会“因声求气” | Joffoo&#39;s blog | The ethereal flight, oft rehearsed in the theater of one&#39;s dreams...</title>
+  <title>去AI味之我见：让Agent学会“因声求气” | Joffoo&#39;s blog | The ethereal flight, oft rehearsed in the theater of one&#39;s dreams...</title>
 
   
     <link rel="icon" href="/favicon_io/favicon.ico">
@@ -29,7 +29,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-  <meta property="og:title" content="去AI味之我见：让 Agent 学会“因声求气”"/>
+  <meta property="og:title" content="去AI味之我见：让Agent学会“因声求气”"/>
 
   <meta property="og:site_name" content="Joffoo&#39;s blog"/>
 
@@ -301,7 +301,7 @@
 
   
     
-    <h3 class="article-title"><span>去AI味之我见：让 Agent 学会“因声求气”</span></h3>
+    <h3 class="article-title"><span>去AI味之我见：让Agent学会“因声求气”</span></h3>
     
   
 
@@ -334,8 +334,7 @@
 <p>世界语言最重要的是节奏。我们学西方的长句子造成很多人不知道应该在哪儿断句，不知道怎么断。我采取笨方法，标点符号不仅仅是语法的作用，同时是节奏点的作用。</p>
 </blockquote>
 <p>在古汉语里，标点的前身叫句读。古人讲“因声求气”，停顿断句顺应的是说话换气的生理节拍，不单是按语法切分句子。</p>
-<p>很多文章让人读出公文腔、翻译腔或者扑面而来的 AI 味，不是说语法有什么问题，毛病出在文字没有留出换气的空间。</p>
-<p>层层套叠的修饰从句、整齐机械的排比、连绵不断的转折连词，这些去 AI 味的提示词里所指出的，好像都是“气口”的问题。</p>
+<p>很多文章让人读出公文腔、翻译腔或者扑面而来的 AI 味，不是说语法有什么问题，毛病出在文字没有留出换气的空间。层层套叠的修饰从句、整齐机械的排比、连绵不断的转折连词，这些去 AI 味的提示词里所指出的，好像都是“气口”的问题。</p>
 <p>就像歌手对现阶段 AI 音乐的诟病之一，就是 AI 唱起歌来，不换气。</p>
 <h2 id="把文字拉进声音里"><a href="#把文字拉进声音里" class="headerlink" title="把文字拉进声音里"></a>把文字拉进声音里</h2><p>顺着这个思路，我自制了去 AI 味 Skill Qikou（气口），把“用嘴写作”的直觉落实为“先读后听”的工作流。</p>
 <p>引入了 TTS 用以音频生成，再利用上 Gemini 模型的多模态能力。</p>
@@ -347,18 +346,18 @@
 <p>Agent 2 处于严格的盲听隔离中，上下文中看不到任何原始文本。它的输入只有两样：本地调入的音频文件，以及 Agent 1 整理出的原子事实清单。</p>
 <p>除了音频转写之外，提示词部分还参考了 <a target="_blank" rel="noopener" href="https://github.com/larashero3-dotcom/lieflat-less-ai-tone">lieflat-less-ai-tone</a> 这个 Skill。要求句子遵循口语交谈的逻辑，正面给出结论，剔除各类翻案预设。拿掉破折号与各种提示性冒号，完全根据换气节拍安放逗号。</p>
 <p>相比其他去 AI 味 Skill，负面清单已经相当精简。</p>
-<p>我尝试去找一下理论作证，但 Agent 表示没有什么论文用过这个思路。</p>
-<p>在我看来（只能在我看来），让多模态大模型“听写”之所以能改变文字质感，原因在于语料库的底层分布。</p>
+<p>我尝试去找理论依据，但 Agent 表示没有什么论文用过这个思路。</p>
+<p>在我看来（只能在我看来），让多模态大模型“听写”，之所以能改变文字质感，原因在于语料库的底层分布。</p>
 <p>多模态音频语料中，真实的人类口语对白、播客交流与现场广播依旧占据主体，受机器生成文本的二次污染相对轻微。多模态模型以听觉信号作为感知入口时，激活的是其在海量人类真实口语语料中预训练出的声学节律，避开了纯文本自回归中最容易陷入的语言套路。</p>
 <p>这和作家用嘴写作的原理没什么不同。</p>
 <p>如果你要写口语白话，或者就是小说里的对话，再或者就是演讲稿，那你当然要亲耳听一下语言是否过关。因为你在生活中听到的多是“人话”，少有书面语、翻译腔或者 AI 味，除非你经常听番茄小说什么的。</p>
 <h2 id="三款技能的横向实测"><a href="#三款技能的横向实测" class="headerlink" title="三款技能的横向实测"></a>三款技能的横向实测</h2><p>自己造出来的理论不能算数，还是要实际验证一下。</p>
 <p>但根据我的经验，直接和朱雀大模型硬碰硬，犹如大战风车，荒谬绝伦。你优化十几轮，骗过了朱雀，得到冗长的工作流。用在其他语段上，发现全然无效，才醒悟，原来我全无胜算。</p>
-<p>在我看来，人工智能发展史告诉我们，叠加规则打不过神经网络，你又何必在自己渺小半径里一再重复这一悲剧呢？</p>
+<p>在我看来，人工智能发展史告诉我们，叠加规则打不过神经网络，你又何必在自己的半径里一再重复这一悲剧呢？</p>
 <p>但测试还是要做，退而求其次，我们把 Qikou 与业内两款典型的开源去 AI 工具，做对比测试就行了。</p>
 <p>第一位参赛选手是 <a target="_blank" rel="noopener" href="https://github.com/op7418/Humanizer-zh">humanizer-zh</a>。单次提示词驱动，依托 31 条反套话规则清单做局部精剪，最大化保留原文内容，耗时很短。</p>
 <p>第二位是 <a target="_blank" rel="noopener" href="https://github.com/larashero3-dotcom/lieflat-less-ai-tone">lieflat-less-ai-tone</a>。基于数百篇语料对照总结的三层体系，静态脚本打标配合语义判读，改前生成分级报告由人工确认，耗时比 humanizer 还有 Qikou 都更长。</p>
-<p>测试基于 Antigravity 平台，底座模型严格锁定为 Gemini 3.8 Flash（思维强度设定为 low）。</p>
+<p>测试基于 Antigravity 平台，底座模型严格锁定为 Gemini 3.8 Flash，思维强度设定为 low。</p>
 <p>评测工具采用腾讯朱雀（Zhuque）AIGC 文本检测接口。核心量化指标为 <code>softmax_confidence</code>，取值 <code>0.0 ~ 1.0</code>，数值越低代表越接近人类真实书写，<code>&lt; 0.50</code> 为判定为人类自然创作的安全区。</p>
 <p><img src="/2026/10/31/qu-ai-wei-zhi-wo-jian/blog-261031-003.png" alt="腾讯朱雀 AIGC 置信度全量评测"></p>
 <h3 id="长文测试"><a href="#长文测试" class="headerlink" title="长文测试"></a>长文测试</h3><p>长文测试样本选自之前发过的纯 AI 写作长篇散文《数据库里的抽卡仪式》中的 4 个小节（S1 至 S4），每节 600 至 1000 字。</p>
@@ -370,7 +369,7 @@
 <th style="text-align:center">原文基线</th>
 <th style="text-align:center">Qikou</th>
 <th style="text-align:center">humanizer-zh</th>
-<th style="text-align:center">lieflat</th>
+<th style="text-align:center">lieflat-less-ai-tone</th>
 </tr>
 </thead>
 <tbody>
@@ -412,9 +411,9 @@
 </tbody>
 </table>
 </div>
-<p>在叙事细节相对具象的 S3 片段中，Qikou 凭借盲听重构将置信度打到了 <code>0.0860</code>，直接被朱雀分类器判定为 <strong>Label 0 纯人类创作</strong>。humanizer-zh 依靠局部精简也将得分压至 <code>0.4077</code>。</p>
+<p>在叙事细节相对具象的 S3 片段中，Qikou 凭借盲听重构将置信度打到了 <code>0.0860</code>，直接被朱雀分类器判定为 Label 0 纯人类创作。humanizer-zh 依靠局部精简也将得分压至 <code>0.4077</code>。</p>
 <p>当进入抽象哲学概念密集的 S2 片段时，三款工具的得分全部悬在 <code>0.97</code> 以上的高位。看来，如果文本通篇堆砌概念，缺少落脚的细节，单靠修剪字句或口语重述，还是很难撼动分类器的统计概率。</p>
-<h3 id="短文测试"><a href="#短文测试" class="headerlink" title="短文测试"></a>短文测试</h3><p>找了 3 张带有对白字幕的视频截图，都是之前发过的，生成配图文案（P1 人机并跑、P2 冥想心智、P3 金钱心理学）。</p>
+<h3 id="短文测试"><a href="#短文测试" class="headerlink" title="短文测试"></a>短文测试</h3><p>找了 3 张带有对白字幕的视频截图，都是之前发过的，生成配图文案。</p>
 <div class="table-container">
 <table>
 <thead>
@@ -423,7 +422,7 @@
 <th style="text-align:center">原文基线</th>
 <th style="text-align:center">Qikou</th>
 <th style="text-align:center">humanizer-zh</th>
-<th style="text-align:center">lieflat</th>
+<th style="text-align:center">lieflat-less-ai-tone</th>
 </tr>
 </thead>
 <tbody>
@@ -461,16 +460,16 @@
 <p>短文精炼，语法框架更容易显得僵硬。在 P1 样本中，Qikou 通过口语化事实串联，将置信度降至 <code>0.2986</code>，同样进入了 Label 0 纯人类创作区间。</p>
 <p>在 P2 样本中，humanizer-zh（<code>0.6225</code>）与 Qikou（<code>0.6185</code>）的效果基本相当。面对浮夸成语与套路连接词构成的轻度病灶，轻量级的局部规则修剪同样能干脆利落地见效。</p>
 <h3 id="文本细读"><a href="#文本细读" class="headerlink" title="文本细读"></a>文本细读</h3><p>以 P2 为例，不同工具在微观层面的处理思路截然不同。</p>
-<p><img src="/2026/10/31/qu-ai-wei-zhi-wo-jian/blog-261031-004.png" alt="帕斯卡尔名言的四重改写对比"></p>
+<p><img src="/2026/10/31/qu-ai-wei-zhi-wo-jian/blog-261031-004.png" alt></p>
 <p>底稿是典型的 AI 生成文字。首句使用冒号强行报幕，“溃不成军”、“翻江倒海”、“如坐针毡”三个四字成语在紧凑节奏中密集轰炸，读者在默读时几乎找不到停顿换气的地方。</p>
-<p><strong>Qikou</strong> 拆掉了报幕式冒号，用逗号承接引用。将极端的四字词替换为“难以过关”、“坐立难安”等平实口语。通过合理切分句子留出自然的呼吸间隙。</p>
+<p><strong>Qikou</strong> 拆掉了报幕式冒号，用逗号承接引用，“翻江倒海”、“如坐针毡”替换为“难以过关”、“坐立难安”等平实口语。通过合理切分句子留出自然的呼吸间隙。</p>
 <p><strong>humanizer-zh</strong> 极度利落，直接剔除掉蜂巢等夸张文学比喻，保留事实主干，文字压缩得很干净。</p>
-<p><strong>lieflat-less-ai-tone</strong> 走稳健的白盒规则修复路线，替换极值词汇，尽量不惊动原作者的原有语序。</p>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>必须如实交代，有不少案例三个技能都无法让 AI 率下降分毫。这些无效案例就不写在这浪费大家时间了。</p>
+<p><strong>lieflat-less-ai-tone</strong> 走稳健的修复路线，替换词汇，尽量不动原有语序。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>必须如实交代，有不少案例使用三个技能都无法让 AI 率下降分毫。这些无效案例就不写在这浪费大家时间了。</p>
 <p>降 AI 率的前提，是内容本身得有一定的信息量在。很遗憾，有些内容不管怎么换词，都是行不通的。</p>
 <p>AI 率就像是进阶版的图灵测试，只是判断者被替换成了机器。</p>
-<p>所以，我也不认为降 AI 率是很要紧的事，AI 并没有反感 AI 味，你让它判断做什么呢，能让自己读起来不反感就行了。</p>
-<h2 id="开源地址"><a href="#开源地址" class="headerlink" title="开源地址"></a>开源地址</h2><p>Qikou 工作流与脚本已开源至 GitHub：<a target="_blank" rel="noopener" href="https://github.com/Joffoo/qikou">Joffoo/qikou</a></p>
+<p>所以，我也不认为降 AI 率是很要紧的事，AI 并没有反感 AI 味，你让它判断做什么呢，能让自己读起来不难受就行了。</p>
+<p>Qikou 工作流与脚本已开源至 GitHub：<a target="_blank" rel="noopener" href="https://github.com/Joffoo/qikou">Joffoo/qikou</a></p>
 <p><img src="/2026/10/31/qu-ai-wei-zhi-wo-jian/blog-261031-005.png" alt="Qikou 仓库分享卡"></p>
 
       
@@ -701,7 +700,7 @@ document.addEventListener('DOMContentLoaded', function() {
   </div>
   <div class="post-toc-content">
     <h2>文章目录</h2>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E5%98%B4%E5%86%99%E4%BD%9C%E7%9A%84%E4%BD%9C%E5%AE%B6"><span class="toc-text">用嘴写作的作家</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%8A%E6%96%87%E5%AD%97%E6%8B%89%E8%BF%9B%E5%A3%B0%E9%9F%B3%E9%87%8C"><span class="toc-text">把文字拉进声音里</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E6%AC%BE%E6%8A%80%E8%83%BD%E7%9A%84%E6%A8%AA%E5%90%91%E5%AE%9E%E6%B5%8B"><span class="toc-text">三款技能的横向实测</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%95%BF%E6%96%87%E6%B5%8B%E8%AF%95"><span class="toc-text">长文测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%AD%E6%96%87%E6%B5%8B%E8%AF%95"><span class="toc-text">短文测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E7%BB%86%E8%AF%BB"><span class="toc-text">文本细读</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-text">结语</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E6%BA%90%E5%9C%B0%E5%9D%80"><span class="toc-text">开源地址</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E5%98%B4%E5%86%99%E4%BD%9C%E7%9A%84%E4%BD%9C%E5%AE%B6"><span class="toc-text">用嘴写作的作家</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%8A%E6%96%87%E5%AD%97%E6%8B%89%E8%BF%9B%E5%A3%B0%E9%9F%B3%E9%87%8C"><span class="toc-text">把文字拉进声音里</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E6%AC%BE%E6%8A%80%E8%83%BD%E7%9A%84%E6%A8%AA%E5%90%91%E5%AE%9E%E6%B5%8B"><span class="toc-text">三款技能的横向实测</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%95%BF%E6%96%87%E6%B5%8B%E8%AF%95"><span class="toc-text">长文测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%AD%E6%96%87%E6%B5%8B%E8%AF%95"><span class="toc-text">短文测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E7%BB%86%E8%AF%BB"><span class="toc-text">文本细读</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-text">结语</span></a></li></ol>
   </div>
 </div>
 <script>
