@@ -341,12 +341,12 @@
 <p>就像歌手对现阶段 AI 音乐的诟病之一，就是 AI 唱起歌来，不换气。</p>
 <h2 id="把文字拉进声音里"><a href="#把文字拉进声音里" class="headerlink" title="把文字拉进声音里"></a>把文字拉进声音里</h2><p>顺着这个思路，我自制了去 AI 味 Skill Qikou（气口），把“用嘴写作”的直觉落实为“先读后听”的工作流。</p>
 <p>引入了 TTS 用以音频生成，再利用上 Gemini 模型的多模态能力。</p>
-<p><img src="/2026/10/31/qu-ai-wei-zhi-wo-jian/blog-261031-002.png" alt="Qikou 双 Agent 物理发声与盲听隔离架构"></p>
+<p><img src="/2026/10/31/qu-ai-wei-zhi-wo-jian/blog-261031-002.png" alt="Qikou 双 Agent TTS 发声与盲听隔离架构"></p>
 <p>Agent 1 专门负责拆解文本中的关键信息。</p>
 <p>这一步的规则，源于<a target="_blank" rel="noopener" href="https://x.com/karpathy/status/2105819303471976479">安德烈·卡帕西（Andrej Karpathy）</a>提及的一套航空工程标准——简明技术英语规范（ASD-STE100）。</p>
 <p>我借用了最核心的原子化陈述约束：一句话只陈述一个独立事实，保留确切数字、参数、实体、专有名词与逻辑因果链；彻底剥离所有主观修饰词、文学比喻和套路过渡词，全程严禁随意轮换同义词。最终交付给下游的，是一份说明书般的原子事实清单。</p>
 <p>本地脚本通过系统级 TTS 接口，将原始文本合成 16-bit PCM 格式的真实音频文件（<code>.wav</code>），之后交付给 Agent 2。</p>
-<p>Agent 2 处于严格的物理隔离中，上下文中看不到任何原始文本。它的输入只有两样：本地调入的音频文件，以及 Agent 1 整理出的原子事实清单。</p>
+<p>Agent 2 处于严格的盲听隔离中，上下文中看不到任何原始文本。它的输入只有两样：本地调入的音频文件，以及 Agent 1 整理出的原子事实清单。</p>
 <p>除了音频转写之外，提示词部分还参考了 <a target="_blank" rel="noopener" href="https://github.com/larashero3-dotcom/lieflat-less-ai-tone">lieflat-less-ai-tone</a> 这个 Skill。要求句子遵循口语交谈的逻辑，正面给出结论，剔除各类翻案预设。拿掉破折号与各种提示性冒号，完全根据换气节拍安放逗号。</p>
 <p>相比其他去 AI 味 Skill，负面清单已经相当精简。</p>
 <p>我尝试去找一下理论作证，但 Agent 表示没有什么论文用过这个思路。</p>
