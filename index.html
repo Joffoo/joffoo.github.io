@@ -297,6 +297,124 @@
 
   
     
+    <h3 class="article-title"><a href="/2026/11/15/ai-translation-coherence/"><span>对 AI 翻译连贯性问题的简单思索</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2026/11/15/ai-translation-coherence/" rel="bookmark">
+        <time class="entry-date published" datetime="2026-11-14T16:00:00.000Z">
+          2026-11-15
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p><img src="/2026/11/15/ai-translation-coherence/blog-261115-003.png" alt></p>
+<p>省流：AI 翻译长篇文本时容易前后翻译不一致，前面是施瓦辛格，后面是舒华辛力加。怎么办，我们切片翻译，提示词里配上术语表就行。</p>
+<h2 id="我的方式不是快捷方式"><a href="#我的方式不是快捷方式" class="headerlink" title="我的方式不是快捷方式"></a>我的方式不是快捷方式</h2><p>所以，我在思索什么。</p>
+<p>之前用过一些开源翻译项目，总觉得按钮太多无从下手，功能很是全面，而且你都用开源项目了，乐趣不就是在 DIY 吗？</p>
+<p>不是，其实是在读书吧。</p>
+<p>当时的项目会让你自己填写术语表，可术语表是什么呢，从哪里来呢？</p>
+<p>好在我能识文断字，知道术语表就是事先记录一套翻译规范，让 AI 只翻译成施瓦辛格、迈克尔·杰克逊和好莱坞，这样译文中就不会出现舒华辛力加、米高积逊和荷里活。</p>
+<p>短文没有不一致的问题，但长文会有，因为 AI 也记不住这么多东西，所以需要把长文章切成短的片段喂进去，也要顺便附上所谓术语表。</p>
+<p>道理很简单，我当时会把 EPUB 文件传到 AI 聊天框，让它总结出全书的术语表。但想也知道不全面，正如前面所说 AI 的注意力有限，聊天框里的也是，所以它并不会看完全书，然后气贯长虹地吐出完整术语表，不会的。</p>
+<p>后来有了专门用来提取术语表的本地小模型。提取出来确实相当全面，有的没的一堆，除了有用的，就是没用的。</p>
+<p>正如前面所说 AI 的注意力有限，这么长的术语表直接交给 AI，它还能完成翻译任务吗？所以我还要自己去筛选哪些是真正有用的，哪些是应该删掉的。</p>
+<p>我前面忘说了，我的注意力也是有限的。</p>
+<p>我开始对提前跑一遍术语表感到厌烦。当然你也可以用大模型跑一遍术语表，像翻译一样，先切片后处理，但这种浪费也使我厌烦。</p>
+<p>我的思路是，<strong>先切片，AI 处理的时候先翻译，后记录下这一段有哪些新词要写入术语表</strong>。这就可以了，术语表可以动态累积，翻译和提取术语表可以同步进行，又方便又节约 token，岂不是很好。</p>
+<p>更有趣的是，<strong>AI 新增的术语可以检索一下后文，如果没有再出现，那就不需要存入术语表</strong>（详见<a href="/2026/05/02/translit-ai-translation-ebook/">TransLit：AI 翻译电子书之我见</a>）。</p>
+<p>但总是要有代价的。</p>
+<p>如果你用过这套方法，可能会嫌太慢，因为那些由你提供术语表的项目，分完片之后是可以一起操作的，毕竟参考的术语表都是全本的、一致的，这叫并行计算。</p>
+<p>我还是接受了这一套方法，虽然不是很快，但也比我读得快多了。翻译的效果使我满意，独立想出这个思路也使我自喜。就在今年五月份我还一口气发了两篇相关的公众号文章，我的公众号关注者甚少，但这两篇阅读量都上千了，是我阅读量最高的文章。</p>
+<h2 id="我的方式不是我的方式"><a href="#我的方式不是我的方式" class="headerlink" title="我的方式不是我的方式"></a>我的方式不是我的方式</h2><p>后来村上春树在七月份发表了一本小说《<a target="_blank" rel="noopener" href="https://book.douban.com/subject/38436115/">夏帆</a>》，主角是女插画师，我还记得书里有食蚁兽。</p>
+<p>这本书在发表的那天晚上，Z-library 就有人给了 AI 翻译的版本。直到现在，你也搜不到日语原版，只有各种中文翻译版挂在上面。人们几乎是清一色的好评，说是终于读到没有译者味的村上春树作品了。</p>
+<p>后来有人认领了，推出了一个开源项目 <a target="_blank" rel="noopener" href="https://github.com/BigDawnGhost/wenyi">Wenyi</a>。我偶然发现撞了思路，都是边翻译边补充术语表。</p>
+<p><img src="/2026/11/15/ai-translation-coherence/blog-261115-001.png" alt></p>
+<p>我知道，也写明白了，如果你不想先跑一遍术语表，你就没有第二种选择，所以“我的方式不是我的方式”——当然不是我的方式，这是谁都能想到的路子，我很能接受这一点。</p>
+<p>况且 Wenyi 没有在处理新增术语时检索后文，所以我还是有自己的东西在。</p>
+<p>但我却开始进一步创新了。注意，后面的思路请不要学，哪怕是管用的思路，也不要学。</p>
+<p>我的想法是，把新增的术语全放进提示词里，哪怕用后文是否出现过也还是有些多（就好像我天天翻译<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%89%98%E9%A9%AC%E6%96%AF%C2%B7%E5%93%81%E9%92%A6">品钦</a>一样），需要进一步优化。任务有相似性，能在后文搜索就能在当前分片搜索，这一下子，术语表就能再短上很多，再节省一些 token。</p>
+<p>面向小红书编程之后，评论区有人回复说，理论很丰满，现实你会遇到<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%B1%88%E6%8A%98%E8%AF%AD">屈折语</a>。</p>
+<p>我是第一次遇到这个词，大意就是单词的变化不是规则的，你用关键词匹配，估计匹配不上。</p>
+<p>见招拆招，我给项目补上了模糊搜索，看上去没有什么问题。但现实让我看到的不是屈折语，而是平假名和片假名，我也不知道这本小说为什么会这么写。一开始加进术语表的是平假名写法的名字，分片里却只出现片假名的名字，这时候匹配不上，术语表缺了一块，随后 AI 还会贴心地补充上片假名的名字，于是术语表里就出现了两个人名，一个“悠儿”，一个“佑二”。</p>
+<p><strong>搜索后文和搜索当前分片之所以不是一回事，是因为能搜索的空间大小不一样，很多词不会同时以两种形式出现在同一个分片里。</strong></p>
+<p>于是我选择了放弃。</p>
+<p>仔细想一下，漏洞是可以继续补的，比如人名地名之类的可以常驻术语表，剩下的部分模糊搜索也没有太大问题。我也实际测试过，没有太大问题，但还是放弃了。</p>
+<p>正如前面所说的，<strong>我的注意力是有限的，token 的成本不过降低了几块，但是译本却出现了硬伤，哪怕只是有了这种风险，对我来说也是不能接受的</strong>。</p>
+<h2 id="我的方式是适合我的方式"><a href="#我的方式是适合我的方式" class="headerlink" title="我的方式是适合我的方式"></a>我的方式是适合我的方式</h2><p><img src="/2026/11/15/ai-translation-coherence/blog-261115-002.png" alt></p>
+<p>我要接受做东西没有人用，既然你没有往有人用这个角度努过力。</p>
+<p>我也要接受公众号文章没有推荐——那就是没有阅读量了，对我来说也是正常的状态。</p>
+<p>同样，我接受了现在这个翻译工作流，虽然不是最优化的方案。当然在此基础上，可以做一点引入风险的优化。</p>
+<p>可以用最小 token 量表示术语表，比如 <code>Finnegans = 芬尼根</code>，<code>Alex = 亚历克斯 (女)</code>。</p>
+<p>还可以调整一下提示词顺序，从静到动排列，这样可以提升缓存命中率：</p>
+<ul>
+<li>翻译提示词</li>
+<li>动态术语表</li>
+<li>待翻译分片</li>
+</ul>
+<p>不过，我竟然变得很少读小说了，术语表系统都用不太上了。</p>
+<p>当我打磨工具，打磨得像是一种自用的产品时，我的注意力被牢牢锁在了上面。我不知道是好还是不好，但有一点是确定的：</p>
+<p><strong>我的注意力是有限的，相当有限的</strong>。</p>
+<hr>
+<p>后续我还会分享围绕 AI 翻译工具 TransLit 的其他细节，包括如何更好地排版、如何处理弹注、如何导出原文对照版和微信读书适用的版本。</p>
+<p>我的更新是你关注的最大动力。</p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/AI/">AI</a><a href="/tags/%E7%BF%BB%E8%AF%91/">翻译</a>
+    </span>
+    
+
+    </div>
+
+    
+    <div class="article-meta pull-right">
+      <span>
+        <i class="icon-comments"></i>
+        <span>
+          <a href="/2026/11/15/ai-translation-coherence/#comment">评论</a>
+        </span>
+      </span>
+    </div>
+    
+  </div>
+</article>
+
+
+
+  <article>
+
+  
+    
     <h3 class="article-title"><a href="/2026/11/10/ai-da-xi-li-zhi-wo-jian/"><span>AI 与幽默的距离——AI 大喜利之我见</span></a></h3>
     
   
@@ -944,77 +1062,6 @@
 
 
 
-  <article>
-
-  
-    
-    <h3 class="article-title"><a href="/2026/08/21/zhiwen-weekly-vol025/"><span>Vol.025 在操场上玩捉迷藏的人</span></a></h3>
-    
-  
-
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/2026/08/21/zhiwen-weekly-vol025/" rel="bookmark">
-        <time class="entry-date published" datetime="2026-08-21T04:00:00.000Z">
-          2026-08-21
-        </time>
-      </a>
-    </span>
-  </div>
-
-
-  
-
-  <div class="article-content">
-    <div class="entry">
-      
-        <p><img src="/2026/08/21/zhiwen-weekly-vol025/zw025-001.png" alt></p>
-<p>我们一起流泪，哭我们只是孩子，什么也无法掌握。</p>
-<p align="right">——雷蒙·拉迪盖《魔鬼少年》</p>
-        
-      
-    </div>
-
-  </div>
-
-  <div class="article-footer">
-    <div class="article-meta pull-left">
-
-    
-      
-
-    <span class="post-categories">
-      <i class="icon-categories"></i>
-        <a href="/categories/%E5%92%AB%E9%97%BB%E5%91%A8%E5%88%8A/">咫闻周刊</a>
-    </span>
-    
-
-    
-    
-
-    <span class="post-tags">
-      <i class="icon-tags"></i>
-        <a href="/tags/AI/">AI</a><a href="/tags/%E8%89%BA%E6%9C%AF/">艺术</a><a href="/tags/%E5%86%99%E4%BD%9C%E6%96%B9%E6%B3%95/">写作方法</a><a href="/tags/%E7%8E%B0%E4%BB%A3%E7%94%9F%E6%B4%BB/">现代生活</a>
-    </span>
-    
-
-    </div>
-
-    
-    <div class="article-meta pull-right">
-      <span>
-        <i class="icon-comments"></i>
-        <span>
-          <a href="/2026/08/21/zhiwen-weekly-vol025/#comment">评论</a>
-        </span>
-      </span>
-    </div>
-    
-  </div>
-</article>
-
-
-
 
 
   
@@ -1124,7 +1171,7 @@
                         return result;
                     };
                     
-                    const groupedData = groupByYear([["2024-06-23",1],["2024-06-30",1],["2024-07-06",1],["2024-08-19",1],["2024-09-02",1],["2024-09-12",1],["2024-09-24",1],["2024-10-12",1],["2024-11-05",1],["2024-12-04",1],["2024-12-26",1],["2025-01-04",1],["2025-01-11",1],["2025-01-20",1],["2025-01-22",1],["2025-01-24",1],["2025-01-31",1],["2025-02-07",1],["2025-02-21",1],["2025-03-02",1],["2025-03-15",1],["2025-05-25",1],["2025-06-13",1],["2025-06-16",1],["2025-06-22",1],["2025-06-26",1],["2025-07-12",1],["2025-07-27",1],["2025-08-31",1],["2025-09-07",1],["2025-09-21",1],["2025-10-04",1],["2025-11-02",1],["2025-11-22",1],["2025-11-30",1],["2025-12-06",1],["2025-12-12",1],["2025-12-20",1],["2026-01-11",1],["2026-01-24",1],["2026-02-13",1],["2026-02-19",1],["2026-03-14",1],["2026-04-11",1],["2026-04-24",1],["2026-05-02",1],["2026-05-10",1],["2026-05-15",1],["2026-05-17",1],["2026-05-27",1],["2026-05-29",1],["2026-06-27",1],["2026-07-11",1],["2026-08-21",1],["2026-09-12",1],["2026-10-10",1],["2026-10-14",1],["2026-10-18",1],["2026-10-22",1],["2026-10-26",1],["2026-10-31",1],["2026-11-04",1],["2026-11-10",1]]);
+                    const groupedData = groupByYear([["2024-06-23",1],["2024-06-30",1],["2024-07-06",1],["2024-08-19",1],["2024-09-02",1],["2024-09-12",1],["2024-09-24",1],["2024-10-12",1],["2024-11-05",1],["2024-12-04",1],["2024-12-26",1],["2025-01-04",1],["2025-01-11",1],["2025-01-20",1],["2025-01-22",1],["2025-01-24",1],["2025-01-31",1],["2025-02-07",1],["2025-02-21",1],["2025-03-02",1],["2025-03-15",1],["2025-05-25",1],["2025-06-13",1],["2025-06-16",1],["2025-06-22",1],["2025-06-26",1],["2025-07-12",1],["2025-07-27",1],["2025-08-31",1],["2025-09-07",1],["2025-09-21",1],["2025-10-04",1],["2025-11-02",1],["2025-11-22",1],["2025-11-30",1],["2025-12-06",1],["2025-12-12",1],["2025-12-20",1],["2026-01-11",1],["2026-01-24",1],["2026-02-13",1],["2026-02-19",1],["2026-03-14",1],["2026-04-11",1],["2026-04-24",1],["2026-05-02",1],["2026-05-10",1],["2026-05-15",1],["2026-05-17",1],["2026-05-27",1],["2026-05-29",1],["2026-06-27",1],["2026-07-11",1],["2026-08-21",1],["2026-09-12",1],["2026-10-10",1],["2026-10-14",1],["2026-10-18",1],["2026-10-22",1],["2026-10-26",1],["2026-10-31",1],["2026-11-04",1],["2026-11-10",1],["2026-11-15",1]]);
                     const years = Object.keys(groupedData).reverse();
                     
                     var initYear = parseInt(heatmapChartDom.getAttribute('year')) || new Date().getFullYear();
@@ -1247,7 +1294,7 @@
                         series: [{
                             name: 'Articles',
                             type: 'line',
-                            data: [2,1,1,3,1,1,2,6,2,2,1,4,2,1,2,1,3,3,2,2,1,2,6,1,1,1,1,6,2],
+                            data: [2,1,1,3,1,1,2,6,2,2,1,4,2,1,2,1,3,3,2,2,1,2,6,1,1,1,1,6,3],
                             smooth: true,
                             lineStyle: { color: '#5470C6', width: 2 },
                             itemStyle: { color: '#5470C6' },
@@ -1284,7 +1331,7 @@
                         series: [{
                             type: 'pie',
                             radius: '60%',
-                            data: [{"name":"AI","value":48},{"name":"翻译","value":13},{"name":"现代生活","value":13},{"name":"设计","value":12},{"name":"读小说","value":10},{"name":"艺术","value":9},{"name":"Github","value":9},{"name":"尝试集","value":6}],
+                            data: [{"name":"AI","value":49},{"name":"翻译","value":14},{"name":"现代生活","value":13},{"name":"设计","value":12},{"name":"读小说","value":10},{"name":"艺术","value":9},{"name":"Github","value":9},{"name":"尝试集","value":6}],
                             label: {
                                 position: 'outside',
                                 formatter: '{b} {c} ({d}%)',
@@ -1298,7 +1345,7 @@
                         legend: {
                             bottom: '0',
                             left: 'center',
-                            data: [{"name":"AI","value":48},{"name":"翻译","value":13},{"name":"现代生活","value":13},{"name":"设计","value":12},{"name":"读小说","value":10},{"name":"艺术","value":9},{"name":"Github","value":9},{"name":"尝试集","value":6}].map(tag => tag.name),
+                            data: [{"name":"AI","value":49},{"name":"翻译","value":14},{"name":"现代生活","value":13},{"name":"设计","value":12},{"name":"读小说","value":10},{"name":"艺术","value":9},{"name":"Github","value":9},{"name":"尝试集","value":6}].map(tag => tag.name),
                             textStyle: { fontSize: 14, fontWeight: 'bold', fontFamily: 'Microsoft YaHei, SimSun, serif' }
                         }
                     });
@@ -1320,13 +1367,13 @@
                         xAxis: { type: 'value', splitLine: { lineStyle: { type: 'dashed', color: '#ccc' } } },
                         yAxis: { 
                             type: 'category', 
-                            data: [{"name":"计算笔记","value":25},{"name":"咫闻周刊","value":25},{"name":"读书笔记","value":13}].map(category => category.name).reverse(), 
+                            data: [{"name":"计算笔记","value":26},{"name":"咫闻周刊","value":25},{"name":"读书笔记","value":13}].map(category => category.name).reverse(), 
                             axisLabel: { fontSize: 14, fontWeight: 'bold', fontFamily: 'Microsoft YaHei, SimSun, serif' }
                         },
                         series: [{
                             name: 'Category Count',
                             type: 'bar',
-                            data: [{"name":"计算笔记","value":25},{"name":"咫闻周刊","value":25},{"name":"读书笔记","value":13}].map(category => category.value).reverse(),
+                            data: [{"name":"计算笔记","value":26},{"name":"咫闻周刊","value":25},{"name":"读书笔记","value":13}].map(category => category.value).reverse(),
                             label: {
                                 show: true,
                                 position: 'right',
@@ -1375,7 +1422,7 @@
                         },
                         series: [{
                             type: 'tree',
-                            data: [{"name":"Categories","children":[{"name":"计算笔记","children":[],"count":25,"path":"计算笔记"},{"name":"读书笔记","children":[],"count":13,"path":"读书笔记"},{"name":"咫闻周刊","children":[],"count":25,"path":"咫闻周刊"}],"count":0,"path":""}],
+                            data: [{"name":"Categories","children":[{"name":"计算笔记","children":[],"count":26,"path":"计算笔记"},{"name":"读书笔记","children":[],"count":13,"path":"读书笔记"},{"name":"咫闻周刊","children":[],"count":25,"path":"咫闻周刊"}],"count":0,"path":""}],
                             initialTreeDepth: -1,
                             top: '5%',
                             bottom: '10%',
