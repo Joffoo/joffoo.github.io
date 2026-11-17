@@ -6,10 +6,10 @@
   <title>伽辽金法求解薄板振动方程 | Joffoo&#39;s blog | The ethereal flight, oft rehearsed in the theater of one&#39;s dreams...</title>
 
   
-    <link rel="icon" href="/blog/favicon_io/favicon.ico">
-    <link rel="apple-touch-icon" href="/blog/favicon_io/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/blog/favicon_io/android-chrome-192x192.png">
-    <link rel="manifest" href="/blog/favicon_io/site.webmanifest">
+    <link rel="icon" href="/favicon_io/favicon.ico">
+    <link rel="apple-touch-icon" href="/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon_io/android-chrome-192x192.png">
+    <link rel="manifest" href="/favicon_io/site.webmanifest">
   
 
   
@@ -34,12 +34,12 @@
   <meta property="og:site_name" content="Joffoo&#39;s blog"/>
 
   
-  <meta property="og:image" content="/blog/favicon.ico"/>
+  <meta property="og:image" content="/favicon.ico"/>
   
 
-  <link href="/blog/favicon.ico" rel="icon">
-  <link rel="alternate" href="/blog/atom.xml" title="Joffoo&#39;s blog" type="application/atom+xml">
-  <link rel="stylesheet" href="/blog/css/style.css" media="screen" type="text/css">
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Joffoo&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
 <meta name="generator" content="Hexo 7.2.0"></head>
 
 <head>
@@ -277,20 +277,20 @@
     <header>
   <div class="site-branding">
     <h1 class="site-title">
-      <a href="/blog/">Joffoo&#39;s blog</a>
+      <a href="/">Joffoo&#39;s blog</a>
     </h1>
     <p class="site-description">The ethereal flight, oft rehearsed in the theater of one&#39;s dreams...</p>
   </div>
   <nav class="site-navigation">
     <ul>
       
-        <li><a href="/blog/">主页</a></li>
+        <li><a href="/">主页</a></li>
       
-        <li><a href="/blog/archives">归档</a></li>
+        <li><a href="/archives">归档</a></li>
       
-        <li><a href="/blog/categories">分类</a></li>
+        <li><a href="/categories">分类</a></li>
       
-        <li><a href="/blog/tags">标签</a></li>
+        <li><a href="/tags">标签</a></li>
       
     </ul>
   </nav>
@@ -307,7 +307,7 @@
 
   <div class="article-top-meta">
     <span class="posted-on">
-      <a href="/blog/2024/12/26/galerkin-method/" rel="bookmark">
+      <a href="/2024/12/26/galerkin-method/" rel="bookmark">
         <time class="entry-date published" datetime="2024-12-25T16:00:00.000Z">
           2024-12-26
         </time>
@@ -321,7 +321,7 @@
   <div class="article-content">
     <div class="entry">
       
-        <p><img src="/blog/2024/12/26/galerkin-method/gm1.png" alt></p>
+        <p><img src="/2024/12/26/galerkin-method/gm1.png" alt></p>
 <p>这是我用白板软件 Excalidraw 绘制的，这幅图在我粗疏的学习过程中反复得见。第一次见可能是格拉姆-施密特正交化（<em>Gram-Schmidt orthogonalization</em>），图中的箭头都是正常的向量。第二次见可能是维纳滤波器（<em>Wiener filter</em>），细节已经忘光了，图中的箭头好像是随机过程。第三次见就是伽辽金法（<em>Galerkin method</em>）了，图中的箭头现在是函数。</p>
 <span id="more"></span> 
 <h2 id="还是处理这个方程"><a href="#还是处理这个方程" class="headerlink" title="还是处理这个方程"></a>还是处理这个方程</h2><script type="math/tex; mode=display">
@@ -361,12 +361,12 @@ k_{ij}=\langle\psi_{i},\nabla^{2}\nabla^{2}\psi_{j}\rangle=\langle\nabla^{2}\psi
     k_{ij}&=\iint_{\bar A}\left[\nabla^{2}\psi_{i}\nabla^{2}\psi_{j}\right.\\&\quad\left.-(1-\nu)\left(\frac{\partial^{2}\psi_{i}}{\partial x^{2}}\frac{\partial^{2}\psi_{j}}{\partial y^{2}}+\frac{\partial^{2}\psi_{j}}{\partial x^{2}}\frac{\partial^{2}\psi_{i}}{\partial y^{2}}\right)\right.\\&\left.\quad+2(1-\nu)\frac{\partial^{2}\psi_{i}}{\partial x\partial y}\frac{\partial^{2}\psi_{j}}{\partial x\partial y}\right]\mathrm{d}x\mathrm{d}y
 \end{align}</script><p>式中 $\nu$ 为泊松比，伽辽金法的推导过程全然没有涉及。</p>
 <p>用 <a target="_blank" rel="noopener" href="https://github.com/fengyukongzhou/ritz-method-wl">RitzSolver</a> 试算一下（与上篇文章相比，对程序包作了一点不重要的改动），可见简支方板和正六边形板的第一特征值 $\lambda<em>{1}$ 随泊松比的变化保持恒定（形状看 <code>PlotMarkers</code>），而简支圆板的 $\lambda</em>{1}$ 随泊松比的增大而单调递增。</p>
-<p><img src="/blog/2024/12/26/galerkin-method/gm2.png" alt></p>
+<p><img src="/2024/12/26/galerkin-method/gm2.png" alt></p>
 <p>简支边界的圆板与泊松比有关，而多边形板与泊松比无关。考古之后发现这一现象被称为“<strong>polygon-circle paradox</strong>”，也就是说，你可能会预期随着多边形的边数不断增加，趋近于圆形时，多边形板的解会与圆形板的解趋于一致，但实际上并非如此。</p>
 <p>画一下取泊松比 $\nu=1$ 时简支边界的多边形薄板模态振型，分别是六边形、十边形、十五边形和二十边形：</p>
-<p><img src="/blog/2024/12/26/galerkin-method/gm3.png" alt></p>
+<p><img src="/2024/12/26/galerkin-method/gm3.png" alt></p>
 <p>可以看出随着多边形边数的增加，边界的“约束”也越来越大。对比 $\nu=1$ 时的简支边界圆板和固定边界圆板，可见简支边界二十边形薄板的“约束”甚至大于固定边界的圆板：</p>
-<p><img src="/blog/2024/12/26/galerkin-method/gm4.png" alt></p>
+<p><img src="/2024/12/26/galerkin-method/gm4.png" alt></p>
 <p>这个悖论的关键好像在于边界的曲直，但我没有真正看穿它。实际上我连“简支边界条件”都不是特别理解。这篇文章只是把我算出来的和查到的东西总结起来，然后放在这里。</p>
 <p align="right">24/12/27</p>
       
@@ -382,7 +382,7 @@ k_{ij}=\langle\psi_{i},\nabla^{2}\nabla^{2}\psi_{j}\rangle=\langle\nabla^{2}\psi
 
     <span class="post-categories">
       <i class="icon-categories"></i>
-        <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
+        <a href="/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
     </span>
     
 
@@ -391,7 +391,7 @@ k_{ij}=\langle\psi_{i},\nabla^{2}\nabla^{2}\psi_{j}\rangle=\langle\nabla^{2}\psi
 
     <span class="post-tags">
       <i class="icon-tags"></i>
-        <a href="/blog/tags/Wolfram/">Wolfram</a>
+        <a href="/tags/Wolfram/">Wolfram</a>
     </span>
     
 
@@ -430,7 +430,7 @@ k_{ij}=\langle\psi_{i},\nabla^{2}\nabla^{2}\psi_{j}\rangle=\langle\nabla^{2}\psi
     <span class="like-count">0</span>
   </button>
   <div class="like-message">
-    <img src="/blog/images/luoziwuhui.svg" alt="落子无悔" class="luoziwuhui-svg">
+    <img src="/images/luoziwuhui.svg" alt="落子无悔" class="luoziwuhui-svg">
   </div>
 </div>
 
@@ -789,10 +789,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     
     
-    <script src="/blog/js/lang-detector.js"></script>
+    <script src="/js/lang-detector.js"></script>
     
     
-    <script src="/blog/js/footnote-popup.js"></script>
+    <script src="/js/footnote-popup.js"></script>
     
 
     <!-- Mermaid.js CDN 引入 -->
@@ -937,7 +937,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     heatmapChart.on('click', function (params) {
                         if (params.componentType === 'series') {
                             const [year, month] = params.value[0].split('-');
-                            window.location.href = '/blog/archives/' + year + '/' + month;
+                            window.location.href = '/archives/' + year + '/' + month;
                         }
                     });
                 }
@@ -980,7 +980,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     monthlyChart.on('click', function (params) {
                         const [year, month] = params.name.split('-');
-                        window.location.href = '/blog/archives/' + year + '/' + month;
+                        window.location.href = '/archives/' + year + '/' + month;
                     });
                 }
             })
@@ -1017,7 +1017,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
 
                     tagsChart.on('click', function (params) {
-                        window.location.href = '/blog/tags/' + params.name;
+                        window.location.href = '/tags/' + params.name;
                     });
                 }
             })
@@ -1059,7 +1059,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
 
                     categoriesChart.on('click', function (params) {
-                        window.location.href = '/blog/categories/' + params.name;
+                        window.location.href = '/categories/' + params.name;
                     });
                 }
             });
@@ -1127,7 +1127,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     treeChart.on('dblclick', function (params) {
                         if (params.data && params.data.path) {
-                            window.location.href = '/blog/categories/' + params.data.path;
+                            window.location.href = '/categories/' + params.data.path;
                         }
                     });
                 }

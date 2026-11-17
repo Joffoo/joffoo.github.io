@@ -6,10 +6,10 @@
   <title>“直到脑中观众笑出声来”：AI 大喜利团队合作 | Joffoo&#39;s blog | The ethereal flight, oft rehearsed in the theater of one&#39;s dreams...</title>
 
   
-    <link rel="icon" href="/blog/favicon_io/favicon.ico">
-    <link rel="apple-touch-icon" href="/blog/favicon_io/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/blog/favicon_io/android-chrome-192x192.png">
-    <link rel="manifest" href="/blog/favicon_io/site.webmanifest">
+    <link rel="icon" href="/favicon_io/favicon.ico">
+    <link rel="apple-touch-icon" href="/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon_io/android-chrome-192x192.png">
+    <link rel="manifest" href="/favicon_io/site.webmanifest">
   
 
   
@@ -34,12 +34,12 @@
   <meta property="og:site_name" content="Joffoo&#39;s blog"/>
 
   
-  <meta property="og:image" content="/blog/favicon.ico"/>
+  <meta property="og:image" content="/favicon.ico"/>
   
 
-  <link href="/blog/favicon.ico" rel="icon">
-  <link rel="alternate" href="/blog/atom.xml" title="Joffoo&#39;s blog" type="application/atom+xml">
-  <link rel="stylesheet" href="/blog/css/style.css" media="screen" type="text/css">
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Joffoo&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
 <meta name="generator" content="Hexo 7.2.0"></head>
 
 <head>
@@ -277,20 +277,20 @@
     <header>
   <div class="site-branding">
     <h1 class="site-title">
-      <a href="/blog/">Joffoo&#39;s blog</a>
+      <a href="/">Joffoo&#39;s blog</a>
     </h1>
     <p class="site-description">The ethereal flight, oft rehearsed in the theater of one&#39;s dreams...</p>
   </div>
   <nav class="site-navigation">
     <ul>
       
-        <li><a href="/blog/">主页</a></li>
+        <li><a href="/">主页</a></li>
       
-        <li><a href="/blog/archives">归档</a></li>
+        <li><a href="/archives">归档</a></li>
       
-        <li><a href="/blog/categories">分类</a></li>
+        <li><a href="/categories">分类</a></li>
       
-        <li><a href="/blog/tags">标签</a></li>
+        <li><a href="/tags">标签</a></li>
       
     </ul>
   </nav>
@@ -307,7 +307,7 @@
 
   <div class="article-top-meta">
     <span class="posted-on">
-      <a href="/blog/2026/02/19/Oogiri-Agent/" rel="bookmark">
+      <a href="/2026/02/19/Oogiri-Agent/" rel="bookmark">
         <time class="entry-date published" datetime="2026-02-18T16:00:00.000Z">
           2026-02-19
         </time>
@@ -321,7 +321,7 @@
   <div class="article-content">
     <div class="entry">
       
-        <p><img src="/blog/2026/02/19/Oogiri-Agent/OA0219-001.png" alt></p>
+        <p><img src="/2026/02/19/Oogiri-Agent/OA0219-001.png" alt></p>
 <p>突发奇想，问了 NotebookLM 一个问题：有什么研究用 AI 回答“大喜利”的新文章吗？</p>
 <span id="more"></span> 
 <h2 id="笑点的要点"><a href="#笑点的要点" class="headerlink" title="笑点的要点"></a>笑点的要点</h2><p>在搜到许多来源之后，NotebookLM 总结出了这样几个要点——</p>
@@ -338,7 +338,7 @@
 <p>当然了，这一点是为了增强传播效果，我个人则偏好那些更古怪的回答。</p>
 <h2 id="编剧团队流水线"><a href="#编剧团队流水线" class="headerlink" title="编剧团队流水线"></a>编剧团队流水线</h2><p>在用 NotebookLM 总结之后，我用 Google AI Studio 编写了新版大喜利应用——<strong>OOGIRI. OS</strong><sup><a href="#fn_3" id="reffn_3">3</a></sup>。该应用通过串行执行 5 个独立的 AI Agent 来完成从图像识别到“大喜利”生成与筛选的全过程。</p>
 <p>为了在保证高质量输出的同时控制运行成本，我们在不同阶段采用了不同的模型：生成答案时优先使用功能更强大的 Gemini 3.0 Pro 模型（<em>如果用量已尽，就自动改用 Gemini 2.5 Pro</em>），而其余识别、评估过程则主要依赖于更高效的 Gemini 3.0 Flash 模型。</p>
-<p><img src="/blog/2026/02/19/Oogiri-Agent/OA0219-002.png" alt></p>
+<p><img src="/2026/02/19/Oogiri-Agent/OA0219-002.png" alt></p>
 <h3 id="Stage-1：视觉分析"><a href="#Stage-1：视觉分析" class="headerlink" title="Stage 1：视觉分析"></a>Stage 1：视觉分析</h3><p>此阶段由一个“叙事事实提取器” Agent 负责。其核心职责是从输入图像中，客观地提取所有具有潜在叙事功能的视觉元素。我们严格限制此 Agent 进行任何幽默创作，仅输出纯粹的事实。</p>
 <ul>
 <li><strong>配置</strong>：Gemini 3.0 Flash，温度 0.2</li>
@@ -364,11 +364,11 @@
 <li><strong>配置</strong>：Gemini 3.0 Flash，温度 0.3</li>
 <li><strong>核心功能</strong>：基于多维审计报告，选出三个赛道的冠军回答：【最共鸣（The Relatable）】、【最荒谬（The Absurd）】和【最毒舌（The Snark）】。</li>
 </ul>
-<p><img src="/blog/2026/02/19/Oogiri-Agent/OA0219-003.png" alt></p>
+<p><img src="/2026/02/19/Oogiri-Agent/OA0219-003.png" alt></p>
 <h2 id="孰幽孰默"><a href="#孰幽孰默" class="headerlink" title="孰幽孰默"></a>孰幽孰默</h2><p>这一节里，我用了三个示例展示 OOGIRI. OS 的生成质量。</p>
 <p>为了对比，每个示例的答案中包含了直接使用 Gemini 2.5 Pro 和 Gemini 3.0 Pro 两个模型和之前简单提示词（参考<a href="一句正经没有：Gemini和Seedream的大喜利双簧组合.md">一句正经没有：Gemini和Seedream的大喜利双簧组合</a>）的结果。</p>
 <p>因为幽默极其主观，所以孰幽孰默还是交由读者评说吧。</p>
-<p><img src="/blog/2026/02/19/Oogiri-Agent/OA0219-004.png" alt="400"></p>
+<p><img src="/2026/02/19/Oogiri-Agent/OA0219-004.png" alt="400"></p>
 <div class="table-container">
 <table>
 <thead>
@@ -401,7 +401,7 @@
 </tbody>
 </table>
 </div>
-<p><img src="/blog/2026/02/19/Oogiri-Agent/OA0219-005.png" alt="400"></p>
+<p><img src="/2026/02/19/Oogiri-Agent/OA0219-005.png" alt="400"></p>
 <div class="table-container">
 <table>
 <thead>
@@ -434,7 +434,7 @@
 </tbody>
 </table>
 </div>
-<p><img src="/blog/2026/02/19/Oogiri-Agent/OA0219-006.png" alt="400"></p>
+<p><img src="/2026/02/19/Oogiri-Agent/OA0219-006.png" alt="400"></p>
 <div class="table-container">
 <table>
 <thead>
@@ -493,7 +493,7 @@
 
     <span class="post-categories">
       <i class="icon-categories"></i>
-        <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
+        <a href="/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
     </span>
     
 
@@ -502,7 +502,7 @@
 
     <span class="post-tags">
       <i class="icon-tags"></i>
-        <a href="/blog/tags/AI/">AI</a>
+        <a href="/tags/AI/">AI</a>
     </span>
     
 
@@ -541,7 +541,7 @@
     <span class="like-count">0</span>
   </button>
   <div class="like-message">
-    <img src="/blog/images/luoziwuhui.svg" alt="落子无悔" class="luoziwuhui-svg">
+    <img src="/images/luoziwuhui.svg" alt="落子无悔" class="luoziwuhui-svg">
   </div>
 </div>
 
@@ -900,10 +900,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     
     
-    <script src="/blog/js/lang-detector.js"></script>
+    <script src="/js/lang-detector.js"></script>
     
     
-    <script src="/blog/js/footnote-popup.js"></script>
+    <script src="/js/footnote-popup.js"></script>
     
 
     <!-- Mermaid.js CDN 引入 -->
@@ -1048,7 +1048,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     heatmapChart.on('click', function (params) {
                         if (params.componentType === 'series') {
                             const [year, month] = params.value[0].split('-');
-                            window.location.href = '/blog/archives/' + year + '/' + month;
+                            window.location.href = '/archives/' + year + '/' + month;
                         }
                     });
                 }
@@ -1091,7 +1091,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     monthlyChart.on('click', function (params) {
                         const [year, month] = params.name.split('-');
-                        window.location.href = '/blog/archives/' + year + '/' + month;
+                        window.location.href = '/archives/' + year + '/' + month;
                     });
                 }
             })
@@ -1128,7 +1128,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
 
                     tagsChart.on('click', function (params) {
-                        window.location.href = '/blog/tags/' + params.name;
+                        window.location.href = '/tags/' + params.name;
                     });
                 }
             })
@@ -1170,7 +1170,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
 
                     categoriesChart.on('click', function (params) {
-                        window.location.href = '/blog/categories/' + params.name;
+                        window.location.href = '/categories/' + params.name;
                     });
                 }
             });
@@ -1238,7 +1238,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     treeChart.on('dblclick', function (params) {
                         if (params.data && params.data.path) {
-                            window.location.href = '/blog/categories/' + params.data.path;
+                            window.location.href = '/categories/' + params.data.path;
                         }
                     });
                 }

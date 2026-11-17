@@ -6,10 +6,10 @@
   <title>去 AI 味之我见：让 Agent 学会“因声求气” | Joffoo&#39;s blog | The ethereal flight, oft rehearsed in the theater of one&#39;s dreams...</title>
 
   
-    <link rel="icon" href="/blog/favicon_io/favicon.ico">
-    <link rel="apple-touch-icon" href="/blog/favicon_io/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/blog/favicon_io/android-chrome-192x192.png">
-    <link rel="manifest" href="/blog/favicon_io/site.webmanifest">
+    <link rel="icon" href="/favicon_io/favicon.ico">
+    <link rel="apple-touch-icon" href="/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon_io/android-chrome-192x192.png">
+    <link rel="manifest" href="/favicon_io/site.webmanifest">
   
 
   
@@ -34,12 +34,12 @@
   <meta property="og:site_name" content="Joffoo&#39;s blog"/>
 
   
-  <meta property="og:image" content="/blog/favicon.ico"/>
+  <meta property="og:image" content="/favicon.ico"/>
   
 
-  <link href="/blog/favicon.ico" rel="icon">
-  <link rel="alternate" href="/blog/atom.xml" title="Joffoo&#39;s blog" type="application/atom+xml">
-  <link rel="stylesheet" href="/blog/css/style.css" media="screen" type="text/css">
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Joffoo&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
 <meta name="generator" content="Hexo 7.2.0"></head>
 
 <head>
@@ -277,20 +277,20 @@
     <header>
   <div class="site-branding">
     <h1 class="site-title">
-      <a href="/blog/">Joffoo&#39;s blog</a>
+      <a href="/">Joffoo&#39;s blog</a>
     </h1>
     <p class="site-description">The ethereal flight, oft rehearsed in the theater of one&#39;s dreams...</p>
   </div>
   <nav class="site-navigation">
     <ul>
       
-        <li><a href="/blog/">主页</a></li>
+        <li><a href="/">主页</a></li>
       
-        <li><a href="/blog/archives">归档</a></li>
+        <li><a href="/archives">归档</a></li>
       
-        <li><a href="/blog/categories">分类</a></li>
+        <li><a href="/categories">分类</a></li>
       
-        <li><a href="/blog/tags">标签</a></li>
+        <li><a href="/tags">标签</a></li>
       
     </ul>
   </nav>
@@ -307,7 +307,7 @@
 
   <div class="article-top-meta">
     <span class="posted-on">
-      <a href="/blog/2026/10/31/qu-ai-wei-zhi-wo-jian/" rel="bookmark">
+      <a href="/2026/10/31/qu-ai-wei-zhi-wo-jian/" rel="bookmark">
         <time class="entry-date published" datetime="2026-10-30T16:00:00.000Z">
           2026-10-31
         </time>
@@ -321,7 +321,7 @@
   <div class="article-content">
     <div class="entry">
       
-        <p><img src="/blog/2026/10/31/qu-ai-wei-zhi-wo-jian/blog-261031-001.jpg" alt="Qikou 让 AI 用“嘴”写作"></p>
+        <p><img src="/2026/10/31/qu-ai-wei-zhi-wo-jian/blog-261031-001.jpg" alt="Qikou 让 AI 用“嘴”写作"></p>
 <p>在想出这套去 AI 味工作流之前，我做了两个假设：</p>
 <p>一是，好的汉语，也应当好听。</p>
 <p>二是，提升 AI 的写作水平，就要教会它作家的写作方式。</p>
@@ -338,7 +338,7 @@
 <p>就像歌手对现阶段 AI 音乐的诟病之一，就是 AI 唱起歌来，不换气。</p>
 <h2 id="把文字拉进声音里"><a href="#把文字拉进声音里" class="headerlink" title="把文字拉进声音里"></a>把文字拉进声音里</h2><p>顺着这个思路，我自制了去 AI 味 Skill Qikou（气口），把“用嘴写作”的直觉落实为“先读后听”的工作流。</p>
 <p>引入了 TTS 用以音频生成，再利用上 Gemini 模型的多模态能力。</p>
-<p><img src="/blog/2026/10/31/qu-ai-wei-zhi-wo-jian/blog-261031-002.png" alt="Qikou 双 Agent TTS 发声与盲听隔离架构"></p>
+<p><img src="/2026/10/31/qu-ai-wei-zhi-wo-jian/blog-261031-002.png" alt="Qikou 双 Agent TTS 发声与盲听隔离架构"></p>
 <p>Agent 1 专门负责拆解文本中的关键信息。</p>
 <p>这一步的规则，源于<a target="_blank" rel="noopener" href="https://x.com/karpathy/status/2105819303471976479">安德烈·卡帕西（Andrej Karpathy）</a>提及的一套航空工程标准——简明技术英语规范（ASD-STE100）。</p>
 <p>我借用了最核心的原子化陈述约束：一句话只陈述一个独立事实，保留确切数字、参数、实体、专有名词与逻辑因果链；彻底剥离所有主观修饰词、文学比喻和套路过渡词，全程严禁随意轮换同义词。最终交付给下游的，是一份说明书般的原子事实清单。</p>
@@ -359,7 +359,7 @@
 <p>第二位是 <a target="_blank" rel="noopener" href="https://github.com/larashero3-dotcom/lieflat-less-ai-tone">lieflat-less-ai-tone</a>。基于数百篇语料对照总结的三层体系，静态脚本打标配合语义判读，改前生成分级报告由人工确认，耗时比 humanizer 还有 Qikou 都更长。</p>
 <p>测试基于 Antigravity 平台，底座模型严格锁定为 Gemini 3.8 Flash，思维强度设定为 low。</p>
 <p>评测工具采用腾讯朱雀（Zhuque）AIGC 文本检测接口。核心量化指标为 <code>softmax_confidence</code>，取值 <code>0.0 ~ 1.0</code>，数值越低代表越接近人类真实书写，<code>&lt; 0.50</code> 为判定为人类自然创作的安全区。</p>
-<p><img src="/blog/2026/10/31/qu-ai-wei-zhi-wo-jian/blog-261031-003.png" alt="腾讯朱雀 AIGC 置信度全量评测"></p>
+<p><img src="/2026/10/31/qu-ai-wei-zhi-wo-jian/blog-261031-003.png" alt="腾讯朱雀 AIGC 置信度全量评测"></p>
 <h3 id="长文测试"><a href="#长文测试" class="headerlink" title="长文测试"></a>长文测试</h3><p>长文测试样本选自之前发过的纯 AI 写作长篇散文《数据库里的抽卡仪式》中的 4 个小节（S1 至 S4），每节 600 至 1000 字。</p>
 <div class="table-container">
 <table>
@@ -460,7 +460,7 @@
 <p>短文精炼，语法框架更容易显得僵硬。在 P1 样本中，Qikou 通过口语化事实串联，将置信度降至 <code>0.2986</code>，同样进入了 Label 0 纯人类创作区间。</p>
 <p>在 P2 样本中，humanizer-zh（<code>0.6225</code>）与 Qikou（<code>0.6185</code>）的效果基本相当。面对浮夸成语与套路连接词构成的轻度病灶，轻量级的局部规则修剪同样能干脆利落地见效。</p>
 <h3 id="文本细读"><a href="#文本细读" class="headerlink" title="文本细读"></a>文本细读</h3><p>以 P2 为例，不同工具在微观层面的处理思路截然不同。</p>
-<p><img src="/blog/2026/10/31/qu-ai-wei-zhi-wo-jian/blog-261031-004.png" alt></p>
+<p><img src="/2026/10/31/qu-ai-wei-zhi-wo-jian/blog-261031-004.png" alt></p>
 <p>底稿是典型的 AI 生成文字。首句使用冒号强行报幕，“溃不成军”、“翻江倒海”、“如坐针毡”三个四字成语在紧凑节奏中密集轰炸，读者在默读时几乎找不到停顿换气的地方。</p>
 <p><strong>Qikou</strong> 拆掉了报幕式冒号，用逗号承接引用，“翻江倒海”、“如坐针毡”替换为“难以过关”、“坐立难安”等平实口语。通过合理切分句子留出自然的呼吸间隙。</p>
 <p><strong>humanizer-zh</strong> 极度利落，直接剔除掉蜂巢等夸张文学比喻，保留事实主干，文字压缩得很干净。</p>
@@ -470,7 +470,7 @@
 <p>AI 率就像是进阶版的图灵测试，只是判断者被替换成了机器。</p>
 <p>所以，我也不认为降 AI 率是很要紧的事，AI 并没有反感 AI 味，你让它判断做什么呢，能让自己读起来不难受就行了。</p>
 <p>Qikou 工作流与脚本已开源至 GitHub：<a target="_blank" rel="noopener" href="https://github.com/Joffoo/qikou">Joffoo/qikou</a></p>
-<p><img src="/blog/2026/10/31/qu-ai-wei-zhi-wo-jian/blog-261031-005.png" alt="Qikou 仓库分享卡"></p>
+<p><img src="/2026/10/31/qu-ai-wei-zhi-wo-jian/blog-261031-005.png" alt="Qikou 仓库分享卡"></p>
 
       
     </div>
@@ -485,7 +485,7 @@
 
     <span class="post-categories">
       <i class="icon-categories"></i>
-        <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
+        <a href="/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
     </span>
     
 
@@ -494,7 +494,7 @@
 
     <span class="post-tags">
       <i class="icon-tags"></i>
-        <a href="/blog/tags/AI/">AI</a><a href="/blog/tags/%E5%B0%9D%E8%AF%95%E9%9B%86/">尝试集</a><a href="/blog/tags/%E5%86%99%E4%BD%9C%E6%96%B9%E6%B3%95/">写作方法</a>
+        <a href="/tags/AI/">AI</a><a href="/tags/%E5%B0%9D%E8%AF%95%E9%9B%86/">尝试集</a><a href="/tags/%E5%86%99%E4%BD%9C%E6%96%B9%E6%B3%95/">写作方法</a>
     </span>
     
 
@@ -533,7 +533,7 @@
     <span class="like-count">0</span>
   </button>
   <div class="like-message">
-    <img src="/blog/images/luoziwuhui.svg" alt="落子无悔" class="luoziwuhui-svg">
+    <img src="/images/luoziwuhui.svg" alt="落子无悔" class="luoziwuhui-svg">
   </div>
 </div>
 
@@ -892,10 +892,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     
     
-    <script src="/blog/js/lang-detector.js"></script>
+    <script src="/js/lang-detector.js"></script>
     
     
-    <script src="/blog/js/footnote-popup.js"></script>
+    <script src="/js/footnote-popup.js"></script>
     
 
     <!-- Mermaid.js CDN 引入 -->
@@ -1040,7 +1040,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     heatmapChart.on('click', function (params) {
                         if (params.componentType === 'series') {
                             const [year, month] = params.value[0].split('-');
-                            window.location.href = '/blog/archives/' + year + '/' + month;
+                            window.location.href = '/archives/' + year + '/' + month;
                         }
                     });
                 }
@@ -1083,7 +1083,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     monthlyChart.on('click', function (params) {
                         const [year, month] = params.name.split('-');
-                        window.location.href = '/blog/archives/' + year + '/' + month;
+                        window.location.href = '/archives/' + year + '/' + month;
                     });
                 }
             })
@@ -1120,7 +1120,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
 
                     tagsChart.on('click', function (params) {
-                        window.location.href = '/blog/tags/' + params.name;
+                        window.location.href = '/tags/' + params.name;
                     });
                 }
             })
@@ -1162,7 +1162,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
 
                     categoriesChart.on('click', function (params) {
-                        window.location.href = '/blog/categories/' + params.name;
+                        window.location.href = '/categories/' + params.name;
                     });
                 }
             });
@@ -1230,7 +1230,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     treeChart.on('dblclick', function (params) {
                         if (params.data && params.data.path) {
-                            window.location.href = '/blog/categories/' + params.data.path;
+                            window.location.href = '/categories/' + params.data.path;
                         }
                     });
                 }

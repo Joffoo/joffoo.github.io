@@ -6,10 +6,10 @@
   <title>TransLit：AI 翻译，多人一步 | Joffoo&#39;s blog | The ethereal flight, oft rehearsed in the theater of one&#39;s dreams...</title>
 
   
-    <link rel="icon" href="/blog/favicon_io/favicon.ico">
-    <link rel="apple-touch-icon" href="/blog/favicon_io/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/blog/favicon_io/android-chrome-192x192.png">
-    <link rel="manifest" href="/blog/favicon_io/site.webmanifest">
+    <link rel="icon" href="/favicon_io/favicon.ico">
+    <link rel="apple-touch-icon" href="/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon_io/android-chrome-192x192.png">
+    <link rel="manifest" href="/favicon_io/site.webmanifest">
   
 
   
@@ -37,9 +37,9 @@
   <meta property="og:image" content="blog-260510-0.png" />
   
 
-  <link href="/blog/favicon.ico" rel="icon">
-  <link rel="alternate" href="/blog/atom.xml" title="Joffoo&#39;s blog" type="application/atom+xml">
-  <link rel="stylesheet" href="/blog/css/style.css" media="screen" type="text/css">
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Joffoo&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
 <meta name="generator" content="Hexo 7.2.0"></head>
 
 <head>
@@ -277,20 +277,20 @@
     <header>
   <div class="site-branding">
     <h1 class="site-title">
-      <a href="/blog/">Joffoo&#39;s blog</a>
+      <a href="/">Joffoo&#39;s blog</a>
     </h1>
     <p class="site-description">The ethereal flight, oft rehearsed in the theater of one&#39;s dreams...</p>
   </div>
   <nav class="site-navigation">
     <ul>
       
-        <li><a href="/blog/">主页</a></li>
+        <li><a href="/">主页</a></li>
       
-        <li><a href="/blog/archives">归档</a></li>
+        <li><a href="/archives">归档</a></li>
       
-        <li><a href="/blog/categories">分类</a></li>
+        <li><a href="/categories">分类</a></li>
       
-        <li><a href="/blog/tags">标签</a></li>
+        <li><a href="/tags">标签</a></li>
       
     </ul>
   </nav>
@@ -307,7 +307,7 @@
 
   <div class="article-top-meta">
     <span class="posted-on">
-      <a href="/blog/2026/05/10/translit-evolution-two-step/" rel="bookmark">
+      <a href="/2026/05/10/translit-evolution-two-step/" rel="bookmark">
         <time class="entry-date published" datetime="2026-05-09T16:00:00.000Z">
           2026-05-10
         </time>
@@ -321,7 +321,7 @@
   <div class="article-content">
     <div class="entry">
       
-        <p><img src="/blog/2026/05/10/translit-evolution-two-step/blog-260510-0.png" alt></p>
+        <p><img src="/2026/05/10/translit-evolution-two-step/blog-260510-0.png" alt></p>
 <p>为了解放自己，我决定不再插手“翻译的艺术”。</p>
 <span id="more"></span>  
 <p>在 TransLit 的之前版本中，“AI Review”模式只是为了处理像 Gemini 2.5 Pro 偶尔出现的语言混杂问题。当时模型在翻译时常会蹦出一些不属于原文的外语单词，我希望再次校对译文来过滤掉这些词汇。</p>
@@ -329,20 +329,20 @@
 <p>在实际测试中，这种基于纯译文的校对方式对知识性书籍效果尚可，但在处理小说类文本时，准确度却明显下降——由于校对环节缺失了原文约束，模型在追求“洗练”时容易出现语义偏差。</p>
 <p>我不禁联想到许多转译本（<em>从英文译本翻译出的中文译本</em>），产生了信任危机。</p>
 <p>为了在“少费 Token”（不用在校对时一并附上原文与译文）与“保持信度”之间寻找平衡，我开始测试一种古老的 AI 翻译技术：<strong>两步法</strong>。</p>
-<h2 id="重新发现“两步法”"><a href="#重新发现“两步法”" class="headerlink" title="重新发现“两步法”"></a>重新发现“两步法”</h2><p><img src="/blog/2026/05/10/translit-evolution-two-step/blog-260510-1.png" alt></p>
+<h2 id="重新发现“两步法”"><a href="#重新发现“两步法”" class="headerlink" title="重新发现“两步法”"></a>重新发现“两步法”</h2><p><img src="/2026/05/10/translit-evolution-two-step/blog-260510-1.png" alt></p>
 <p><em>此图使用 Nano Banana 2 生成，抄袭自天津美术学院通识课教学展的<a target="_blank" rel="noopener" href="http://xhslink.com/o/1lBaUy7ImM7">一幅作品</a>。</em></p>
 <p>“两步法”是在模仿人工翻译流程，包括<strong>初译和审校</strong>两步。为了省 Token，这两步在每个分片内依次进行，最后写成结构化提示词：</p>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="variable constant_">TWO_STEP_BASE_PROMPT</span> = <span class="string">`你是一位精通[SOURCE_LANG]与中文的文学翻译和审校专家。请执行“初译”与“审校”两步法任务。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">### 第一步：初译 (遵循以下律法)</span></span><br><span class="line"><span class="string">【遗忘之律】忘记[SOURCE_LANG]的句法和语序，只保留原意。</span></span><br><span class="line"><span class="string">【重生之律】设想你是中国作者，面对中国读者，用自然的中文讲故事。</span></span><br><span class="line"><span class="string">【地道之律】追求“写得真好”而非“翻译得真好”。注意短语的节奏、口语的亲切感。</span></span><br><span class="line"><span class="string">【真实之锚】数据不改，事实不动，逻辑完整，术语标注：大语言模型（LLM）。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">### 第二步：审校润色 (重塑中文字韵)</span></span><br><span class="line"><span class="string">1. **精简代词**：审视并剔除不必要的“我的”、“你的”、“他的”等代名词。中文习惯通过语境表达所属关系，非必要不保留。</span></span><br><span class="line"><span class="string">2. **剔除虚词量词**：精简如“一个”、“一种”、“一项”等不具实际意义的修饰语，避免句子结构臃肿。</span></span><br><span class="line"><span class="string">3. **“的”字减法**：检查句中的“的”字。原则上一句之内不宜超过三个；若觉读来绕口，请通过拆句或重组结构予以优化。</span></span><br><span class="line"><span class="string">4. **语态转换**：将生硬的被动语态（如“被...”、“受到...”）重组为自然的主动语态或习惯性表达。</span></span><br><span class="line"><span class="string">5. **删繁就简**：删去不影响文义、文气的赘言；对语意不足处做精练补全，确保文字气韵贯通。</span></span><br><span class="line"><span class="string">6. **主谓匹配**：严格校验动作与主体的逻辑。注意动词的适用对象（如“挨近”通常用于人而非物），确保字词妥帖。</span></span><br><span class="line"><span class="string">7. **动宾精当**：纠正搭配不当的动宾关系。若一个动词带多个宾语，须逐一核对，确保每个词都“用得顺”。</span></span><br><span class="line"><span class="string">8. **自然化读**：以“不通英文的读者”为基准，确保全文朗朗上口，无任何欧化翻译痕迹。`</span>;</span><br><span class="line">   </span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="variable constant_">FMT_TWO_STEP_GLOSSARY</span> = <span class="string">`</span></span><br><span class="line"><span class="string">### 结构化输出要求</span></span><br><span class="line"><span class="string">请严格遵循 XML 标签格式分块输出，确保结果纯粹干净。严禁以“第一步”、“第二步：最终审校润色...”类字眼作为小标题混入正文。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;translation_draft&gt;</span></span><br><span class="line"><span class="string">在此处仅输出第一步的初译正文内容。</span></span><br><span class="line"><span class="string">&lt;/translation_draft&gt;</span></span><br><span class="line"><span class="string">&lt;translation&gt;</span></span><br><span class="line"><span class="string">在此处仅输出经过最终审校润色后的目标语言内容，不可包含任何说明性引导语或标注。</span></span><br><span class="line"><span class="string">&lt;/translation&gt;</span></span><br><span class="line"><span class="string">&lt;glossary&gt;</span></span><br><span class="line"><span class="string">只提取本段新发现且未在已知术语表中出现过的高风险/专有词汇。严禁发散。请严格遵循单行配对格式，若无新术语则留空该标签内心：</span></span><br><span class="line"><span class="string">SOURCE: 原文词汇 | TARGET: 译文对应词汇</span></span><br><span class="line"><span class="string">&lt;/glossary&gt;`</span>;</span><br></pre></td></tr></table></figure>
 <p>这种形式的提示词在 AiNiee 里叫做“思维链”。想起之前刷到的，只是把问题重问一次，AI 回答的质量就会有提升，可能也是同理。</p>
 <p>缺点就是带来了更明显的延迟，为了程序的稳定性，我还减短了分片长度。于是，TransLit 又有了更慢的翻译模式——Two-Step。</p>
-<p><img src="/blog/2026/05/10/translit-evolution-two-step/blog-260510-2.png" alt></p>
+<p><img src="/2026/05/10/translit-evolution-two-step/blog-260510-2.png" alt></p>
 <h2 id="“只有机器才会欣赏另一个机器写出的——”"><a href="#“只有机器才会欣赏另一个机器写出的——”" class="headerlink" title="“只有机器才会欣赏另一个机器写出的——”"></a>“只有机器才会欣赏另一个机器写出的——”</h2><p>为了观察这一流程的效果，我使用 Gemini 3.0 Flash 作为唯一的翻译模型，分别生成了“<strong>两步法（Method A）</strong>”和一次性“<strong>重写法（Method B）</strong>”的译文。随后，我邀请了三个主流模型 ChatGPT、Gemini 自己和 Kimi 作为独立评估者进行打分。</p>
 <p>测试用到了两个领域的文本：韩炳哲的《Der Geist der Hoffnung》（<em>学术文本</em>）与 Nicholson Baker 的《The Fermata》（<em>文学文本</em>）。</p>
-<p><img src="/blog/2026/05/10/translit-evolution-two-step/blog-260510-3.png" alt></p>
+<p><img src="/2026/05/10/translit-evolution-two-step/blog-260510-3.png" alt></p>
 <p><em>本图汇总了学术类（Philosophy）与文学类（Novel）文本在两步法（Method A）与重写法（Method B）下的对比结果。坐标轴缩写包括：Sem（语义准确性）、Flu（流畅度）、Term（术语准确性）、Log（逻辑结构）、Sty（风格保留）、Pub（出版适配性）、Sex（性描写处理）。评分由三个主流 AI 模型独立盲测得出，最后一列为综合平均分。</em></p>
 <p>可以看到，在哲学翻译中，三位评估者认为“两步法”在逻辑结构、术语准确性等方面得分更高。</p>
 <p>而在小说翻译中，评分出现了分歧。虽然平均分仍是两步法占优，但 ChatGPT 认为“两步法”译文流失了作者的风格，反映出文学审美的不确定性。</p>
-<h2 id="不插手“翻译的艺术”"><a href="#不插手“翻译的艺术”" class="headerlink" title="不插手“翻译的艺术”"></a>不插手“翻译的艺术”</h2><p><img src="/blog/2026/05/10/translit-evolution-two-step/blog-260510-4.png" alt></p>
+<h2 id="不插手“翻译的艺术”"><a href="#不插手“翻译的艺术”" class="headerlink" title="不插手“翻译的艺术”"></a>不插手“翻译的艺术”</h2><p><img src="/2026/05/10/translit-evolution-two-step/blog-260510-4.png" alt></p>
 <p>如果只让 AI 读，翻译都是多余，还是要自己读读看。</p>
 <p>《Der Geist der Hoffnung》是德语书，只附上其中一段话的“重写法”和“两步法”对比：</p>
 <div class="table-container">
@@ -418,8 +418,8 @@
 <p>我的想法是：<strong>我只负责完成翻译的“工程”，而不插手翻译的“艺术”。</strong></p>
 <p>总之，“两步法”只是 TransLit 提供的一种翻译模式，它可以润色汉语，但也可能失掉原味，还会让翻译过程变得繁琐且缓慢。不妨想想，谁都知道翻译的艺术很重要，但对于阅卷速度的读者来说，又能接收多少呢？</p>
 <p>只能说是一番心意。</p>
-<p><img src="/blog/2026/05/10/translit-evolution-two-step/blog-260510-5.png" alt></p>
-<p><img src="/blog/2026/05/10/translit-evolution-two-step/blog-260510-6.png" alt></p>
+<p><img src="/2026/05/10/translit-evolution-two-step/blog-260510-5.png" alt></p>
+<p><img src="/2026/05/10/translit-evolution-two-step/blog-260510-6.png" alt></p>
 
       
     </div>
@@ -434,7 +434,7 @@
 
     <span class="post-categories">
       <i class="icon-categories"></i>
-        <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
+        <a href="/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
     </span>
     
 
@@ -443,7 +443,7 @@
 
     <span class="post-tags">
       <i class="icon-tags"></i>
-        <a href="/blog/tags/AI/">AI</a><a href="/blog/tags/%E7%BF%BB%E8%AF%91/">翻译</a>
+        <a href="/tags/AI/">AI</a><a href="/tags/%E7%BF%BB%E8%AF%91/">翻译</a>
     </span>
     
 
@@ -482,7 +482,7 @@
     <span class="like-count">0</span>
   </button>
   <div class="like-message">
-    <img src="/blog/images/luoziwuhui.svg" alt="落子无悔" class="luoziwuhui-svg">
+    <img src="/images/luoziwuhui.svg" alt="落子无悔" class="luoziwuhui-svg">
   </div>
 </div>
 
@@ -841,10 +841,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     
     
-    <script src="/blog/js/lang-detector.js"></script>
+    <script src="/js/lang-detector.js"></script>
     
     
-    <script src="/blog/js/footnote-popup.js"></script>
+    <script src="/js/footnote-popup.js"></script>
     
 
     <!-- Mermaid.js CDN 引入 -->
@@ -989,7 +989,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     heatmapChart.on('click', function (params) {
                         if (params.componentType === 'series') {
                             const [year, month] = params.value[0].split('-');
-                            window.location.href = '/blog/archives/' + year + '/' + month;
+                            window.location.href = '/archives/' + year + '/' + month;
                         }
                     });
                 }
@@ -1032,7 +1032,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     monthlyChart.on('click', function (params) {
                         const [year, month] = params.name.split('-');
-                        window.location.href = '/blog/archives/' + year + '/' + month;
+                        window.location.href = '/archives/' + year + '/' + month;
                     });
                 }
             })
@@ -1069,7 +1069,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
 
                     tagsChart.on('click', function (params) {
-                        window.location.href = '/blog/tags/' + params.name;
+                        window.location.href = '/tags/' + params.name;
                     });
                 }
             })
@@ -1111,7 +1111,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
 
                     categoriesChart.on('click', function (params) {
-                        window.location.href = '/blog/categories/' + params.name;
+                        window.location.href = '/categories/' + params.name;
                     });
                 }
             });
@@ -1179,7 +1179,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     treeChart.on('dblclick', function (params) {
                         if (params.data && params.data.path) {
-                            window.location.href = '/blog/categories/' + params.data.path;
+                            window.location.href = '/categories/' + params.data.path;
                         }
                     });
                 }

@@ -6,10 +6,10 @@
   <title>烧写：DeepSeek-R1 模型实现诗的泛化 | Joffoo&#39;s blog | The ethereal flight, oft rehearsed in the theater of one&#39;s dreams...</title>
 
   
-    <link rel="icon" href="/blog/favicon_io/favicon.ico">
-    <link rel="apple-touch-icon" href="/blog/favicon_io/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/blog/favicon_io/android-chrome-192x192.png">
-    <link rel="manifest" href="/blog/favicon_io/site.webmanifest">
+    <link rel="icon" href="/favicon_io/favicon.ico">
+    <link rel="apple-touch-icon" href="/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon_io/android-chrome-192x192.png">
+    <link rel="manifest" href="/favicon_io/site.webmanifest">
   
 
   
@@ -34,12 +34,12 @@
   <meta property="og:site_name" content="Joffoo&#39;s blog"/>
 
   
-  <meta property="og:image" content="/blog/favicon.ico"/>
+  <meta property="og:image" content="/favicon.ico"/>
   
 
-  <link href="/blog/favicon.ico" rel="icon">
-  <link rel="alternate" href="/blog/atom.xml" title="Joffoo&#39;s blog" type="application/atom+xml">
-  <link rel="stylesheet" href="/blog/css/style.css" media="screen" type="text/css">
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Joffoo&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
 <meta name="generator" content="Hexo 7.2.0"></head>
 
 <head>
@@ -277,20 +277,20 @@
     <header>
   <div class="site-branding">
     <h1 class="site-title">
-      <a href="/blog/">Joffoo&#39;s blog</a>
+      <a href="/">Joffoo&#39;s blog</a>
     </h1>
     <p class="site-description">The ethereal flight, oft rehearsed in the theater of one&#39;s dreams...</p>
   </div>
   <nav class="site-navigation">
     <ul>
       
-        <li><a href="/blog/">主页</a></li>
+        <li><a href="/">主页</a></li>
       
-        <li><a href="/blog/archives">归档</a></li>
+        <li><a href="/archives">归档</a></li>
       
-        <li><a href="/blog/categories">分类</a></li>
+        <li><a href="/categories">分类</a></li>
       
-        <li><a href="/blog/tags">标签</a></li>
+        <li><a href="/tags">标签</a></li>
       
     </ul>
   </nav>
@@ -307,7 +307,7 @@
 
   <div class="article-top-meta">
     <span class="posted-on">
-      <a href="/blog/2025/01/22/molten-writing/" rel="bookmark">
+      <a href="/2025/01/22/molten-writing/" rel="bookmark">
         <time class="entry-date published" datetime="2025-01-21T16:00:00.000Z">
           2025-01-22
         </time>
@@ -321,7 +321,7 @@
   <div class="article-content">
     <div class="entry">
       
-        <p><img src="/blog/2025/01/22/molten-writing/mw-1.png" alt></p>
+        <p><img src="/2025/01/22/molten-writing/mw-1.png" alt></p>
 <p>前段时间弃读了一本“无文体”的《裂谷》，但作者独特的写作观却带给我许多启发。他把这种写法称为“烧写”，解释为“<strong>以极高的熔点温度去炼化所有信息，所见所感无一不能入文</strong>”。</p>
 <span id="more"></span> 
 <p>他说：</p>
@@ -330,7 +330,7 @@
 </blockquote>
 <p>这种写法恰逢大模型飞速进化之际，显得“不合时宜”，却又“恰逢其时”。刚刚在即刻上看到 <code>DeepSeek-R1</code> 模型的使用体验，说它讲着讲着就开始蹦出一些让人无法理解的词，像是设置了过高的温度参数。</p>
 <p>我立刻联想到《裂谷》这本书的语言风格。<strong>AI 写作或许才是更极致的“烧写”，而诗句或许是较为适配的燃料</strong>。</p>
-<h2 id="最初那一鞭的惯性"><a href="#最初那一鞭的惯性" class="headerlink" title="最初那一鞭的惯性"></a>最初那一鞭的惯性</h2><p><img src="/blog/2025/01/22/molten-writing/mw-2.png" alt="校对文章的时候戏就很多"></p>
+<h2 id="最初那一鞭的惯性"><a href="#最初那一鞭的惯性" class="headerlink" title="最初那一鞭的惯性"></a>最初那一鞭的惯性</h2><p><img src="/2025/01/22/molten-writing/mw-2.png" alt="校对文章的时候戏就很多"></p>
 <p>我点开 DeepSeek 的“深度思考”模式，让它按照下面这句话的“内在风格”（而不是句式相似）进行仿写：</p>
 <blockquote>
 <p>地球上的夜晚如同陀螺锥尖的钢珠，在我们头顶，星空倚着最初那一鞭的惯性在螺旋。<br><cite lang="zh">《裂谷》</cite></p>
@@ -359,7 +359,7 @@
 </blockquote>
 <p><code>R1</code> 关注意象，<code>V3</code> 关注概念。我把握不住“诗意”，只好援引诗人黄梵在《意象的帝国》所写的，“抽象事物或观念事物都是非意象事物，对写诗的人来说，是需要谨慎处理，甚至避之若浼的。”</p>
 <p>由此观之，<code>R1</code> 模型真正借了“最初那一鞭的惯性”，从而“泛化”出更多的诗句。</p>
-<h2 id="梦里见到的波浪其实是他自己的脚步"><a href="#梦里见到的波浪其实是他自己的脚步" class="headerlink" title="梦里见到的波浪其实是他自己的脚步"></a>梦里见到的波浪其实是他自己的脚步</h2><p><img src="/blog/2025/01/22/molten-writing/mw-3.png" alt></p>
+<h2 id="梦里见到的波浪其实是他自己的脚步"><a href="#梦里见到的波浪其实是他自己的脚步" class="headerlink" title="梦里见到的波浪其实是他自己的脚步"></a>梦里见到的波浪其实是他自己的脚步</h2><p><img src="/2025/01/22/molten-writing/mw-3.png" alt></p>
 <p>说来也巧，我昨晚刚整理了帕维奇几部小说的书摘，比如：</p>
 <blockquote>
 <p>目睹者曾说，哈扎尔首都屋宇的影子好长一段时期内都萦然不灭，虽则屋宇本身早已被履平，影子居然对着伏尔加河水迎风而立。<br><cite lang="zh">《哈扎尔辞典》</cite></p>
@@ -379,7 +379,7 @@
 <li>嫉妒是种具有磁性的情绪，它会将心脏改造成指南针，永远指向他人幸福所在的纬度，而自己的血液则逐渐变成黑色的铁砂。</li>
 </ul>
 <p>说来也巧，在我还喜欢写点东西的年月里，也写出过“咳嗽咳出禽类”的意象，不过我好像写的是金刚鹦鹉，大红大绿，神秘感自然不比夜莺。</p>
-<h2 id="通常只是退却"><a href="#通常只是退却" class="headerlink" title="通常只是退却"></a>通常只是退却</h2><p><img src="/blog/2025/01/22/molten-writing/mw-4.png" alt></p>
+<h2 id="通常只是退却"><a href="#通常只是退却" class="headerlink" title="通常只是退却"></a>通常只是退却</h2><p><img src="/2025/01/22/molten-writing/mw-4.png" alt></p>
 <p>在写作机器面前，人还能做些什么呢？就这篇文章而言，我只是做了些装模作样的拣选。</p>
 <p>但“拣选”足以构成艺术表达吗？</p>
 <p>约翰·伯格说，“一张照片是它所记录的事件的一条讯息，即：<strong>我已做出决定，我之所见是值得被记录下来的</strong>。”所以，摄影艺术就是在“时空连续体”中“拣选”出一个值得记录的瞬间。</p>
@@ -403,7 +403,7 @@
 
     <span class="post-categories">
       <i class="icon-categories"></i>
-        <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
+        <a href="/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
     </span>
     
 
@@ -412,7 +412,7 @@
 
     <span class="post-tags">
       <i class="icon-tags"></i>
-        <a href="/blog/tags/AI/">AI</a><a href="/blog/tags/%E5%B0%9D%E8%AF%95%E9%9B%86/">尝试集</a><a href="/blog/tags/%E5%86%99%E4%BD%9C%E6%96%B9%E6%B3%95/">写作方法</a>
+        <a href="/tags/AI/">AI</a><a href="/tags/%E5%B0%9D%E8%AF%95%E9%9B%86/">尝试集</a><a href="/tags/%E5%86%99%E4%BD%9C%E6%96%B9%E6%B3%95/">写作方法</a>
     </span>
     
 
@@ -451,7 +451,7 @@
     <span class="like-count">0</span>
   </button>
   <div class="like-message">
-    <img src="/blog/images/luoziwuhui.svg" alt="落子无悔" class="luoziwuhui-svg">
+    <img src="/images/luoziwuhui.svg" alt="落子无悔" class="luoziwuhui-svg">
   </div>
 </div>
 
@@ -810,10 +810,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     
     
-    <script src="/blog/js/lang-detector.js"></script>
+    <script src="/js/lang-detector.js"></script>
     
     
-    <script src="/blog/js/footnote-popup.js"></script>
+    <script src="/js/footnote-popup.js"></script>
     
 
     <!-- Mermaid.js CDN 引入 -->
@@ -958,7 +958,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     heatmapChart.on('click', function (params) {
                         if (params.componentType === 'series') {
                             const [year, month] = params.value[0].split('-');
-                            window.location.href = '/blog/archives/' + year + '/' + month;
+                            window.location.href = '/archives/' + year + '/' + month;
                         }
                     });
                 }
@@ -1001,7 +1001,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     monthlyChart.on('click', function (params) {
                         const [year, month] = params.name.split('-');
-                        window.location.href = '/blog/archives/' + year + '/' + month;
+                        window.location.href = '/archives/' + year + '/' + month;
                     });
                 }
             })
@@ -1038,7 +1038,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
 
                     tagsChart.on('click', function (params) {
-                        window.location.href = '/blog/tags/' + params.name;
+                        window.location.href = '/tags/' + params.name;
                     });
                 }
             })
@@ -1080,7 +1080,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
 
                     categoriesChart.on('click', function (params) {
-                        window.location.href = '/blog/categories/' + params.name;
+                        window.location.href = '/categories/' + params.name;
                     });
                 }
             });
@@ -1148,7 +1148,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     treeChart.on('dblclick', function (params) {
                         if (params.data && params.data.path) {
-                            window.location.href = '/blog/categories/' + params.data.path;
+                            window.location.href = '/categories/' + params.data.path;
                         }
                     });
                 }

@@ -6,10 +6,10 @@
   <title>OCR 电子书之我见 | Joffoo&#39;s blog | The ethereal flight, oft rehearsed in the theater of one&#39;s dreams...</title>
 
   
-    <link rel="icon" href="/blog/favicon_io/favicon.ico">
-    <link rel="apple-touch-icon" href="/blog/favicon_io/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/blog/favicon_io/android-chrome-192x192.png">
-    <link rel="manifest" href="/blog/favicon_io/site.webmanifest">
+    <link rel="icon" href="/favicon_io/favicon.ico">
+    <link rel="apple-touch-icon" href="/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon_io/android-chrome-192x192.png">
+    <link rel="manifest" href="/favicon_io/site.webmanifest">
   
 
   
@@ -34,12 +34,12 @@
   <meta property="og:site_name" content="Joffoo&#39;s blog"/>
 
   
-  <meta property="og:image" content="/blog/favicon.ico"/>
+  <meta property="og:image" content="/favicon.ico"/>
   
 
-  <link href="/blog/favicon.ico" rel="icon">
-  <link rel="alternate" href="/blog/atom.xml" title="Joffoo&#39;s blog" type="application/atom+xml">
-  <link rel="stylesheet" href="/blog/css/style.css" media="screen" type="text/css">
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Joffoo&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
 <meta name="generator" content="Hexo 7.2.0"></head>
 
 <head>
@@ -277,20 +277,20 @@
     <header>
   <div class="site-branding">
     <h1 class="site-title">
-      <a href="/blog/">Joffoo&#39;s blog</a>
+      <a href="/">Joffoo&#39;s blog</a>
     </h1>
     <p class="site-description">The ethereal flight, oft rehearsed in the theater of one&#39;s dreams...</p>
   </div>
   <nav class="site-navigation">
     <ul>
       
-        <li><a href="/blog/">主页</a></li>
+        <li><a href="/">主页</a></li>
       
-        <li><a href="/blog/archives">归档</a></li>
+        <li><a href="/archives">归档</a></li>
       
-        <li><a href="/blog/categories">分类</a></li>
+        <li><a href="/categories">分类</a></li>
       
-        <li><a href="/blog/tags">标签</a></li>
+        <li><a href="/tags">标签</a></li>
       
     </ul>
   </nav>
@@ -307,7 +307,7 @@
 
   <div class="article-top-meta">
     <span class="posted-on">
-      <a href="/blog/2026/09/12/ocr-dian-zi-shu-zhi-wo-jian/" rel="bookmark">
+      <a href="/2026/09/12/ocr-dian-zi-shu-zhi-wo-jian/" rel="bookmark">
         <time class="entry-date published" datetime="2026-09-11T16:00:00.000Z">
           2026-09-12
         </time>
@@ -321,13 +321,13 @@
   <div class="article-content">
     <div class="entry">
       
-        <p><img src="/blog/2026/09/12/ocr-dian-zi-shu-zhi-wo-jian/blog-260912-001.png" alt></p>
+        <p><img src="/2026/09/12/ocr-dian-zi-shu-zhi-wo-jian/blog-260912-001.png" alt></p>
 <p>在《<a href="/2025/09/07/OCR-Gemini/">光学字符识别？也学点新的</a>》一文中，我提到了使用 Gemini CLI 自动化处理 OCR 任务的方法。那时候还有 Gemini CLI（现在我用 Antigravity），那时候还没有 Skill（我把工作流写在系统提示词里）。虽然处理结果不尽如人意，但也是一番心意。</p>
 <span id="more"></span>
 <p>之后，我在小红书评论区的指引下走了 PaddleOCR 之类专业的弯路。效果令人满意，但跨页衔接是个问题，校对起来还是很繁琐，而这些事情理应全自动执行。</p>
 <p>最近 Gemini 接连推出了好几个 Flash 模型，可以重启这个全自动 OCR 项目了，直接写成一个 Skill：<a target="_blank" rel="noopener" href="https://github.com/fengyukongzhou/pdf-book-ocr">pdf-book-ocr</a>。</p>
 <p>文中使用模型均为 <em>Gemini 3.8 Flash</em>，使用 Agent 均为 <em>Antigravity</em>。</p>
-<h2 id="PDF-gt-EPUB"><a href="#PDF-gt-EPUB" class="headerlink" title="PDF -&gt; EPUB"></a>PDF -&gt; EPUB</h2><p><img src="/blog/2026/09/12/ocr-dian-zi-shu-zhi-wo-jian/blog-260912-002.png" alt></p>
+<h2 id="PDF-gt-EPUB"><a href="#PDF-gt-EPUB" class="headerlink" title="PDF -&gt; EPUB"></a>PDF -&gt; EPUB</h2><p><img src="/2026/09/12/ocr-dian-zi-shu-zhi-wo-jian/blog-260912-002.png" alt></p>
 <p>输入是原始 PDF，输出是规范排版的 EPUB。</p>
 <p>和之前的翻译器 <a target="_blank" rel="noopener" href="https://ai.studio/apps/b184f80d-4fa5-4fce-a431-029da0140dce">TransLit</a> 一样，我需要一个好的成品，但完全不需要保持最初的排版。</p>
 <p>工作流很自然，重要的几步大致是这样：</p>
@@ -345,7 +345,7 @@
 </ul>
 <p>附上 Agent 绘制的流程图，以供参考：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">[原始 PDF 图书]</span><br><span class="line">       │</span><br><span class="line">       ▼ (Step 1: 预处理、切片规划与全局目录提取)</span><br><span class="line"> digitize_book.py ──&gt; 提取封面与物理切片</span><br><span class="line">       │              主 Agent 审视卷首切片提炼《全书大章白名单》</span><br><span class="line">       ▼</span><br><span class="line"> [Gate 1 门禁] ──────&gt; 确认清单条目有效 + 大章白名单已提取</span><br><span class="line">       │</span><br><span class="line">       ▼ (Step 2: Subagent 批次滚动转写)</span><br><span class="line"> invoke_subagent ───&gt; 注入【全书大章白名单】，防局部视界导致的小节升格</span><br><span class="line">       │              逐片落盘 raw_md/*.md</span><br><span class="line">       ▼</span><br><span class="line"> [Gate 2 门禁] ──────&gt; 确认切片 100% 完整落盘且 &gt; 100B</span><br><span class="line">       │</span><br><span class="line">       ▼ (Step 3: 汇编与目录审查门禁)</span><br><span class="line"> digitize_book.py --preview-toc (可选快速预检)</span><br><span class="line"> digitize_book.py --assemble</span><br><span class="line">       ├── seam_auditor: 跨切片接缝平滑焊接 (12 MERGE / 11 SPLIT)</span><br><span class="line">       ├── toc_manifest: 导出章节拟案，高亮微短章与英文单词孤岛</span><br><span class="line">       │   └── [Gate 3 门禁]: 主 Agent 对照大章白名单，核验无碎片短章后再放行</span><br><span class="line">       ├── chapter_assembler: 依真实大章聚合，隔离脚注命名空间</span><br><span class="line">       └── epub_builder: Pandoc 编译 EPUB 3 + 注入双向弹框注释</span><br><span class="line">       │</span><br><span class="line">       ▼ (Step 4: 出厂验收)</span><br><span class="line">《书名》.epub + 《书名》.md + images/ (生成至输出工作目录)</span><br></pre></td></tr></table></figure>
-<h2 id="插图的处理方式"><a href="#插图的处理方式" class="headerlink" title="插图的处理方式"></a>插图的处理方式</h2><p><img src="/blog/2026/09/12/ocr-dian-zi-shu-zhi-wo-jian/blog-260912-003.png" alt></p>
+<h2 id="插图的处理方式"><a href="#插图的处理方式" class="headerlink" title="插图的处理方式"></a>插图的处理方式</h2><p><img src="/2026/09/12/ocr-dian-zi-shu-zhi-wo-jian/blog-260912-003.png" alt></p>
 <p>之前在 Google AI Studio 窗口做 OCR，自是只能处理小说之类的“字书”。Paddle OCR 等工具倒是可以理解排版，保存截图到合适的位置。</p>
 <p>用上 Agent 之后，就有了更好的处理思路。</p>
 <p>在子 Agent 做 OCR 的同时，遇到插图就会记录类似于这样的标记：</p>
@@ -355,7 +355,7 @@
 <p>这个脚本还有一点数字图像处理的思路，AI 说这叫 <strong>投影轮廓吸附（Projection Profile Snapping）</strong>——先在大模型给出的坐标基础上外扩一圈，防止图像不全；之后做边缘检测（为了不把图题截下来，还会检测图题和图像中的空白缝隙），删去白边。</p>
 <h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>如果效果不满意，可以在任务完成之后和 Agent 交流改进。</p>
 <p>有快要过期的余量的话，这个 Skill 值得一试。</p>
-<p><img src="/blog/2026/09/12/ocr-dian-zi-shu-zhi-wo-jian/blog-260912-004.png" alt></p>
+<p><img src="/2026/09/12/ocr-dian-zi-shu-zhi-wo-jian/blog-260912-004.png" alt></p>
 
       
     </div>
@@ -370,7 +370,7 @@
 
     <span class="post-categories">
       <i class="icon-categories"></i>
-        <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
+        <a href="/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
     </span>
     
 
@@ -379,7 +379,7 @@
 
     <span class="post-tags">
       <i class="icon-tags"></i>
-        <a href="/blog/tags/AI/">AI</a><a href="/blog/tags/Github/">Github</a>
+        <a href="/tags/AI/">AI</a><a href="/tags/Github/">Github</a>
     </span>
     
 
@@ -418,7 +418,7 @@
     <span class="like-count">0</span>
   </button>
   <div class="like-message">
-    <img src="/blog/images/luoziwuhui.svg" alt="落子无悔" class="luoziwuhui-svg">
+    <img src="/images/luoziwuhui.svg" alt="落子无悔" class="luoziwuhui-svg">
   </div>
 </div>
 
@@ -777,10 +777,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     
     
-    <script src="/blog/js/lang-detector.js"></script>
+    <script src="/js/lang-detector.js"></script>
     
     
-    <script src="/blog/js/footnote-popup.js"></script>
+    <script src="/js/footnote-popup.js"></script>
     
 
     <!-- Mermaid.js CDN 引入 -->
@@ -925,7 +925,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     heatmapChart.on('click', function (params) {
                         if (params.componentType === 'series') {
                             const [year, month] = params.value[0].split('-');
-                            window.location.href = '/blog/archives/' + year + '/' + month;
+                            window.location.href = '/archives/' + year + '/' + month;
                         }
                     });
                 }
@@ -968,7 +968,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     monthlyChart.on('click', function (params) {
                         const [year, month] = params.name.split('-');
-                        window.location.href = '/blog/archives/' + year + '/' + month;
+                        window.location.href = '/archives/' + year + '/' + month;
                     });
                 }
             })
@@ -1005,7 +1005,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
 
                     tagsChart.on('click', function (params) {
-                        window.location.href = '/blog/tags/' + params.name;
+                        window.location.href = '/tags/' + params.name;
                     });
                 }
             })
@@ -1047,7 +1047,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
 
                     categoriesChart.on('click', function (params) {
-                        window.location.href = '/blog/categories/' + params.name;
+                        window.location.href = '/categories/' + params.name;
                     });
                 }
             });
@@ -1115,7 +1115,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     treeChart.on('dblclick', function (params) {
                         if (params.data && params.data.path) {
-                            window.location.href = '/blog/categories/' + params.data.path;
+                            window.location.href = '/categories/' + params.data.path;
                         }
                     });
                 }

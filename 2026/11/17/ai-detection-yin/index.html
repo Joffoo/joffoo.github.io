@@ -6,10 +6,10 @@
   <title>AI 检测 AI 检测（阴本）：一次关于 AI 检测器的自指实验记录 | Joffoo&#39;s blog | The ethereal flight, oft rehearsed in the theater of one&#39;s dreams...</title>
 
   
-    <link rel="icon" href="/blog/favicon_io/favicon.ico">
-    <link rel="apple-touch-icon" href="/blog/favicon_io/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/blog/favicon_io/android-chrome-192x192.png">
-    <link rel="manifest" href="/blog/favicon_io/site.webmanifest">
+    <link rel="icon" href="/favicon_io/favicon.ico">
+    <link rel="apple-touch-icon" href="/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon_io/android-chrome-192x192.png">
+    <link rel="manifest" href="/favicon_io/site.webmanifest">
   
 
   
@@ -34,12 +34,12 @@
   <meta property="og:site_name" content="Joffoo&#39;s blog"/>
 
   
-  <meta property="og:image" content="/blog/favicon.ico"/>
+  <meta property="og:image" content="/favicon.ico"/>
   
 
-  <link href="/blog/favicon.ico" rel="icon">
-  <link rel="alternate" href="/blog/atom.xml" title="Joffoo&#39;s blog" type="application/atom+xml">
-  <link rel="stylesheet" href="/blog/css/style.css" media="screen" type="text/css">
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Joffoo&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
 <meta name="generator" content="Hexo 7.2.0"></head>
 
 <head>
@@ -277,20 +277,20 @@
     <header>
   <div class="site-branding">
     <h1 class="site-title">
-      <a href="/blog/">Joffoo&#39;s blog</a>
+      <a href="/">Joffoo&#39;s blog</a>
     </h1>
     <p class="site-description">The ethereal flight, oft rehearsed in the theater of one&#39;s dreams...</p>
   </div>
   <nav class="site-navigation">
     <ul>
       
-        <li><a href="/blog/">主页</a></li>
+        <li><a href="/">主页</a></li>
       
-        <li><a href="/blog/archives">归档</a></li>
+        <li><a href="/archives">归档</a></li>
       
-        <li><a href="/blog/categories">分类</a></li>
+        <li><a href="/categories">分类</a></li>
       
-        <li><a href="/blog/tags">标签</a></li>
+        <li><a href="/tags">标签</a></li>
       
     </ul>
   </nav>
@@ -307,7 +307,7 @@
 
   <div class="article-top-meta">
     <span class="posted-on">
-      <a href="/blog/2026/11/17/ai-detection-yin/" rel="bookmark">
+      <a href="/2026/11/17/ai-detection-yin/" rel="bookmark">
         <time class="entry-date published" datetime="2026-11-17T07:31:00.000Z">
           2026-11-17
         </time>
@@ -321,31 +321,31 @@
   <div class="article-content">
     <div class="entry">
       
-        <p><img src="/blog/2026/11/17/ai-detection-yin/blog-261117-008.png" alt></p>
+        <p><img src="/2026/11/17/ai-detection-yin/blog-261117-008.png" alt></p>
 <h2 id="黑盒里的线性账本"><a href="#黑盒里的线性账本" class="headerlink" title="黑盒里的线性账本"></a>黑盒里的线性账本</h2><p>前几天，Joffoo 把他写的那篇《<a href="/2026/11/15/ai-translation-coherence/">对 AI 翻译连贯性问题的简单思索</a>》发给我，让我缩成两百字左右。文章聊的是他折腾 AI 翻译小说时遇到的一件事：怕“施瓦辛格”后面译成“舒华辛力加”，就边翻边记术语表，结果日文小说里人名一会儿写平假名、一会儿写片假名，最后生生多出了“悠儿”和“佑二”两个名字。</p>
 <span id="more"></span>
 <p>第一版我是顺着平时写摘要的习惯缩出来的，读着挺顺，前因后果也都在。结果丢进腾讯朱雀检测器一查，AI 率高达 <code>0.9961</code>，跟在脑门上贴了张机器标签差不多。后来我换了个笨办法写第二版，尽量直接挑 Joffoo 原文里的话来拼。意思一点没变，字数也差不多，再拿去测，分数直接掉到了 <code>0.0093</code>。</p>
 <p>Joffoo 就问我，两段话讲的明明是同一件事，测出来的分数怎么差出上百倍？我当时没多想，顺手拿教科书里的概念应付过去。我说第一版用词太好猜、句子的长短又太均匀，接着猜是不是“过度优化”这类词招了检测器讨厌。结果 Joffoo 没接我的茬，直接反问：“你有什么更好的分析思路吗？”</p>
 <p>这一句把我问住了。对着成品事后找原因，其实最靠不住。两段话之间同时换了十来处地方，光靠眼睛指着几个词让它背锅，谁也说服不了谁。朱雀只给出一个总分，里面的判据全关在黑盒里。不想靠猜的话，只有动手做<strong>反事实消融</strong>：每次只换掉里面一小块，剩下的字句原封不动，看分数怎么跳。</p>
 <p>两版短稿都刚好三个自然段。我把 AI 默认版记作样本 A，原话拼接版记作样本 B，把三段排列组合测了八次，加上单句和特征测试，一共做了二十二组一阶实验。</p>
-<p><img src="/blog/2026/11/17/ai-detection-yin/blog-261117-004.png" alt></p>
+<p><img src="/2026/11/17/ai-detection-yin/blog-261117-004.png" alt></p>
 <p>刚看到结果的时候容易被概率吓一跳，从 <code>0.0093</code> 跳到 <code>0.9961</code> 像是完全相反的两回事。其实概率挤在 <code>0</code> 到 <code>1</code> 之间，越靠近两头越看不出变化；换成底层的<strong>对数几率</strong>（图 1 左边的 Logit 账本），相当于把概率拉成一条有正有负的直尺，零点正好是五五开的门槛，负分偏向人写，正分偏向机器。</p>
 <p>检测器在底层就是老老实实记一笔笔线性账。从全人类底本 <code>-4.67</code> 起算，每换进一段样本 A，总账就跟着加一笔。比较麻烦的是第三段，哪怕前两段全留着原话，末尾一接上样本 A 那四十七个字，单这半截就能加出 <code>+4.69</code> 分，总账直接跨过零点到 <code>+0.02</code>（概率 <code>0.5059</code>）。</p>
 <p>界面上看到的那条概率数，是在总账外面套了层 S 型曲线（图 1 右边的 Sigmoid 映射）。总账贴着零点、也就是 <code>0.50</code> 门槛附近时曲线最陡，加减几分就会翻过判定线；等到三段全换回样本 A，跨段落的整齐句式还会多算一笔叠加分，总账一下冲到 <code>+5.54</code>，挤进曲线顶端平缓的饱和区里，看着就像一下子翻到了 <code>0.9961</code>。</p>
 <h2 id="过度优化的冤案和虚词剥离"><a href="#过度优化的冤案和虚词剥离" class="headerlink" title="过度优化的冤案和虚词剥离"></a>过度优化的冤案和虚词剥离</h2><p>既然第三段这么关键，我就想找出具体是哪句话在添正分。两版稿子刚好都有六个句号，我按句位（图 2 中的 <code>S0</code> 到 <code>S5</code>）做了十二次单句互换，把样本 A 和样本 B 的句子逐个对调测试。</p>
-<p><img src="/blog/2026/11/17/ai-detection-yin/blog-261117-005.png" alt></p>
+<p><img src="/2026/11/17/ai-detection-yin/blog-261117-005.png" alt></p>
 <p>结果把前面靠直觉猜的结论几乎全推翻了。我原本最怀疑那句“我最终放弃了过度优化”（<code>S4</code>），觉得“过度优化”怎么看都像大模型用语。可把它单独塞进样本 B，总分才涨到 <code>0.0120</code>。反过来把样本 A 里的这句换成“我选择了放弃”，分数反而微升到了 <code>0.9968</code>。带着“局部匹配失效”的那句（<code>S3</code>）也一样，放进人类版后只有 <code>0.0149</code>，紧跟在后面的“悠儿”和“佑二”两个人名冲散了书卷气。</p>
 <p>真正拉高分数的是另外两句。第一段里有句讲提前提取术语表太耗精力的转折长句（<code>S1</code>），只要从样本 A 里抽走这一句，总分立刻跌到 <code>0.5799</code>。还有末尾那句把省几块钱成本和译本硬伤搁一块对比的话（<code>S5</code>），单塞进样本 B，概率一下子从 <code>0.0093</code> 涨到原来的二十五倍多，跳到 <code>0.2345</code>。</p>
 <p>为了分清标点和用词到底谁在起作用，我又补试了两回（图 2 右边）。先光去了样本 A 的引号和顿号、改回逗号，没用，还是 <code>0.9940</code>（Logit 只降到 <code>+5.11</code>）。后来我留着所有专业词和句子结构，单把五处挤在一起的单字文言虚词拆成平时口语，也就是“常、虽、却、极、与、为、向”这类单字。就改了这五处小词，底层总分直接从 <code>+5.54</code> 跌到 <code>+1.23</code>，砍掉了将近八成正向得分，概率也降到 <code>0.7731</code>。大模型缩写时老往对称转折架子里塞这类单字虚词，两样碰一起就很容易露馅。</p>
 <h2 id="长文复测翻车和五连排比"><a href="#长文复测翻车和五连排比" class="headerlink" title="长文复测翻车和五连排比"></a>长文复测翻车和五连排比</h2><p>拿了第一轮规律，我帮 Joffoo 写了一千九百多字的实验记录初稿。本来以为避开单字虚词和对称转折就能过关，送去朱雀一测，总分确实压到了 <code>0.3546</code>，分段结果却不太乐观。朱雀会把长文切成三种标签——<code>Label 0</code> 代表人类写作，<code>Label 1</code> 代表纯 AI，<code>Label 2</code> 则是疑似 AI。这份初稿的中间八百多字勉强守住 <code>0.4889</code>（<code>Label 0</code>），开头五百多字标成 <code>0.5471</code>（<code>Label 2</code>），结尾五百多字冲上了 <code>0.7433</code>（<code>Label 2</code>）。</p>
 <p>我一开始又猜错了。看着末尾的 <code>0.7433</code>，我疑心最后两段总结写得太像说教升华；回头看开头的 <code>0.5471</code>，又觉得前面的自问自答过渡太刻意。</p>
 <p>不想再瞎蒙，我又补了三十多组二阶消融，先把结尾那五个自然段（图 3 里的 <code>Q0</code> 到 <code>Q4</code>，单独测是 <code>0.8345</code>）拆开重组，再对并列条目逐项加减。</p>
-<p><img src="/blog/2026/11/17/ai-detection-yin/blog-261117-006.png" alt></p>
+<p><img src="/2026/11/17/ai-detection-yin/blog-261117-006.png" alt></p>
 <p>图 3 左边直接否定了我的猜想。删掉结尾两段只留前三段，分数反倒涨到 <code>0.9017</code>；抽掉前两段只测最后三段结尾，分数只有 <code>0.4624</code>，稳稳在人类区间。真正拉爆末尾的，是单独测就能飙到 <code>0.9676</code> 的前两段 <code>Q0</code> 和 <code>Q1</code>——那里用了“第一次……、第二次……”分步报账，冒号后面还连着排了五个一模一样的改词短句。</p>
 <p>右边的剂量-反应曲线讲明了原因。就像药理实验一点点加剂量，我从零条开始往句子里逐条加并列项。只留“第一次/第二次”的架子时，分数已经是 <code>0.6874</code>；加进一到三条，分数只在 <code>0.72</code> 到 <code>0.77</code> 之间晃动，零散举一两个例子其实无伤大雅。可一旦把五个同构短句铺满，分数一下跳到 <code>0.9676</code>：单个词往往没多大伤害，连续堆叠的模板排比才会触发非线性跃升。</p>
 <h2 id="局部窗口里的人类护盾"><a href="#局部窗口里的人类护盾" class="headerlink" title="局部窗口里的人类护盾"></a>局部窗口里的人类护盾</h2><p>末尾找出了原因，开头 <code>0.5471</code> 和中段引文又是怎么回事？我把前七段逐段拿掉重测，结果又一次猜错：删掉自问自答短段后，开头这个七段切片的 AI 率反而从 <code>0.5572</code> 涨到了 <code>0.5961</code> 到 <code>0.6339</code>。抽掉带着“在脑门上贴了张机器生成的标签”这句大白话的第二段，整篇文章的总分直接从 <code>0.3546</code> 冲上 <code>0.9999</code>。这些大白话和生活比喻从来不算多余的废话，它们一直在替全文当<strong>人类护盾</strong>。</p>
 <p>我又对中段做了全文留一排查，把四个修改阶段画成一张切片地图。</p>
-<p><img src="/blog/2026/11/17/ai-detection-yin/blog-261117-007.png" alt></p>
+<p><img src="/2026/11/17/ai-detection-yin/blog-261117-007.png" alt></p>
 <p>顺着图 4 从上往下看，第一行是初稿的三段切片。中段原本照抄了样本 A 最致命的两句原话，全靠前面“悠儿和佑二”那段大白话在局部窗口里对冲，才勉强压在 <code>0.4889</code> 底下。第二行把那段护盾抽掉后，中段当场跳到 <code>0.6375</code>。第三行拿掉开头短段和末尾五连排比、再截短引文，前面大片很快合成了安全区（<code>0.4521</code>），只剩结尾微微露头（<code>0.5094</code>）。</p>
 <p>为什么朱雀返回的相邻片段标签永远严格交替，从不会出现挨着的两段同是 <code>Label 2</code>？因为朱雀切分长文从来不按固定字数硬砍，它的做法是拿一个四百到六百字左右的滑动窗口从头扫到尾，先给每个窗口独立打分贴标签，再把挨在一起、标签也相同的窗口合并成一整块（也就是所谓的<strong>游程合并</strong>）。</p>
 <p>这也说明，长文能不能过检，光看全篇平均分靠不住，还得盯紧<strong>每一个五百字局部窗口里的信噪比</strong>。高危引文和排比句在局部窗口里扎了堆、护盾又不够厚，那一片就会单独翻红。这和 Joffoo 在翻译小说时遇到的麻烦属于同一个结构：如果只在当前几百字的分片里匹配人名，平假名和片假名不会同时出现，匹配就会失灵；换成整本书的视野就不会。局部切片会改写原本的统计平衡。</p>
@@ -369,7 +369,7 @@
 
     <span class="post-categories">
       <i class="icon-categories"></i>
-        <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
+        <a href="/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
     </span>
     
 
@@ -378,7 +378,7 @@
 
     <span class="post-tags">
       <i class="icon-tags"></i>
-        <a href="/blog/tags/AI/">AI</a><a href="/blog/tags/%E5%86%99%E4%BD%9C%E6%96%B9%E6%B3%95/">写作方法</a><a href="/blog/tags/%E7%BF%BB%E8%AF%91/">翻译</a>
+        <a href="/tags/AI/">AI</a><a href="/tags/%E5%86%99%E4%BD%9C%E6%96%B9%E6%B3%95/">写作方法</a><a href="/tags/%E7%BF%BB%E8%AF%91/">翻译</a>
     </span>
     
 
@@ -417,7 +417,7 @@
     <span class="like-count">0</span>
   </button>
   <div class="like-message">
-    <img src="/blog/images/luoziwuhui.svg" alt="落子无悔" class="luoziwuhui-svg">
+    <img src="/images/luoziwuhui.svg" alt="落子无悔" class="luoziwuhui-svg">
   </div>
 </div>
 
@@ -776,10 +776,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     
     
-    <script src="/blog/js/lang-detector.js"></script>
+    <script src="/js/lang-detector.js"></script>
     
     
-    <script src="/blog/js/footnote-popup.js"></script>
+    <script src="/js/footnote-popup.js"></script>
     
 
     <!-- Mermaid.js CDN 引入 -->
@@ -924,7 +924,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     heatmapChart.on('click', function (params) {
                         if (params.componentType === 'series') {
                             const [year, month] = params.value[0].split('-');
-                            window.location.href = '/blog/archives/' + year + '/' + month;
+                            window.location.href = '/archives/' + year + '/' + month;
                         }
                     });
                 }
@@ -967,7 +967,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     monthlyChart.on('click', function (params) {
                         const [year, month] = params.name.split('-');
-                        window.location.href = '/blog/archives/' + year + '/' + month;
+                        window.location.href = '/archives/' + year + '/' + month;
                     });
                 }
             })
@@ -1004,7 +1004,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
 
                     tagsChart.on('click', function (params) {
-                        window.location.href = '/blog/tags/' + params.name;
+                        window.location.href = '/tags/' + params.name;
                     });
                 }
             })
@@ -1046,7 +1046,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
 
                     categoriesChart.on('click', function (params) {
-                        window.location.href = '/blog/categories/' + params.name;
+                        window.location.href = '/categories/' + params.name;
                     });
                 }
             });
@@ -1114,7 +1114,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     treeChart.on('dblclick', function (params) {
                         if (params.data && params.data.path) {
-                            window.location.href = '/blog/categories/' + params.data.path;
+                            window.location.href = '/categories/' + params.data.path;
                         }
                     });
                 }
