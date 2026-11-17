@@ -630,6 +630,13 @@
   </url>
   
   <url>
+    <loc>https://joffoo.loc.cc/blog/tags/%E5%B0%9D%E8%AF%95%E9%9B%86/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://joffoo.loc.cc/blog/tags/%E5%86%99%E4%BD%9C%E6%96%B9%E6%B3%95/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -644,7 +651,7 @@
   </url>
   
   <url>
-    <loc>https://joffoo.loc.cc/blog/tags/%E5%B0%9D%E8%AF%95%E9%9B%86/</loc>
+    <loc>https://joffoo.loc.cc/blog/tags/%E8%AE%BE%E8%AE%A1/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -659,13 +666,6 @@
   
   <url>
     <loc>https://joffoo.loc.cc/blog/tags/%E9%AA%86%E4%BB%A5%E5%86%9B/</loc>
-    <lastmod>2026-11-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://joffoo.loc.cc/blog/tags/%E8%AE%BE%E8%AE%A1/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
