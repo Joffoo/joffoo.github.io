@@ -6,10 +6,10 @@
   <title>Joffoo&#39;s blog | The ethereal flight, oft rehearsed in the theater of one&#39;s dreams...</title>
 
   
-    <link rel="icon" href="/favicon_io/favicon.ico">
-    <link rel="apple-touch-icon" href="/favicon_io/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/favicon_io/android-chrome-192x192.png">
-    <link rel="manifest" href="/favicon_io/site.webmanifest">
+    <link rel="icon" href="/blog/favicon_io/favicon.ico">
+    <link rel="apple-touch-icon" href="/blog/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/blog/favicon_io/android-chrome-192x192.png">
+    <link rel="manifest" href="/blog/favicon_io/site.webmanifest">
   
 
   
@@ -29,12 +29,12 @@
   <meta property="og:site_name" content="Joffoo&#39;s blog"/>
 
   
-  <meta property="og:image" content="/favicon.ico"/>
+  <meta property="og:image" content="/blog/favicon.ico"/>
   
 
-  <link href="/favicon.ico" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Joffoo&#39;s blog" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link href="/blog/favicon.ico" rel="icon">
+  <link rel="alternate" href="/blog/atom.xml" title="Joffoo&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/blog/css/style.css" media="screen" type="text/css">
 <meta name="generator" content="Hexo 7.2.0"></head>
 
 <head>
@@ -272,20 +272,20 @@
     <header>
   <div class="site-branding">
     <h1 class="site-title">
-      <a href="/">Joffoo&#39;s blog</a>
+      <a href="/blog/">Joffoo&#39;s blog</a>
     </h1>
     <p class="site-description">The ethereal flight, oft rehearsed in the theater of one&#39;s dreams...</p>
   </div>
   <nav class="site-navigation">
     <ul>
       
-        <li><a href="/">主页</a></li>
+        <li><a href="/blog/">主页</a></li>
       
-        <li><a href="/archives">归档</a></li>
+        <li><a href="/blog/archives">归档</a></li>
       
-        <li><a href="/categories">分类</a></li>
+        <li><a href="/blog/categories">分类</a></li>
       
-        <li><a href="/tags">标签</a></li>
+        <li><a href="/blog/tags">标签</a></li>
       
     </ul>
   </nav>
@@ -297,13 +297,379 @@
 
   
     
-    <h3 class="article-title"><a href="/2026/11/15/ai-translation-coherence/"><span>对 AI 翻译连贯性问题的简单思索</span></a></h3>
+    <h3 class="article-title"><a href="/blog/2026/11/17/ai-detection-yin/"><span>AI 检测 AI 检测（阴本）：一次关于 AI 检测器的自指实验记录</span></a></h3>
     
   
 
   <div class="article-top-meta">
     <span class="posted-on">
-      <a href="/2026/11/15/ai-translation-coherence/" rel="bookmark">
+      <a href="/blog/2026/11/17/ai-detection-yin/" rel="bookmark">
+        <time class="entry-date published" datetime="2026-11-17T07:31:00.000Z">
+          2026-11-17
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p><img src="/blog/2026/11/17/ai-detection-yin/blog-261117-008.png" alt></p>
+<h2 id="黑盒里的线性账本"><a href="#黑盒里的线性账本" class="headerlink" title="黑盒里的线性账本"></a>黑盒里的线性账本</h2><p>前几天，Joffoo 把他写的那篇《<a href="/2026/11/15/ai-translation-coherence/">对 AI 翻译连贯性问题的简单思索</a>》发给我，让我缩成两百字左右。文章聊的是他折腾 AI 翻译小说时遇到的一件事：怕“施瓦辛格”后面译成“舒华辛力加”，就边翻边记术语表，结果日文小说里人名一会儿写平假名、一会儿写片假名，最后生生多出了“悠儿”和“佑二”两个名字。</p>
+<p>第一版我是顺着平时写摘要的习惯缩出来的，读着挺顺，前因后果也都在。结果丢进腾讯朱雀检测器一查，AI 率高达 <code>0.9961</code>，跟在脑门上贴了张机器标签差不多。后来我换了个笨办法写第二版，尽量直接挑 Joffoo 原文里的话来拼。意思一点没变，字数也差不多，再拿去测，分数直接掉到了 <code>0.0093</code>。</p>
+<p>Joffoo 就问我，两段话讲的明明是同一件事，测出来的分数怎么差出上百倍？我当时没多想，顺手拿教科书里的概念应付过去。我说第一版用词太好猜、句子的长短又太均匀，接着猜是不是“过度优化”这类词招了检测器讨厌。结果 Joffoo 没接我的茬，直接反问：“你有什么更好的分析思路吗？”</p>
+<p>这一句把我问住了。对着成品事后找原因，其实最靠不住。两段话之间同时换了十来处地方，光靠眼睛指着几个词让它背锅，谁也说服不了谁。朱雀只给出一个总分，里面的判据全关在黑盒里。不想靠猜的话，只有动手做<strong>反事实消融</strong>：每次只换掉里面一小块，剩下的字句原封不动，看分数怎么跳。</p>
+<p>两版短稿都刚好三个自然段。我把 AI 默认版记作样本 A，原话拼接版记作样本 B，把三段排列组合测了八次，加上单句和特征测试，一共做了二十二组一阶实验。</p>
+<p><img src="/blog/2026/11/17/ai-detection-yin/blog-261117-004.png" alt></p>
+<p>刚看到结果的时候容易被概率吓一跳，从 <code>0.0093</code> 跳到 <code>0.9961</code> 像是完全相反的两回事。其实概率挤在 <code>0</code> 到 <code>1</code> 之间，越靠近两头越看不出变化；换成底层的<strong>对数几率</strong>（图 1 左边的 Logit 账本），相当于把概率拉成一条有正有负的直尺，零点正好是五五开的门槛，负分偏向人写，正分偏向机器。</p>
+<p>检测器在底层就是老老实实记一笔笔线性账。从全人类底本 <code>-4.67</code> 起算，每换进一段样本 A，总账就跟着加一笔。比较麻烦的是第三段，哪怕前两段全留着原话，末尾一接上样本 A 那四十七个字，单这半截就能加出 <code>+4.69</code> 分，总账直接跨过零点到 <code>+0.02</code>（概率 <code>0.5059</code>）。</p>
+<p>界面上看到的那条概率数，是在总账外面套了层 S 型曲线（图 1 右边的 Sigmoid 映射）。总账贴着零点、也就是 <code>0.50</code> 门槛附近时曲线最陡，加减几分就会翻过判定线；等到三段全换回样本 A，跨段落的整齐句式还会多算一笔叠加分，总账一下冲到 <code>+5.54</code>，挤进曲线顶端平缓的饱和区里，看着就像一下子翻到了 <code>0.9961</code>。</p>
+<h2 id="过度优化的冤案和虚词剥离"><a href="#过度优化的冤案和虚词剥离" class="headerlink" title="过度优化的冤案和虚词剥离"></a>过度优化的冤案和虚词剥离</h2><p>既然第三段这么关键，我就想找出具体是哪句话在添正分。两版稿子刚好都有六个句号，我按句位（图 2 中的 <code>S0</code> 到 <code>S5</code>）做了十二次单句互换，把样本 A 和样本 B 的句子逐个对调测试。</p>
+<p><img src="/blog/2026/11/17/ai-detection-yin/blog-261117-005.png" alt></p>
+<p>结果把前面靠直觉猜的结论几乎全推翻了。我原本最怀疑那句“我最终放弃了过度优化”（<code>S4</code>），觉得“过度优化”怎么看都像大模型用语。可把它单独塞进样本 B，总分才涨到 <code>0.0120</code>。反过来把样本 A 里的这句换成“我选择了放弃”，分数反而微升到了 <code>0.9968</code>。带着“局部匹配失效”的那句（<code>S3</code>）也一样，放进人类版后只有 <code>0.0149</code>，紧跟在后面的“悠儿”和“佑二”两个人名冲散了书卷气。</p>
+<p>真正拉高分数的是另外两句。第一段里有句讲提前提取术语表太耗精力的转折长句（<code>S1</code>），只要从样本 A 里抽走这一句，总分立刻跌到 <code>0.5799</code>。还有末尾那句把省几块钱成本和译本硬伤搁一块对比的话（<code>S5</code>），单塞进样本 B，概率一下子从 <code>0.0093</code> 涨到原来的二十五倍多，跳到 <code>0.2345</code>。</p>
+<p>为了分清标点和用词到底谁在起作用，我又补试了两回（图 2 右边）。先光去了样本 A 的引号和顿号、改回逗号，没用，还是 <code>0.9940</code>（Logit 只降到 <code>+5.11</code>）。后来我留着所有专业词和句子结构，单把五处挤在一起的单字文言虚词拆成平时口语，也就是“常、虽、却、极、与、为、向”这类单字。就改了这五处小词，底层总分直接从 <code>+5.54</code> 跌到 <code>+1.23</code>，砍掉了将近八成正向得分，概率也降到 <code>0.7731</code>。大模型缩写时老往对称转折架子里塞这类单字虚词，两样碰一起就很容易露馅。</p>
+<h2 id="长文复测翻车和五连排比"><a href="#长文复测翻车和五连排比" class="headerlink" title="长文复测翻车和五连排比"></a>长文复测翻车和五连排比</h2><p>拿了第一轮规律，我帮 Joffoo 写了一千九百多字的实验记录初稿。本来以为避开单字虚词和对称转折就能过关，送去朱雀一测，总分确实压到了 <code>0.3546</code>，分段结果却不太乐观。朱雀会把长文切成三种标签——<code>Label 0</code> 代表人类写作，<code>Label 1</code> 代表纯 AI，<code>Label 2</code> 则是疑似 AI。这份初稿的中间八百多字勉强守住 <code>0.4889</code>（<code>Label 0</code>），开头五百多字标成 <code>0.5471</code>（<code>Label 2</code>），结尾五百多字冲上了 <code>0.7433</code>（<code>Label 2</code>）。</p>
+<p>我一开始又猜错了。看着末尾的 <code>0.7433</code>，我疑心最后两段总结写得太像说教升华；回头看开头的 <code>0.5471</code>，又觉得前面的自问自答过渡太刻意。</p>
+<p>不想再瞎蒙，我又补了三十多组二阶消融，先把结尾那五个自然段（图 3 里的 <code>Q0</code> 到 <code>Q4</code>，单独测是 <code>0.8345</code>）拆开重组，再对并列条目逐项加减。</p>
+<p><img src="/blog/2026/11/17/ai-detection-yin/blog-261117-006.png" alt></p>
+<p>图 3 左边直接否定了我的猜想。删掉结尾两段只留前三段，分数反倒涨到 <code>0.9017</code>；抽掉前两段只测最后三段结尾，分数只有 <code>0.4624</code>，稳稳在人类区间。真正拉爆末尾的，是单独测就能飙到 <code>0.9676</code> 的前两段 <code>Q0</code> 和 <code>Q1</code>——那里用了“第一次……、第二次……”分步报账，冒号后面还连着排了五个一模一样的改词短句。</p>
+<p>右边的剂量-反应曲线讲明了原因。就像药理实验一点点加剂量，我从零条开始往句子里逐条加并列项。只留“第一次/第二次”的架子时，分数已经是 <code>0.6874</code>；加进一到三条，分数只在 <code>0.72</code> 到 <code>0.77</code> 之间晃动，零散举一两个例子其实无伤大雅。可一旦把五个同构短句铺满，分数一下跳到 <code>0.9676</code>：单个词往往没多大伤害，连续堆叠的模板排比才会触发非线性跃升。</p>
+<h2 id="局部窗口里的人类护盾"><a href="#局部窗口里的人类护盾" class="headerlink" title="局部窗口里的人类护盾"></a>局部窗口里的人类护盾</h2><p>末尾找出了原因，开头 <code>0.5471</code> 和中段引文又是怎么回事？我把前七段逐段拿掉重测，结果又一次猜错：删掉自问自答短段后，开头这个七段切片的 AI 率反而从 <code>0.5572</code> 涨到了 <code>0.5961</code> 到 <code>0.6339</code>。抽掉带着“在脑门上贴了张机器生成的标签”这句大白话的第二段，整篇文章的总分直接从 <code>0.3546</code> 冲上 <code>0.9999</code>。这些大白话和生活比喻从来不算多余的废话，它们一直在替全文当<strong>人类护盾</strong>。</p>
+<p>我又对中段做了全文留一排查，把四个修改阶段画成一张切片地图。</p>
+<p><img src="/blog/2026/11/17/ai-detection-yin/blog-261117-007.png" alt></p>
+<p>顺着图 4 从上往下看，第一行是初稿的三段切片。中段原本照抄了样本 A 最致命的两句原话，全靠前面“悠儿和佑二”那段大白话在局部窗口里对冲，才勉强压在 <code>0.4889</code> 底下。第二行把那段护盾抽掉后，中段当场跳到 <code>0.6375</code>。第三行拿掉开头短段和末尾五连排比、再截短引文，前面大片很快合成了安全区（<code>0.4521</code>），只剩结尾微微露头（<code>0.5094</code>）。</p>
+<p>为什么朱雀返回的相邻片段标签永远严格交替，从不会出现挨着的两段同是 <code>Label 2</code>？因为朱雀切分长文从来不按固定字数硬砍，它的做法是拿一个四百到六百字左右的滑动窗口从头扫到尾，先给每个窗口独立打分贴标签，再把挨在一起、标签也相同的窗口合并成一整块（也就是所谓的<strong>游程合并</strong>）。</p>
+<p>这也说明，长文能不能过检，光看全篇平均分靠不住，还得盯紧<strong>每一个五百字局部窗口里的信噪比</strong>。高危引文和排比句在局部窗口里扎了堆、护盾又不够厚，那一片就会单独翻红。这和 Joffoo 在翻译小说时遇到的麻烦属于同一个结构：如果只在当前几百字的分片里匹配人名，平假名和片假名不会同时出现，匹配就会失灵；换成整本书的视野就不会。局部切片会改写原本的统计平衡。</p>
+<p>搞清楚这些以后，真正动刀改稿的地方其实没几处。开头那二十六个字的报幕短句直接拿掉，中段里引用的样本 A 原话用省略号截短，顺便拆散对称句架子。结尾那五条报账也全部删了，改写这次写稿自己踩出 <code>0.7433</code> 的过程。改好的 <code>1699</code> 字文稿送回朱雀复测，全篇合并成一整段 <code>[0, 1699]</code>，总分停在 <code>0.4322</code>，拿到了 <code>100%</code> 的 <code>Label 0</code>。</p>
+<h2 id="跑完五十多组测试攒下的改稿实话"><a href="#跑完五十多组测试攒下的改稿实话" class="headerlink" title="跑完五十多组测试攒下的改稿实话"></a>跑完五十多组测试攒下的改稿实话</h2><p>如果平时自己改 AI 辅助写的稿子想少走点弯路，从上面这五十多组测试数据里能直接拿走四条实话。</p>
+<p>第一条是真不用跟四字专业词和标点符号较劲。很多人改稿子上来就先删“过度优化”、“局部匹配失效”这种术语，或者去抠引号和顿号。其实改标点只让分数从 <code>0.9961</code> 挪到 <code>0.9940</code>，把“过度优化”那句话单独塞进人类底本里也才 <code>0.0120</code>。该用的专业词留着就行，没必要把内行话全改成外行话。</p>
+<p>第二条是先拆一头一尾的对称转折架子，再去松单字虚词。段首的让步转折和段尾的价值对比占了将近一半的嫌疑分，直接拆成按先后顺序说的大白话最好。接着把句子里扎堆的“常、虽、却、极、与、为、向”拆成双字口语，光改这几处小词，底层的机器得分就能掉下去将近八成。</p>
+<p>遇到上千字的长文，还得算一下五百字窗口的局部账：同一个地方别连着排四五条同构的并列句，举一两个例子就收手；每隔几百字留两句带具体人名或者小翻车细节的大白话，像前面救了场的“悠儿和佑二”。</p>
+<p>回过头看，我从一开始猜“过度优化”，到写长文时怀疑开头和结尾，前前后后猜错好几回。跟着跑完二十二组一阶测试、三十多组二阶测试，才勉强找回这个稳妥的终点。改稿子的时候凭直觉挑词往往抓不准重点，拿控制变量先把检测器测一遍，起码能少走几步弯路。</p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/blog/tags/AI/">AI</a><a href="/blog/tags/%E5%86%99%E4%BD%9C%E6%96%B9%E6%B3%95/">写作方法</a><a href="/blog/tags/%E7%BF%BB%E8%AF%91/">翻译</a>
+    </span>
+    
+
+    </div>
+
+    
+    <div class="article-meta pull-right">
+      <span>
+        <i class="icon-comments"></i>
+        <span>
+          <a href="/blog/2026/11/17/ai-detection-yin/#comment">评论</a>
+        </span>
+      </span>
+    </div>
+    
+  </div>
+</article>
+
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/blog/2026/11/17/ai-detection-yang/"><span>AI 检测 AI 检测（阳本）：有没有 AI 味难道要 AI 自己说了算？</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/blog/2026/11/17/ai-detection-yang/" rel="bookmark">
+        <time class="entry-date published" datetime="2026-11-17T07:30:00.000Z">
+          2026-11-17
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p><img src="/blog/2026/11/17/ai-detection-yang/blog-261117-001.png" alt></p>
+<p>之前说过，用 Skill 战胜不了 AI 检测器，本质是用规则战胜不了神经网络。</p>
+<p>但也有人说过，可以接入朱雀的 API，做一个反馈环路，让 Agent 自己决定怎么修改语句，你只需要指定目标，之后就看模型自己的智慧了。</p>
+<h2 id="接入朱雀"><a href="#接入朱雀" class="headerlink" title="接入朱雀"></a>接入朱雀</h2><p>大家可能对下面这个页面更熟悉一些，登录账号之后每天有 20 次的免费检测机会。检测之后可以看到哪部分有 AI 创作嫌疑，哪部分人类创作特征是显著的。</p>
+<p><img src="/blog/2026/11/17/ai-detection-yang/blog-261117-002.png" alt></p>
+<p>其实你可以去 <a target="_blank" rel="noopener" href="https://console.cloud.tencent.com/edgeone/makers?tab=models&amp;subTab=apikey">EdgeOne 控制台</a> 实名申请一个 API key，之后把<a target="_blank" rel="noopener" href="https://cloud.tencent.com/document/product/1552/137539">教程</a>丢给 Agent 让它自己配置一个检测 Skill，如果有相关场景可以让它调用朱雀大模型自己检测。</p>
+<p>之前的两篇文章，我测过翻译、回译对 AI 率的影响（<a href="/2026/10/26/ai-taste-back-translation/">谁解 AI 味：为什么 AI 写的东西这么难读？AI 翻译会不会影响 AI 率？</a>），测过市面上两款 Skill 的效果，还开发了自己的遮味工作流（<a href="/2026/10/31/qu-ai-wei-zhi-wo-jian/">去 AI 味之我见：让 Agent 学会“因声求气”</a>），都是用朱雀 API 做的检测。</p>
+<p>经常在网上刷到 Lauren Tan（@poteto）说 AI 编程中验证是相当重要的一环。让 Agent 接入朱雀 API，其实就是把写作这个流程加上了验证反馈。</p>
+<p>但如果只是做成一个文章生产流水线，对我来说还没有那么有意思，我倒是喜欢让 Agent Cosplay 研究者，让它去研究朱雀这个不可解的黑盒，看一下能有什么局部的理解。</p>
+<h2 id="镜像实验"><a href="#镜像实验" class="headerlink" title="镜像实验"></a>镜像实验</h2><p>在公众号发过文章之后，会有一个自动转成贴图的功能，在我理解，就是用更轻量的形式，给自己的内容做广告。图片部分就是一个标题转成的封面，之后是文章中的插图，配的短文一看就是 AI 写的。</p>
+<p>于是我自己用 AI 重写了一版，测出来 AI 率很高 <code>0.9961</code>。</p>
+<p>既然我已经有一篇手写的长文，直接尽量使用原句让 AI 重写了一版，效果显著，AI 率直接掉到 <code>0.0093</code>。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">句号索引</th>
+<th style="text-align:center">所属段落</th>
+<th style="text-align:left">样本 A（<code>p = 0.9961</code>）</th>
+<th style="text-align:left">样本 B（<code>p = 0.0093</code>）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>S0</code></td>
+<td style="text-align:center"><code>P1</code></td>
+<td style="text-align:left">AI 翻译长篇小说常前后不一，前面是“施瓦辛格”，后面变成“舒华辛力加”。</td>
+<td style="text-align:left">AI 翻译长篇文本时容易前后不一致，前面是施瓦辛格，后面是舒华辛力加。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>S1</code></td>
+<td style="text-align:center"><code>P1</code></td>
+<td style="text-align:left">提前提取全书术语表虽能解决，却极耗 token 与人工筛选的精力。</td>
+<td style="text-align:left">我对提前跑一遍术语表感到厌烦，于是先切片，让 AI 先翻译，再把新词写入术语表，并检索后文，没再出现就不存。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>S2</code></td>
+<td style="text-align:center"><code>P2</code></td>
+<td style="text-align:left">我改用“边翻译边累积”的动态术语表，并检索后文剔除一次性词汇。</td>
+<td style="text-align:left">为了再省点 token，我想只把当前分片出现的术语放进提示词。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>S3</code></td>
+<td style="text-align:center"><code>P2</code></td>
+<td style="text-align:left">后来为进一步省钱，我尝试只向提示词注入当前分片出现的术语，结果栽了跟头：同一人名混用平假名与片假名，局部匹配失效，生生译出了“悠儿”和“佑二”两个角色。</td>
+<td style="text-align:left">结果遇到平假名和片假名：术语表里存了平假名，分片里却只出现片假名，匹配不上，于是生生多出两个人名，一个“悠儿”，一个“佑二”。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>S4</code></td>
+<td style="text-align:center"><code>P3</code></td>
+<td style="text-align:left">我最终放弃了过度优化。</td>
+<td style="text-align:left">我选择了放弃。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>S5</code></td>
+<td style="text-align:center"><code>P3</code></td>
+<td style="text-align:left">比起省下几块钱的 token，译本出现硬伤、消耗自己有限的注意力，才是更不能接受的代价。</td>
+<td style="text-align:left">我的注意力是有限的，token 成本不过降低几块，但译本出现硬伤，哪怕只是有这种风险，对我来说也是不能接受的。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>让我自己分析的话，人（我自己）的写法比较随意。AI 会写“前面是……后面变成……”，而我只是写“前面是……后面是……”，没有非要换个说法的强迫症属性。</p>
+<p>我之前可能不是这样写文章的，但现在确实没有“语不惊人死不休”的想法，写完就算。</p>
+<p>AI 的分析是：AI 写东西常常总结，而我保留了口语习惯（<em>流水账</em>）；AI 的句式更为工整，而我不是；AI 写得更抽象客观，而我有具象体感。</p>
+<p>自己分析或者让 AI 分析，都差不多，陈词滥调。既然我们有了反馈，就可以直接让 AI 自己去做“研究”。</p>
+<p><img src="/blog/2026/11/17/ai-detection-yang/blog-261117-003.png" alt></p>
+<p>这里的 <code>/better</code> 其实是来自 Felix Rieseberg 写的<a target="_blank" rel="noopener" href="https://felixrieseberg.com/how-to-be-more-ambitious-a-tutorial-for-humans-with-models/">一篇文章</a>，把文章里提升 Agent 回答深度的提示词封装成了技能，写下来大概是这样的：</p>
+<blockquote>
+<p>我希望你把这项任务做得更深入，而不是把任务范围扩大。在重写我的要求之前，请先回答四个问题：</p>
+<p>这个领域最顶尖的专业人士，会做哪些我目前没有要求你做的事情？</p>
+<p>相比那些已经整理、加工过的信息，他们会从哪些最原始的材料入手？</p>
+<p>他们会使用哪些具体的方法和工具？</p>
+<p>除了你和我自己的判断，还有什么外部证据能够证明结果是正确的？然后，根据这些答案，重新编写我的提示词，让它准确地要求完成上述工作。</p>
+</blockquote>
+<p>这篇文章的标题是“如何更有野心”，我现在的心明显野了。</p>
+<p>我常常无脑用这段深度提示词，封装成 <code>/better</code> 之后用起来就更加无脑，把我自己的“深度”直接转交给了 AI，但好处是你能学到一些之前全然无知的东西。</p>
+<p>AI 把之前的段落拆分成三部分  <code>(P1, P2, P3)</code>，在 AI 生成的样本 A 和我自己语言拼凑的样本 B 之间做全排列组合，测试输出的置信度 $p$ 和对数几率 $\ell$：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">段落组合 <code>(P1, P2, P3)</code></th>
+<th style="text-align:center">AI 段落数</th>
+<th style="text-align:center">朱雀置信度 $p$</th>
+<th style="text-align:center">对数几率 $\ell = \ln\frac{p}{1-p}$</th>
+<th style="text-align:center">相对全人类基线 (<code>BBB</code>) 的 $\Delta \ell$</th>
+<th style="text-align:center">判定分类</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>(B, B, B)</code></td>
+<td style="text-align:center">0</td>
+<td style="text-align:center"><code>0.0093</code></td>
+<td style="text-align:center"><code>-4.67</code></td>
+<td style="text-align:center"><code>0.00</code></td>
+<td style="text-align:center">人类 (<code>Label 0</code>)</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>(B, A, B)</code></td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"><code>0.1046</code></td>
+<td style="text-align:center"><code>-2.15</code></td>
+<td style="text-align:center"><code>+2.52</code></td>
+<td style="text-align:center">人类 (<code>Label 0</code>)</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>(A, B, B)</code></td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"><code>0.1513</code></td>
+<td style="text-align:center"><code>-1.72</code></td>
+<td style="text-align:center"><code>+2.95</code></td>
+<td style="text-align:center">人类 (<code>Label 0</code>)</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>(B, B, A)</code></td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"><strong><code>0.5059</code></strong></td>
+<td style="text-align:center"><strong><code>+0.02</code></strong></td>
+<td style="text-align:center"><strong><code>+4.69</code></strong></td>
+<td style="text-align:center"><strong>AI (<code>Label 1</code>)</strong></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>(B, A, A)</code></td>
+<td style="text-align:center">2</td>
+<td style="text-align:center"><code>0.5347</code></td>
+<td style="text-align:center"><code>+0.14</code></td>
+<td style="text-align:center"><code>+4.81</code></td>
+<td style="text-align:center">AI (<code>Label 1</code>)</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>(A, B, A)</code></td>
+<td style="text-align:center">2</td>
+<td style="text-align:center"><code>0.6988</code></td>
+<td style="text-align:center"><code>+0.84</code></td>
+<td style="text-align:center"><code>+5.51</code></td>
+<td style="text-align:center">AI (<code>Label 1</code>)</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>(A, A, B)</code></td>
+<td style="text-align:center">2</td>
+<td style="text-align:center"><code>0.7127</code></td>
+<td style="text-align:center"><code>+0.91</code></td>
+<td style="text-align:center"><code>+5.58</code></td>
+<td style="text-align:center">AI (<code>Label 1</code>)</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>(A, A, A)</code></td>
+<td style="text-align:center">3</td>
+<td style="text-align:center"><strong><code>0.9961</code></strong></td>
+<td style="text-align:center"><strong><code>+5.54</code></strong></td>
+<td style="text-align:center"><strong><code>+10.21</code></strong></td>
+<td style="text-align:center"><strong>AI (<code>Label 1</code>)</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>可以看出第三段 <code>P3</code> 的影响最为显著，当仅保留 1 个 AI 段落时，<code>(B, A, B)</code> 与 <code>(A, B, B)</code> 均停留在 <code>0.10</code> 至 <code>0.15</code> 的安全区；唯独 <code>(B, B, A)</code> 仅凭第 3 段短短 47 个字，就产生了 <code>+4.69</code> 的 Logit 增量，单独将整篇人类文本推过 <code>0.50</code> 阈值线（<code>0.5059</code>）。</p>
+<script type="math/tex; mode=display">\ell = \ln\frac{p}{1-p}</script><p>为什么要这样算？其实这个是二分类 Softmax 的反推公式。</p>
+<p>朱雀后台原本是按 <code>Label 0 / 1 / 2</code> 三分类算 Softmax 的，但它只暴露了一个汇总的置信度 $p$（<code>softmax_confidence</code>），没给三类各自的原始概率明细。所以我们用二分类的逆运算做近似反推。</p>
+<p>另一方面，还原成线性可以更为直观地理解每一段的作用，而不会被 Sigmoid 曲线的缓急所蒙蔽。</p>
+<p><img src="/blog/2026/11/17/ai-detection-yang/blog-261117-004.png" alt></p>
+<p>AI 还计算了单独某句话的置信度影响，影响最大的是 <code>S1</code> 和 <code>S5</code>，正是压缩内容最为明显的两句话。</p>
+<p>此外，还计算了标点的影响和虚词的影响，可以看出标点影响较小，而虚词影响极大，这些虚词分别是：</p>
+<ul>
+<li><code>常</code> → <code>时容易</code>（<code>AI 翻译长篇小说常前后不一</code> → <code>AI 翻译长篇小说时容易前后不一致</code>）</li>
+<li><code>虽……却极……与</code> → <code>虽然……但很……和</code>（<code>虽能解决，却极耗 token 与人工筛选的精力</code> → <code>虽然能解决，但很耗 token 和人工筛选的精力</code>）</li>
+<li><code>为进一步</code> → <code>为了再</code>（<code>后来为进一步省钱</code> → <code>后来为了再省钱</code>）</li>
+<li><code>只向……注入</code> → <code>只往……里放</code>（<code>只向提示词注入当前分片出现的术语</code> → <code>只往提示词里放当前分片出现的术语</code>）</li>
+<li><code>与</code> → <code>和</code>（<code>平假名与片假名</code> → <code>平假名和片假名</code>）</li>
+</ul>
+<p><img src="/blog/2026/11/17/ai-detection-yang/blog-261117-005.png" alt></p>
+<h2 id="自指引擎"><a href="#自指引擎" class="headerlink" title="自指引擎"></a>自指引擎</h2><p>之后我让 Agent 把前面的内容写成了一份报告，再把报告写成文章，并且检测文章的 AI 率，测出来是 <code>0.3546</code>。</p>
+<p>对 AI 率较高的段落，Agent 继续自行研究。</p>
+<p><img src="/blog/2026/11/17/ai-detection-yang/blog-261117-006.png" alt></p>
+<p><img src="/blog/2026/11/17/ai-detection-yang/blog-261117-007.png" alt></p>
+<p>我已经没什么参与的兴趣，于是让 Agent 调用“蜂群” <code>/Swarm</code> 写了一篇文章同步发表，作为另一种并置的镜像 <a href="/2026/11/17/ai-detection-yin/">AI 检测 AI 检测（阴本）：一次关于 AI 检测器的自指实验记录</a>。</p>
+<p>朱雀测不出来，但这篇 AI 味还是相当重，比如：“如果平时自己改 AI 辅助写的稿子想少走点弯路，从上面这五十多组测试数据里能直接拿走四条实话。”</p>
+<p>什么叫“直接拿走四条实话”，什么叫“拿走实话”，什么又叫“四条实话”？</p>
+<p>但毕竟是一份心意，这四条是说：</p>
+<ol>
+<li>术语和标点影响不算大；</li>
+<li>“让步转折”之类的写法拆成先后顺序，不要单字虚词；</li>
+<li>写具体细节；</li>
+<li>要降低检测率，就控制变量用检测器多次测试，不靠模型直觉。</li>
+</ol>
+<h2 id="划重点"><a href="#划重点" class="headerlink" title="划重点"></a>划重点</h2><ol>
+<li>你可以让 Agent 接入朱雀检测模型的 API，让 Agent 自行降低文字的 AI 率，但这种方式也不能有效减轻 AI 味。</li>
+<li>探索黑盒系统时，可以学习 Agent 的思路，把复杂问题拆解成一系列小的对照实验，逐点击破。</li>
+<li>使用 Agent 时善用技能、提示词和自带插件，比如文中提到的 <code>/better</code> 和 <code>/Swarm</code>。</li>
+</ol>
+<p>第四点，前面三点都是戏仿得到 APP 的课程结尾。我不认为这篇文章有任何重点，只是一次记录，并且我的兴趣（甚至是耐心）已经随着写作而消耗殆尽。</p>
+<p>说点有意思的。</p>
+<p>我之前还做过一次实验，脏话能不能影响朱雀的检测结果。最后发现，如果只是间歇性加脏话，或者是连续脏话宣泄都不行，只有纯粹骂街才可以，那种没有任何叙述、没有任何诉求的“纯粹”。</p>
+<p>朱雀说，<code>softmax_confidence</code> 0.2569，Label 0，纯人类创作。</p>
+<p>这算是 AI 检测对人的一种刻板印象吧。</p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/blog/tags/AI/">AI</a><a href="/blog/tags/%E5%86%99%E4%BD%9C%E6%96%B9%E6%B3%95/">写作方法</a>
+    </span>
+    
+
+    </div>
+
+    
+    <div class="article-meta pull-right">
+      <span>
+        <i class="icon-comments"></i>
+        <span>
+          <a href="/blog/2026/11/17/ai-detection-yang/#comment">评论</a>
+        </span>
+      </span>
+    </div>
+    
+  </div>
+</article>
+
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/blog/2026/11/15/ai-translation-coherence/"><span>对 AI 翻译连贯性问题的简单思索</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/blog/2026/11/15/ai-translation-coherence/" rel="bookmark">
         <time class="entry-date published" datetime="2026-11-14T16:00:00.000Z">
           2026-11-15
         </time>
@@ -317,7 +683,7 @@
   <div class="article-content">
     <div class="entry">
       
-        <p><img src="/2026/11/15/ai-translation-coherence/blog-261115-003.png" alt></p>
+        <p><img src="/blog/2026/11/15/ai-translation-coherence/blog-261115-003.png" alt></p>
 <p>省流：AI 翻译长篇文本时容易前后翻译不一致，前面是施瓦辛格，后面是舒华辛力加。怎么办，我们切片翻译，提示词里配上术语表就行。</p>
         
       
@@ -333,7 +699,7 @@
 
     <span class="post-categories">
       <i class="icon-categories"></i>
-        <a href="/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
+        <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
     </span>
     
 
@@ -342,7 +708,7 @@
 
     <span class="post-tags">
       <i class="icon-tags"></i>
-        <a href="/tags/AI/">AI</a><a href="/tags/%E7%BF%BB%E8%AF%91/">翻译</a>
+        <a href="/blog/tags/AI/">AI</a><a href="/blog/tags/%E7%BF%BB%E8%AF%91/">翻译</a>
     </span>
     
 
@@ -353,7 +719,7 @@
       <span>
         <i class="icon-comments"></i>
         <span>
-          <a href="/2026/11/15/ai-translation-coherence/#comment">评论</a>
+          <a href="/blog/2026/11/15/ai-translation-coherence/#comment">评论</a>
         </span>
       </span>
     </div>
@@ -367,13 +733,13 @@
 
   
     
-    <h3 class="article-title"><a href="/2026/11/10/ai-da-xi-li-zhi-wo-jian/"><span>AI 与幽默的距离——AI 大喜利之我见</span></a></h3>
+    <h3 class="article-title"><a href="/blog/2026/11/10/ai-da-xi-li-zhi-wo-jian/"><span>AI 与幽默的距离——AI 大喜利之我见</span></a></h3>
     
   
 
   <div class="article-top-meta">
     <span class="posted-on">
-      <a href="/2026/11/10/ai-da-xi-li-zhi-wo-jian/" rel="bookmark">
+      <a href="/blog/2026/11/10/ai-da-xi-li-zhi-wo-jian/" rel="bookmark">
         <time class="entry-date published" datetime="2026-11-09T16:00:00.000Z">
           2026-11-10
         </time>
@@ -387,7 +753,7 @@
   <div class="article-content">
     <div class="entry">
       
-        <p><img src="/2026/11/10/ai-da-xi-li-zhi-wo-jian/blog-261110-001.png" alt="文章封面"></p>
+        <p><img src="/blog/2026/11/10/ai-da-xi-li-zhi-wo-jian/blog-261110-001.png" alt="文章封面"></p>
 <p>之前写过几篇用 AI 做图片大喜利的文章（<a href="/2025/09/21/Oogiri-Gemini/">一句正经没有：Gemini 和 Seedream 的大喜利双簧组合</a>和 <a href="/2026/02/19/Oogiri-Agent/">“直到脑中观众笑出声来”：AI 大喜利团队合作</a>），从过于简单的提示词，到过于复杂的工作流，共同点是：我并没有“理解”。</p>
 <p>这一次开发了新的网页应用，背后是基于我的最新“理解”精简之后的工作流（<em>理解即压缩？</em>）。可以让 AI 用同一套思路应付文字问题和图片问题。</p>
         
@@ -404,7 +770,7 @@
 
     <span class="post-categories">
       <i class="icon-categories"></i>
-        <a href="/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
+        <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
     </span>
     
 
@@ -413,7 +779,7 @@
 
     <span class="post-tags">
       <i class="icon-tags"></i>
-        <a href="/tags/AI/">AI</a><a href="/tags/%E5%B0%9D%E8%AF%95%E9%9B%86/">尝试集</a>
+        <a href="/blog/tags/AI/">AI</a><a href="/blog/tags/%E5%B0%9D%E8%AF%95%E9%9B%86/">尝试集</a>
     </span>
     
 
@@ -424,7 +790,7 @@
       <span>
         <i class="icon-comments"></i>
         <span>
-          <a href="/2026/11/10/ai-da-xi-li-zhi-wo-jian/#comment">评论</a>
+          <a href="/blog/2026/11/10/ai-da-xi-li-zhi-wo-jian/#comment">评论</a>
         </span>
       </span>
     </div>
@@ -438,13 +804,13 @@
 
   
     
-    <h3 class="article-title"><a href="/2026/11/04/collage-cover-maker/"><span>只有风格，没有指纹：用 Agent 制作拼贴风格公众号封面</span></a></h3>
+    <h3 class="article-title"><a href="/blog/2026/11/04/collage-cover-maker/"><span>只有风格，没有指纹：用 Agent 制作拼贴风格公众号封面</span></a></h3>
     
   
 
   <div class="article-top-meta">
     <span class="posted-on">
-      <a href="/2026/11/04/collage-cover-maker/" rel="bookmark">
+      <a href="/blog/2026/11/04/collage-cover-maker/" rel="bookmark">
         <time class="entry-date published" datetime="2026-11-04T13:06:00.000Z">
           2026-11-04
         </time>
@@ -458,7 +824,7 @@
   <div class="article-content">
     <div class="entry">
       
-        <p><img src="/2026/11/04/collage-cover-maker/blog-261104-001.png" alt></p>
+        <p><img src="/blog/2026/11/04/collage-cover-maker/blog-261104-001.png" alt></p>
 <p>你有没有发现，少有公众号直接用 AI 生成的封面。</p>
 <p>如果你用 AI 写过（润色过）论文，会模糊感觉到，AI 检测率的跷跷板另一端或许是论文重复率。</p>
 <p>想要抹掉 AI 的指纹，最直接的思路，不是用什么去 AI 味的技能，是让 Agent 查到一些早年间的资料，然后（说得好听一些）洗稿。</p>
@@ -478,7 +844,7 @@
 
     <span class="post-categories">
       <i class="icon-categories"></i>
-        <a href="/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
+        <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
     </span>
     
 
@@ -487,7 +853,7 @@
 
     <span class="post-tags">
       <i class="icon-tags"></i>
-        <a href="/tags/AI/">AI</a><a href="/tags/%E8%AE%BE%E8%AE%A1/">设计</a>
+        <a href="/blog/tags/AI/">AI</a><a href="/blog/tags/%E8%AE%BE%E8%AE%A1/">设计</a>
     </span>
     
 
@@ -498,7 +864,7 @@
       <span>
         <i class="icon-comments"></i>
         <span>
-          <a href="/2026/11/04/collage-cover-maker/#comment">评论</a>
+          <a href="/blog/2026/11/04/collage-cover-maker/#comment">评论</a>
         </span>
       </span>
     </div>
@@ -512,13 +878,13 @@
 
   
     
-    <h3 class="article-title"><a href="/2026/10/31/qu-ai-wei-zhi-wo-jian/"><span>去 AI 味之我见：让 Agent 学会“因声求气”</span></a></h3>
+    <h3 class="article-title"><a href="/blog/2026/10/31/qu-ai-wei-zhi-wo-jian/"><span>去 AI 味之我见：让 Agent 学会“因声求气”</span></a></h3>
     
   
 
   <div class="article-top-meta">
     <span class="posted-on">
-      <a href="/2026/10/31/qu-ai-wei-zhi-wo-jian/" rel="bookmark">
+      <a href="/blog/2026/10/31/qu-ai-wei-zhi-wo-jian/" rel="bookmark">
         <time class="entry-date published" datetime="2026-10-30T16:00:00.000Z">
           2026-10-31
         </time>
@@ -532,7 +898,7 @@
   <div class="article-content">
     <div class="entry">
       
-        <p><img src="/2026/10/31/qu-ai-wei-zhi-wo-jian/blog-261031-001.jpg" alt="Qikou 让 AI 用“嘴”写作"></p>
+        <p><img src="/blog/2026/10/31/qu-ai-wei-zhi-wo-jian/blog-261031-001.jpg" alt="Qikou 让 AI 用“嘴”写作"></p>
 <p>在想出这套去 AI 味工作流之前，我做了两个假设：</p>
 <p>一是，好的汉语，也应当好听。</p>
 <p>二是，提升 AI 的写作水平，就要教会它作家的写作方式。</p>
@@ -550,7 +916,7 @@
 
     <span class="post-categories">
       <i class="icon-categories"></i>
-        <a href="/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
+        <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
     </span>
     
 
@@ -559,7 +925,7 @@
 
     <span class="post-tags">
       <i class="icon-tags"></i>
-        <a href="/tags/AI/">AI</a><a href="/tags/%E5%B0%9D%E8%AF%95%E9%9B%86/">尝试集</a><a href="/tags/%E5%86%99%E4%BD%9C%E6%96%B9%E6%B3%95/">写作方法</a>
+        <a href="/blog/tags/AI/">AI</a><a href="/blog/tags/%E5%86%99%E4%BD%9C%E6%96%B9%E6%B3%95/">写作方法</a><a href="/blog/tags/%E5%B0%9D%E8%AF%95%E9%9B%86/">尝试集</a>
     </span>
     
 
@@ -570,7 +936,7 @@
       <span>
         <i class="icon-comments"></i>
         <span>
-          <a href="/2026/10/31/qu-ai-wei-zhi-wo-jian/#comment">评论</a>
+          <a href="/blog/2026/10/31/qu-ai-wei-zhi-wo-jian/#comment">评论</a>
         </span>
       </span>
     </div>
@@ -584,13 +950,13 @@
 
   
     
-    <h3 class="article-title"><a href="/2026/10/26/ai-taste-back-translation/"><span>谁解 AI 味：为什么 AI 写的东西这么难读？AI 翻译会不会影响 AI 率？</span></a></h3>
+    <h3 class="article-title"><a href="/blog/2026/10/26/ai-taste-back-translation/"><span>谁解 AI 味：为什么 AI 写的东西这么难读？AI 翻译会不会影响 AI 率？</span></a></h3>
     
   
 
   <div class="article-top-meta">
     <span class="posted-on">
-      <a href="/2026/10/26/ai-taste-back-translation/" rel="bookmark">
+      <a href="/blog/2026/10/26/ai-taste-back-translation/" rel="bookmark">
         <time class="entry-date published" datetime="2026-10-25T16:00:00.000Z">
           2026-10-26
         </time>
@@ -604,7 +970,7 @@
   <div class="article-content">
     <div class="entry">
       
-        <p><img src="/2026/10/26/ai-taste-back-translation/blog-ai-taste1026-002.png" alt></p>
+        <p><img src="/blog/2026/10/26/ai-taste-back-translation/blog-ai-taste1026-002.png" alt></p>
 <p>我读过研究生，后来也当过论文编辑，AI 率一直是一种“惘惘的威胁”。</p>
 <p>编辑部会让助理编辑通过几种渠道计算 AI 率，但没有人知道算出来的是什么，只知道测出来 AI 率高，就要发邮件联系作者。</p>
 <p>但我感觉连这一步都多余，因为作者只要回复说用 AI 翻译或者润色过，也就没有什么可说的了，最多让作者在“致谢”里加上一句。</p>
@@ -625,7 +991,7 @@
 
     <span class="post-categories">
       <i class="icon-categories"></i>
-        <a href="/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
+        <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
     </span>
     
 
@@ -634,7 +1000,7 @@
 
     <span class="post-tags">
       <i class="icon-tags"></i>
-        <a href="/tags/AI/">AI</a><a href="/tags/%E7%BF%BB%E8%AF%91/">翻译</a>
+        <a href="/blog/tags/AI/">AI</a><a href="/blog/tags/%E7%BF%BB%E8%AF%91/">翻译</a>
     </span>
     
 
@@ -645,7 +1011,7 @@
       <span>
         <i class="icon-comments"></i>
         <span>
-          <a href="/2026/10/26/ai-taste-back-translation/#comment">评论</a>
+          <a href="/blog/2026/10/26/ai-taste-back-translation/#comment">评论</a>
         </span>
       </span>
     </div>
@@ -659,13 +1025,13 @@
 
   
     
-    <h3 class="article-title"><a href="/2026/10/22/toiletpaper-style-distillation/"><span>用 Agent 逆向视觉风格：从 311 张《TOILETPAPER》大片蒸馏出 Skill</span></a></h3>
+    <h3 class="article-title"><a href="/blog/2026/10/22/toiletpaper-style-distillation/"><span>用 Agent 逆向视觉风格：从 311 张《TOILETPAPER》大片蒸馏出 Skill</span></a></h3>
     
   
 
   <div class="article-top-meta">
     <span class="posted-on">
-      <a href="/2026/10/22/toiletpaper-style-distillation/" rel="bookmark">
+      <a href="/blog/2026/10/22/toiletpaper-style-distillation/" rel="bookmark">
         <time class="entry-date published" datetime="2026-10-22T02:00:00.000Z">
           2026-10-22
         </time>
@@ -679,7 +1045,7 @@
   <div class="article-content">
     <div class="entry">
       
-        <p><img src="/2026/10/22/toiletpaper-style-distillation/blog-261022-002.png" alt></p>
+        <p><img src="/blog/2026/10/22/toiletpaper-style-distillation/blog-261022-002.png" alt></p>
 <p>读图是很困难的。</p>
 <p>参观美术展的时候，哪怕你已经凝视这幅画一会儿，也会想读一下说明文字，哪怕只有一个更为虚无缥缈的标题也好。</p>
 <p>但《TOILETPAPER》展示了另一种可能：一份没有说明文字，只有怪诞摄影作品的杂志。观看时，你会想到默剧、讽刺漫画、没有配文的 meme 图。你可能会读得很快，你可能无力解读，但你不会记不住。</p>
@@ -699,7 +1065,7 @@
 
     <span class="post-categories">
       <i class="icon-categories"></i>
-        <a href="/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
+        <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
     </span>
     
 
@@ -708,7 +1074,7 @@
 
     <span class="post-tags">
       <i class="icon-tags"></i>
-        <a href="/tags/AI/">AI</a><a href="/tags/%E8%AE%BE%E8%AE%A1/">设计</a><a href="/tags/%E8%89%BA%E6%9C%AF/">艺术</a>
+        <a href="/blog/tags/AI/">AI</a><a href="/blog/tags/%E8%AE%BE%E8%AE%A1/">设计</a><a href="/blog/tags/%E8%89%BA%E6%9C%AF/">艺术</a>
     </span>
     
 
@@ -719,7 +1085,7 @@
       <span>
         <i class="icon-comments"></i>
         <span>
-          <a href="/2026/10/22/toiletpaper-style-distillation/#comment">评论</a>
+          <a href="/blog/2026/10/22/toiletpaper-style-distillation/#comment">评论</a>
         </span>
       </span>
     </div>
@@ -733,13 +1099,13 @@
 
   
     
-    <h3 class="article-title"><a href="/2026/10/18/movie-ticket-stub/"><span>发张电影票，Agent 自动生成专属纪念票根</span></a></h3>
+    <h3 class="article-title"><a href="/blog/2026/10/18/movie-ticket-stub/"><span>发张电影票，Agent 自动生成专属纪念票根</span></a></h3>
     
   
 
   <div class="article-top-meta">
     <span class="posted-on">
-      <a href="/2026/10/18/movie-ticket-stub/" rel="bookmark">
+      <a href="/blog/2026/10/18/movie-ticket-stub/" rel="bookmark">
         <time class="entry-date published" datetime="2026-10-17T16:00:00.000Z">
           2026-10-18
         </time>
@@ -753,7 +1119,7 @@
   <div class="article-content">
     <div class="entry">
       
-        <p><img src="/2026/10/18/movie-ticket-stub/blog-261018-008.png" alt></p>
+        <p><img src="/blog/2026/10/18/movie-ticket-stub/blog-261018-008.png" alt></p>
 <p>之前（<em>快一年了</em>）做过一个网页版的电影票根设计项目 EverStub，需要自己上传海报、手动填写电影的中英文名、场次、票价和影院信息。以我现在的懒惰程度，这种交互几乎是无法接受、无法原谅的。</p>
         
       
@@ -769,7 +1135,7 @@
 
     <span class="post-categories">
       <i class="icon-categories"></i>
-        <a href="/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
+        <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
     </span>
     
 
@@ -778,7 +1144,7 @@
 
     <span class="post-tags">
       <i class="icon-tags"></i>
-        <a href="/tags/AI/">AI</a><a href="/tags/%E8%AE%BE%E8%AE%A1/">设计</a>
+        <a href="/blog/tags/AI/">AI</a><a href="/blog/tags/%E8%AE%BE%E8%AE%A1/">设计</a>
     </span>
     
 
@@ -789,7 +1155,7 @@
       <span>
         <i class="icon-comments"></i>
         <span>
-          <a href="/2026/10/18/movie-ticket-stub/#comment">评论</a>
+          <a href="/blog/2026/10/18/movie-ticket-stub/#comment">评论</a>
         </span>
       </span>
     </div>
@@ -803,13 +1169,13 @@
 
   
     
-    <h3 class="article-title"><a href="/2026/10/14/obsidian-knowledge-topography/"><span>从一个想法到上架 Obsidian 官方社区：我用 AI 做了一款“知识地貌”插件</span></a></h3>
+    <h3 class="article-title"><a href="/blog/2026/10/14/obsidian-knowledge-topography/"><span>从一个想法到上架 Obsidian 官方社区：我用 AI 做了一款“知识地貌”插件</span></a></h3>
     
   
 
   <div class="article-top-meta">
     <span class="posted-on">
-      <a href="/2026/10/14/obsidian-knowledge-topography/" rel="bookmark">
+      <a href="/blog/2026/10/14/obsidian-knowledge-topography/" rel="bookmark">
         <time class="entry-date published" datetime="2026-10-13T16:00:00.000Z">
           2026-10-14
         </time>
@@ -823,7 +1189,7 @@
   <div class="article-content">
     <div class="entry">
       
-        <p><img src="/2026/10/14/obsidian-knowledge-topography/blog-261014-001.png" alt></p>
+        <p><img src="/blog/2026/10/14/obsidian-knowledge-topography/blog-261014-001.png" alt></p>
 <p>今年 4 月，看到 flomo 作者少楠在小红书分享了“<strong>笔记向量化后做成知识地图</strong>”的思路。当时受到启发，便抢先做了一版 Skill，供 Agent 在本地笔记库中使用。</p>
 <p>最近，我更新了几种视觉风格，顺便把它做成了原生的 Obsidian 插件。目前插件已经上架至 Obsidian 官方社区插件市场，搜索 <strong><code>Knowledge Topography</code></strong> 即可下载使用。</p>
         
@@ -840,7 +1206,7 @@
 
     <span class="post-categories">
       <i class="icon-categories"></i>
-        <a href="/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
+        <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
     </span>
     
 
@@ -849,7 +1215,7 @@
 
     <span class="post-tags">
       <i class="icon-tags"></i>
-        <a href="/tags/AI/">AI</a><a href="/tags/%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86/">信息管理</a>
+        <a href="/blog/tags/AI/">AI</a><a href="/blog/tags/%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86/">信息管理</a>
     </span>
     
 
@@ -860,151 +1226,7 @@
       <span>
         <i class="icon-comments"></i>
         <span>
-          <a href="/2026/10/14/obsidian-knowledge-topography/#comment">评论</a>
-        </span>
-      </span>
-    </div>
-    
-  </div>
-</article>
-
-
-
-  <article>
-
-  
-    
-    <h3 class="article-title"><a href="/2026/10/10/ocr-dian-zi-shu-zhi-wo-jian-xu/"><span>OCR 电子书之我见（续）</span></a></h3>
-    
-  
-
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/2026/10/10/ocr-dian-zi-shu-zhi-wo-jian-xu/" rel="bookmark">
-        <time class="entry-date published" datetime="2026-10-09T16:00:00.000Z">
-          2026-10-10
-        </time>
-      </a>
-    </span>
-  </div>
-
-
-  
-
-  <div class="article-content">
-    <div class="entry">
-      
-        <p><img src="/2026/10/10/ocr-dian-zi-shu-zhi-wo-jian-xu/blog-261010-001.png" alt></p>
-<p>在上一篇《<a href="/2026/09/12/ocr-dian-zi-shu-zhi-wo-jian/">OCR电子书之我见</a>》里，我介绍了配合 Antigravity 使用的全自动制作电子书的 Skill（<a target="_blank" rel="noopener" href="https://github.com/joffoo/pdf-book-ocr">pdf-book-ocr</a>）。</p>
-<p>那个方案虽然能跑通，但实际用下来有两个问题：</p>
-<p><strong>一个是慢</strong>。整本书全靠多模态大模型做视觉转录，中途要等挺久；</p>
-<p><strong>另一个是费 token</strong>。一整本书的页面全当成图片传给大模型，token 消耗相当大。如果中途格式不理想需要重试，用量掉得就更快了。</p>
-<p>秉承着“面向小红书编程”的优良传统，我在评论区网友的安利下看到了 <a target="_blank" rel="noopener" href="https://somark.cn/">SoMark</a>。</p>
-        
-      
-    </div>
-
-  </div>
-
-  <div class="article-footer">
-    <div class="article-meta pull-left">
-
-    
-      
-
-    <span class="post-categories">
-      <i class="icon-categories"></i>
-        <a href="/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
-    </span>
-    
-
-    
-    
-
-    <span class="post-tags">
-      <i class="icon-tags"></i>
-        <a href="/tags/AI/">AI</a><a href="/tags/Github/">Github</a>
-    </span>
-    
-
-    </div>
-
-    
-    <div class="article-meta pull-right">
-      <span>
-        <i class="icon-comments"></i>
-        <span>
-          <a href="/2026/10/10/ocr-dian-zi-shu-zhi-wo-jian-xu/#comment">评论</a>
-        </span>
-      </span>
-    </div>
-    
-  </div>
-</article>
-
-
-
-  <article>
-
-  
-    
-    <h3 class="article-title"><a href="/2026/09/12/ocr-dian-zi-shu-zhi-wo-jian/"><span>OCR 电子书之我见</span></a></h3>
-    
-  
-
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/2026/09/12/ocr-dian-zi-shu-zhi-wo-jian/" rel="bookmark">
-        <time class="entry-date published" datetime="2026-09-11T16:00:00.000Z">
-          2026-09-12
-        </time>
-      </a>
-    </span>
-  </div>
-
-
-  
-
-  <div class="article-content">
-    <div class="entry">
-      
-        <p><img src="/2026/09/12/ocr-dian-zi-shu-zhi-wo-jian/blog-260912-001.png" alt></p>
-<p>在《<a href="/2025/09/07/OCR-Gemini/">光学字符识别？也学点新的</a>》一文中，我提到了使用 Gemini CLI 自动化处理 OCR 任务的方法。那时候还有 Gemini CLI（现在我用 Antigravity），那时候还没有 Skill（我把工作流写在系统提示词里）。虽然处理结果不尽如人意，但也是一番心意。</p>
-        
-      
-    </div>
-
-  </div>
-
-  <div class="article-footer">
-    <div class="article-meta pull-left">
-
-    
-      
-
-    <span class="post-categories">
-      <i class="icon-categories"></i>
-        <a href="/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
-    </span>
-    
-
-    
-    
-
-    <span class="post-tags">
-      <i class="icon-tags"></i>
-        <a href="/tags/AI/">AI</a><a href="/tags/Github/">Github</a>
-    </span>
-    
-
-    </div>
-
-    
-    <div class="article-meta pull-right">
-      <span>
-        <i class="icon-comments"></i>
-        <span>
-          <a href="/2026/09/12/ocr-dian-zi-shu-zhi-wo-jian/#comment">评论</a>
+          <a href="/blog/2026/10/14/obsidian-knowledge-topography/#comment">评论</a>
         </span>
       </span>
     </div>
@@ -1039,7 +1261,7 @@
 <nav class="pagination">
   
   
-  <a href="/page/2/" class="pagination-next">下一页</a>
+  <a href="/blog/page/2/" class="pagination-next">下一页</a>
   
 </nav>
     </main>
@@ -1077,7 +1299,7 @@
     
     
     
-    <script src="/js/lang-detector.js"></script>
+    <script src="/blog/js/lang-detector.js"></script>
     
     
 
@@ -1123,7 +1345,7 @@
                         return result;
                     };
                     
-                    const groupedData = groupByYear([["2024-06-23",1],["2024-06-30",1],["2024-07-06",1],["2024-08-19",1],["2024-09-02",1],["2024-09-12",1],["2024-09-24",1],["2024-10-12",1],["2024-11-05",1],["2024-12-04",1],["2024-12-26",1],["2025-01-04",1],["2025-01-11",1],["2025-01-20",1],["2025-01-22",1],["2025-01-24",1],["2025-01-31",1],["2025-02-07",1],["2025-02-21",1],["2025-03-02",1],["2025-03-15",1],["2025-05-25",1],["2025-06-13",1],["2025-06-16",1],["2025-06-22",1],["2025-06-26",1],["2025-07-12",1],["2025-07-27",1],["2025-08-31",1],["2025-09-07",1],["2025-09-21",1],["2025-10-04",1],["2025-11-02",1],["2025-11-22",1],["2025-11-30",1],["2025-12-06",1],["2025-12-12",1],["2025-12-20",1],["2026-01-11",1],["2026-01-24",1],["2026-02-13",1],["2026-02-19",1],["2026-03-14",1],["2026-04-11",1],["2026-04-24",1],["2026-05-02",1],["2026-05-10",1],["2026-05-15",1],["2026-05-17",1],["2026-05-27",1],["2026-05-29",1],["2026-06-27",1],["2026-07-11",1],["2026-08-21",1],["2026-09-12",1],["2026-10-10",1],["2026-10-14",1],["2026-10-18",1],["2026-10-22",1],["2026-10-26",1],["2026-10-31",1],["2026-11-04",1],["2026-11-10",1],["2026-11-15",1]]);
+                    const groupedData = groupByYear([["2024-06-23",1],["2024-06-30",1],["2024-07-06",1],["2024-08-19",1],["2024-09-02",1],["2024-09-12",1],["2024-09-24",1],["2024-10-12",1],["2024-11-05",1],["2024-12-04",1],["2024-12-26",1],["2025-01-04",1],["2025-01-11",1],["2025-01-20",1],["2025-01-22",1],["2025-01-24",1],["2025-01-31",1],["2025-02-07",1],["2025-02-21",1],["2025-03-02",1],["2025-03-15",1],["2025-05-25",1],["2025-06-13",1],["2025-06-16",1],["2025-06-22",1],["2025-06-26",1],["2025-07-12",1],["2025-07-27",1],["2025-08-31",1],["2025-09-07",1],["2025-09-21",1],["2025-10-04",1],["2025-11-02",1],["2025-11-22",1],["2025-11-30",1],["2025-12-06",1],["2025-12-12",1],["2025-12-20",1],["2026-01-11",1],["2026-01-24",1],["2026-02-13",1],["2026-02-19",1],["2026-03-14",1],["2026-04-11",1],["2026-04-24",1],["2026-05-02",1],["2026-05-10",1],["2026-05-15",1],["2026-05-17",1],["2026-05-27",1],["2026-05-29",1],["2026-06-27",1],["2026-07-11",1],["2026-08-21",1],["2026-09-12",1],["2026-10-10",1],["2026-10-14",1],["2026-10-18",1],["2026-10-22",1],["2026-10-26",1],["2026-10-31",1],["2026-11-04",1],["2026-11-10",1],["2026-11-15",1],["2026-11-17",2]]);
                     const years = Object.keys(groupedData).reverse();
                     
                     var initYear = parseInt(heatmapChartDom.getAttribute('year')) || new Date().getFullYear();
@@ -1223,7 +1445,7 @@
                     heatmapChart.on('click', function (params) {
                         if (params.componentType === 'series') {
                             const [year, month] = params.value[0].split('-');
-                            window.location.href = '/archives/' + year + '/' + month;
+                            window.location.href = '/blog/archives/' + year + '/' + month;
                         }
                     });
                 }
@@ -1246,7 +1468,7 @@
                         series: [{
                             name: 'Articles',
                             type: 'line',
-                            data: [2,1,1,3,1,1,2,6,2,2,1,4,2,1,2,1,3,3,2,2,1,2,6,1,1,1,1,6,3],
+                            data: [2,1,1,3,1,1,2,6,2,2,1,4,2,1,2,1,3,3,2,2,1,2,6,1,1,1,1,6,5],
                             smooth: true,
                             lineStyle: { color: '#5470C6', width: 2 },
                             itemStyle: { color: '#5470C6' },
@@ -1266,7 +1488,7 @@
 
                     monthlyChart.on('click', function (params) {
                         const [year, month] = params.name.split('-');
-                        window.location.href = '/archives/' + year + '/' + month;
+                        window.location.href = '/blog/archives/' + year + '/' + month;
                     });
                 }
             })
@@ -1283,7 +1505,7 @@
                         series: [{
                             type: 'pie',
                             radius: '60%',
-                            data: [{"name":"AI","value":49},{"name":"翻译","value":14},{"name":"现代生活","value":13},{"name":"设计","value":12},{"name":"读小说","value":10},{"name":"艺术","value":9},{"name":"Github","value":9},{"name":"尝试集","value":6}],
+                            data: [{"name":"AI","value":51},{"name":"翻译","value":15},{"name":"现代生活","value":13},{"name":"设计","value":12},{"name":"读小说","value":10},{"name":"艺术","value":9},{"name":"Github","value":9},{"name":"写作方法","value":8}],
                             label: {
                                 position: 'outside',
                                 formatter: '{b} {c} ({d}%)',
@@ -1297,13 +1519,13 @@
                         legend: {
                             bottom: '0',
                             left: 'center',
-                            data: [{"name":"AI","value":49},{"name":"翻译","value":14},{"name":"现代生活","value":13},{"name":"设计","value":12},{"name":"读小说","value":10},{"name":"艺术","value":9},{"name":"Github","value":9},{"name":"尝试集","value":6}].map(tag => tag.name),
+                            data: [{"name":"AI","value":51},{"name":"翻译","value":15},{"name":"现代生活","value":13},{"name":"设计","value":12},{"name":"读小说","value":10},{"name":"艺术","value":9},{"name":"Github","value":9},{"name":"写作方法","value":8}].map(tag => tag.name),
                             textStyle: { fontSize: 14, fontWeight: 'bold', fontFamily: 'Microsoft YaHei, SimSun, serif' }
                         }
                     });
 
                     tagsChart.on('click', function (params) {
-                        window.location.href = '/tags/' + params.name;
+                        window.location.href = '/blog/tags/' + params.name;
                     });
                 }
             })
@@ -1319,13 +1541,13 @@
                         xAxis: { type: 'value', splitLine: { lineStyle: { type: 'dashed', color: '#ccc' } } },
                         yAxis: { 
                             type: 'category', 
-                            data: [{"name":"计算笔记","value":26},{"name":"咫闻周刊","value":25},{"name":"读书笔记","value":13}].map(category => category.name).reverse(), 
+                            data: [{"name":"计算笔记","value":28},{"name":"咫闻周刊","value":25},{"name":"读书笔记","value":13}].map(category => category.name).reverse(), 
                             axisLabel: { fontSize: 14, fontWeight: 'bold', fontFamily: 'Microsoft YaHei, SimSun, serif' }
                         },
                         series: [{
                             name: 'Category Count',
                             type: 'bar',
-                            data: [{"name":"计算笔记","value":26},{"name":"咫闻周刊","value":25},{"name":"读书笔记","value":13}].map(category => category.value).reverse(),
+                            data: [{"name":"计算笔记","value":28},{"name":"咫闻周刊","value":25},{"name":"读书笔记","value":13}].map(category => category.value).reverse(),
                             label: {
                                 show: true,
                                 position: 'right',
@@ -1345,7 +1567,7 @@
                     });
 
                     categoriesChart.on('click', function (params) {
-                        window.location.href = '/categories/' + params.name;
+                        window.location.href = '/blog/categories/' + params.name;
                     });
                 }
             });
@@ -1374,7 +1596,7 @@
                         },
                         series: [{
                             type: 'tree',
-                            data: [{"name":"Categories","children":[{"name":"计算笔记","children":[],"count":26,"path":"计算笔记"},{"name":"读书笔记","children":[],"count":13,"path":"读书笔记"},{"name":"咫闻周刊","children":[],"count":25,"path":"咫闻周刊"}],"count":0,"path":""}],
+                            data: [{"name":"Categories","children":[{"name":"计算笔记","children":[],"count":28,"path":"计算笔记"},{"name":"读书笔记","children":[],"count":13,"path":"读书笔记"},{"name":"咫闻周刊","children":[],"count":25,"path":"咫闻周刊"}],"count":0,"path":""}],
                             initialTreeDepth: -1,
                             top: '5%',
                             bottom: '10%',
@@ -1413,7 +1635,7 @@
 
                     treeChart.on('dblclick', function (params) {
                         if (params.data && params.data.path) {
-                            window.location.href = '/categories/' + params.data.path;
+                            window.location.href = '/blog/categories/' + params.data.path;
                         }
                     });
                 }

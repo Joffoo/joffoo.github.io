@@ -6,10 +6,10 @@
   <title>远人之道：神经网络幻觉 | Joffoo&#39;s blog | The ethereal flight, oft rehearsed in the theater of one&#39;s dreams...</title>
 
   
-    <link rel="icon" href="/favicon_io/favicon.ico">
-    <link rel="apple-touch-icon" href="/favicon_io/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/favicon_io/android-chrome-192x192.png">
-    <link rel="manifest" href="/favicon_io/site.webmanifest">
+    <link rel="icon" href="/blog/favicon_io/favicon.ico">
+    <link rel="apple-touch-icon" href="/blog/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/blog/favicon_io/android-chrome-192x192.png">
+    <link rel="manifest" href="/blog/favicon_io/site.webmanifest">
   
 
   
@@ -35,12 +35,12 @@
   <meta property="og:site_name" content="Joffoo&#39;s blog"/>
 
   
-  <meta property="og:image" content="/favicon.ico"/>
+  <meta property="og:image" content="/blog/favicon.ico"/>
   
 
-  <link href="/favicon.ico" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Joffoo&#39;s blog" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link href="/blog/favicon.ico" rel="icon">
+  <link rel="alternate" href="/blog/atom.xml" title="Joffoo&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/blog/css/style.css" media="screen" type="text/css">
 <meta name="generator" content="Hexo 7.2.0"></head>
 
 <head>
@@ -278,20 +278,20 @@
     <header>
   <div class="site-branding">
     <h1 class="site-title">
-      <a href="/">Joffoo&#39;s blog</a>
+      <a href="/blog/">Joffoo&#39;s blog</a>
     </h1>
     <p class="site-description">The ethereal flight, oft rehearsed in the theater of one&#39;s dreams...</p>
   </div>
   <nav class="site-navigation">
     <ul>
       
-        <li><a href="/">主页</a></li>
+        <li><a href="/blog/">主页</a></li>
       
-        <li><a href="/archives">归档</a></li>
+        <li><a href="/blog/archives">归档</a></li>
       
-        <li><a href="/categories">分类</a></li>
+        <li><a href="/blog/categories">分类</a></li>
       
-        <li><a href="/tags">标签</a></li>
+        <li><a href="/blog/tags">标签</a></li>
       
     </ul>
   </nav>
@@ -308,7 +308,7 @@
 
   <div class="article-top-meta">
     <span class="posted-on">
-      <a href="/2025/01/31/neural-network-hallucinations/" rel="bookmark">
+      <a href="/blog/2025/01/31/neural-network-hallucinations/" rel="bookmark">
         <time class="entry-date published" datetime="2025-01-30T16:00:00.000Z">
           2025-01-31
         </time>
@@ -322,7 +322,7 @@
   <div class="article-content">
     <div class="entry">
       
-        <p><img src="/2025/01/31/neural-network-hallucinations/nnh-1.png" alt></p>
+        <p><img src="/blog/2025/01/31/neural-network-hallucinations/nnh-1.png" alt></p>
 <p>为什么，星象大师，你看着我的<br>眼珠，仿佛那是世界的轮中轮，为什么<br>人生有缺憾，绝句有生命，而伟大的木匠<br>属于伟大的钉子；为什么，给我一个残忍的答案？</p>
 <p style="text-align: right;">——王敖《绝句》</p>
 
@@ -331,20 +331,20 @@
 <p>比如，在一个 <code>DeepSeek-R1</code> 解考研数学题的帖子下面，能看到这样一道题：</p>
 <script type="math/tex; mode=display">
 \int_{0}^{\pi} x \cdot \sin^8(x) \, dx</script><p>据出题人说，“开了深度思考之后也错了，三纸无驴，废话写了三分钟，还算错了。”</p>
-<p><img src="/2025/01/31/neural-network-hallucinations/nnh-2.jpg" alt></p>
+<p><img src="/blog/2025/01/31/neural-network-hallucinations/nnh-2.jpg" alt></p>
 <p>如果你有考研数学的备考经验，应该会记得这道积分题可以通过“区间再现公式”结合“点火公式”（即华里士公式）来解决。从这些公式的名称就能看出，这道题是可以“工业化求解”的，绝对算不上难题，因为早有老师总结出了顺口溜。</p>
 <p>既然 AI 就在手边，完全可以验证一下。<code>DeepSeek-R1</code> 不仅直接给出了正解，还包含两种解答，可以作为交叉验证：</p>
-<p><img src="/2025/01/31/neural-network-hallucinations/nnh-3.jpg" alt></p>
+<p><img src="/blog/2025/01/31/neural-network-hallucinations/nnh-3.jpg" alt></p>
 <p>我以截图回复此人，他后来补充说，“这种题还有时对有时不对，最好多找几个人看正确率，如果正确率不到 60％，那这考 90 分都够呛。”</p>
 <p>这句话中的“幻觉”非常典型：它基于一个凭空出现的前提，迅速得出了结论。我非常好奇“60%”这个数字是如何得出的，但如果追问这种细节可能会显得像是在故意抬杠。我更好奇的是，前面那个复杂的“错误”结果究竟是如何产生的。</p>
 <p>我忽然注意到页面头部的 $\pi/2$，于是用 Wolfram 验证一下，果不其然，这人给错了积分限。</p>
-<p><img src="/2025/01/31/neural-network-hallucinations/nnh-4.png" alt></p>
+<p><img src="/blog/2025/01/31/neural-network-hallucinations/nnh-4.png" alt></p>
 <p>还有许多评论的大意是：“给 AI 出点新题，它还能做出来吗？我看不行！”时代已经不同了，以前看到这类评论时，我会觉得其中有些道理，可能会留个心眼。但现在，我只会想：你为什么不亲自选几道题问问呢？虽然即使不问，你也能猜到结果——有些题 AI 能做，有些题不能——但问与不问之间，还是有区别的。</p>
 <p><strong>评论区的每一个问句都可以让 AI 回答一下</strong>。</p>
 <p>在看到社交媒体上妙趣横生的评论区时，我多半只会觉得好玩，而不会尝试说服别人，因为解释笑话是很扫兴的。但摩根·豪泽尔提醒我们，“没有谁真的失去了理智——我们都在依靠自己独特的经验做出选择，而这些经验在特定的时间点和情境下都是合理的。”</p>
 <p>在很多人看来，AI 不过是升级版的小猿搜题（我不清楚现在的情况），只是题库更大而已。但对于使用过 Mathematica 和 <a target="_blank" rel="noopener" href="https://github.com/RuleBasedIntegration/Rubi">Rubi</a> 的我来说，AI 解题不仅能给出过程，还能进行交叉验证，这与那些基于符号积分算法或一系列积分规则的工具截然不同。可以说，只有 AI 这个工具能够真正教会你如何独立解决这道题。</p>
 <p>汽车最初并不比马车更快，日心说的预测结果一开始也不比地心说更准确，但我们应该能够看出这些“新事物”的价值，而不是仅仅用旧有的标准去衡量它们，因为这些“新事物”本质上已经完全不同了。</p>
-<h2 id="AI-的教育"><a href="#AI-的教育" class="headerlink" title="AI 的教育"></a>AI 的教育</h2><p><img src="/2025/01/31/neural-network-hallucinations/nnh-5.png" alt></p>
+<h2 id="AI-的教育"><a href="#AI-的教育" class="headerlink" title="AI 的教育"></a>AI 的教育</h2><p><img src="/blog/2025/01/31/neural-network-hallucinations/nnh-5.png" alt></p>
 <h3 id="发问的习惯"><a href="#发问的习惯" class="headerlink" title="发问的习惯"></a>发问的习惯</h3><p>我从小接受的教育是“不要问为什么，没有那么多为什么”。长大后，我补上了这句话的“为什么”：因为你的问题可能会难住别人。</p>
 <p>然而，仅仅认识到这一点是不够的。我至今仍保持着这种扭曲的性格，不相信周围的人能为我答疑解惑，同时也没有“人往高处走”的动力。</p>
 <p>以前，仅靠网上的资料基本够用，但现在 AI 能够接住这些问题，甚至能应对孩子的连环提问。这种问答形式比阅读更接近文明的本源，是一种更直接的学习方式。当我面对对话框时，只会懊恼自己要问的东西太少。</p>
@@ -360,7 +360,7 @@
 <p>之前提到的写拼盘式人物特稿的场景就是一个例子，许多媒体这类稿件交给实习生或应届毕业生去做，月薪在 2000～3000 元左右。这些实习生的主要工作是根据选题，在抖音、小红书等平台上寻找采访对象，进行简单的线上采访，并将采访录音整理成稿件，一个月能出 4～5 篇稿件，并且由于是全职员工，还可以做些其他工作。这意味着，之前提到的将工作利用 AI 自动化是得不偿失的，因为 AI 太贵了。<br><cite lang="zh">《评论尸的 AI 生产力经验》</cite></p>
 </blockquote>
 <p>然而，今年年初 DeepSeek 开始活跃在公众视野中，以其开源、低成本以及同时支持思维链与网络搜索的特点而闻名。这提醒我们，需要及时更新 AI 相关的认知。</p>
-<h2 id="“远人”的世界"><a href="#“远人”的世界" class="headerlink" title="“远人”的世界"></a>“远人”的世界</h2><p><img src="/2025/01/31/neural-network-hallucinations/nnh-6.png" alt></p>
+<h2 id="“远人”的世界"><a href="#“远人”的世界" class="headerlink" title="“远人”的世界"></a>“远人”的世界</h2><p><img src="/blog/2025/01/31/neural-network-hallucinations/nnh-6.png" alt></p>
 <p>还是前面那篇文章，提到评论尸开发了一个单机版微博，并且接入 AI。他说，“我发现我不需要和真实的人互动了。”</p>
 <blockquote>
 <p>AI 生成的评论和反馈，仍然难以完全模拟人类的思维方式和情感表达。但这已经是一个不错的选择，至少比在充斥着喷子的真实社交网络中，更容易获得有价值的信息和观点。<br><cite lang="zh">《评论尸的 AI 生产力经验》</cite></p>
@@ -391,7 +391,7 @@
 
     <span class="post-categories">
       <i class="icon-categories"></i>
-        <a href="/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
+        <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
     </span>
     
 
@@ -400,7 +400,7 @@
 
     <span class="post-tags">
       <i class="icon-tags"></i>
-        <a href="/tags/AI/">AI</a><a href="/tags/%E7%8E%B0%E4%BB%A3%E7%94%9F%E6%B4%BB/">现代生活</a>
+        <a href="/blog/tags/AI/">AI</a><a href="/blog/tags/%E7%8E%B0%E4%BB%A3%E7%94%9F%E6%B4%BB/">现代生活</a>
     </span>
     
 
@@ -439,7 +439,7 @@
     <span class="like-count">0</span>
   </button>
   <div class="like-message">
-    <img src="/images/luoziwuhui.svg" alt="落子无悔" class="luoziwuhui-svg">
+    <img src="/blog/images/luoziwuhui.svg" alt="落子无悔" class="luoziwuhui-svg">
   </div>
 </div>
 
@@ -798,10 +798,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     
     
-    <script src="/js/lang-detector.js"></script>
+    <script src="/blog/js/lang-detector.js"></script>
     
     
-    <script src="/js/footnote-popup.js"></script>
+    <script src="/blog/js/footnote-popup.js"></script>
     
 
     <!-- Mermaid.js CDN 引入 -->
@@ -846,7 +846,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         return result;
                     };
                     
-                    const groupedData = groupByYear([["2024-06-23",1],["2024-06-30",1],["2024-07-06",1],["2024-08-19",1],["2024-09-02",1],["2024-09-12",1],["2024-09-24",1],["2024-10-12",1],["2024-11-05",1],["2024-12-04",1],["2024-12-26",1],["2025-01-04",1],["2025-01-11",1],["2025-01-20",1],["2025-01-22",1],["2025-01-24",1],["2025-01-31",1],["2025-02-07",1],["2025-02-21",1],["2025-03-02",1],["2025-03-15",1],["2025-05-25",1],["2025-06-13",1],["2025-06-16",1],["2025-06-22",1],["2025-06-26",1],["2025-07-12",1],["2025-07-27",1],["2025-08-31",1],["2025-09-07",1],["2025-09-21",1],["2025-10-04",1],["2025-11-02",1],["2025-11-22",1],["2025-11-30",1],["2025-12-06",1],["2025-12-12",1],["2025-12-20",1],["2026-01-11",1],["2026-01-24",1],["2026-02-13",1],["2026-02-19",1],["2026-03-14",1],["2026-04-11",1],["2026-04-24",1],["2026-05-02",1],["2026-05-10",1],["2026-05-15",1],["2026-05-17",1],["2026-05-27",1],["2026-05-29",1],["2026-06-27",1],["2026-07-11",1],["2026-08-21",1],["2026-09-12",1],["2026-10-10",1],["2026-10-14",1],["2026-10-18",1],["2026-10-22",1],["2026-10-26",1],["2026-10-31",1],["2026-11-04",1],["2026-11-10",1],["2026-11-15",1]]);
+                    const groupedData = groupByYear([["2024-06-23",1],["2024-06-30",1],["2024-07-06",1],["2024-08-19",1],["2024-09-02",1],["2024-09-12",1],["2024-09-24",1],["2024-10-12",1],["2024-11-05",1],["2024-12-04",1],["2024-12-26",1],["2025-01-04",1],["2025-01-11",1],["2025-01-20",1],["2025-01-22",1],["2025-01-24",1],["2025-01-31",1],["2025-02-07",1],["2025-02-21",1],["2025-03-02",1],["2025-03-15",1],["2025-05-25",1],["2025-06-13",1],["2025-06-16",1],["2025-06-22",1],["2025-06-26",1],["2025-07-12",1],["2025-07-27",1],["2025-08-31",1],["2025-09-07",1],["2025-09-21",1],["2025-10-04",1],["2025-11-02",1],["2025-11-22",1],["2025-11-30",1],["2025-12-06",1],["2025-12-12",1],["2025-12-20",1],["2026-01-11",1],["2026-01-24",1],["2026-02-13",1],["2026-02-19",1],["2026-03-14",1],["2026-04-11",1],["2026-04-24",1],["2026-05-02",1],["2026-05-10",1],["2026-05-15",1],["2026-05-17",1],["2026-05-27",1],["2026-05-29",1],["2026-06-27",1],["2026-07-11",1],["2026-08-21",1],["2026-09-12",1],["2026-10-10",1],["2026-10-14",1],["2026-10-18",1],["2026-10-22",1],["2026-10-26",1],["2026-10-31",1],["2026-11-04",1],["2026-11-10",1],["2026-11-15",1],["2026-11-17",2]]);
                     const years = Object.keys(groupedData).reverse();
                     
                     var initYear = parseInt(heatmapChartDom.getAttribute('year')) || new Date().getFullYear();
@@ -946,7 +946,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     heatmapChart.on('click', function (params) {
                         if (params.componentType === 'series') {
                             const [year, month] = params.value[0].split('-');
-                            window.location.href = '/archives/' + year + '/' + month;
+                            window.location.href = '/blog/archives/' + year + '/' + month;
                         }
                     });
                 }
@@ -969,7 +969,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         series: [{
                             name: 'Articles',
                             type: 'line',
-                            data: [2,1,1,3,1,1,2,6,2,2,1,4,2,1,2,1,3,3,2,2,1,2,6,1,1,1,1,6,3],
+                            data: [2,1,1,3,1,1,2,6,2,2,1,4,2,1,2,1,3,3,2,2,1,2,6,1,1,1,1,6,5],
                             smooth: true,
                             lineStyle: { color: '#5470C6', width: 2 },
                             itemStyle: { color: '#5470C6' },
@@ -989,7 +989,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     monthlyChart.on('click', function (params) {
                         const [year, month] = params.name.split('-');
-                        window.location.href = '/archives/' + year + '/' + month;
+                        window.location.href = '/blog/archives/' + year + '/' + month;
                     });
                 }
             })
@@ -1006,7 +1006,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         series: [{
                             type: 'pie',
                             radius: '60%',
-                            data: [{"name":"AI","value":49},{"name":"翻译","value":14},{"name":"现代生活","value":13},{"name":"设计","value":12},{"name":"读小说","value":10},{"name":"艺术","value":9},{"name":"Github","value":9},{"name":"尝试集","value":6}],
+                            data: [{"name":"AI","value":51},{"name":"翻译","value":15},{"name":"现代生活","value":13},{"name":"设计","value":12},{"name":"读小说","value":10},{"name":"艺术","value":9},{"name":"Github","value":9},{"name":"写作方法","value":8}],
                             label: {
                                 position: 'outside',
                                 formatter: '{b} {c} ({d}%)',
@@ -1020,13 +1020,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         legend: {
                             bottom: '0',
                             left: 'center',
-                            data: [{"name":"AI","value":49},{"name":"翻译","value":14},{"name":"现代生活","value":13},{"name":"设计","value":12},{"name":"读小说","value":10},{"name":"艺术","value":9},{"name":"Github","value":9},{"name":"尝试集","value":6}].map(tag => tag.name),
+                            data: [{"name":"AI","value":51},{"name":"翻译","value":15},{"name":"现代生活","value":13},{"name":"设计","value":12},{"name":"读小说","value":10},{"name":"艺术","value":9},{"name":"Github","value":9},{"name":"写作方法","value":8}].map(tag => tag.name),
                             textStyle: { fontSize: 14, fontWeight: 'bold', fontFamily: 'Microsoft YaHei, SimSun, serif' }
                         }
                     });
 
                     tagsChart.on('click', function (params) {
-                        window.location.href = '/tags/' + params.name;
+                        window.location.href = '/blog/tags/' + params.name;
                     });
                 }
             })
@@ -1042,13 +1042,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         xAxis: { type: 'value', splitLine: { lineStyle: { type: 'dashed', color: '#ccc' } } },
                         yAxis: { 
                             type: 'category', 
-                            data: [{"name":"计算笔记","value":26},{"name":"咫闻周刊","value":25},{"name":"读书笔记","value":13}].map(category => category.name).reverse(), 
+                            data: [{"name":"计算笔记","value":28},{"name":"咫闻周刊","value":25},{"name":"读书笔记","value":13}].map(category => category.name).reverse(), 
                             axisLabel: { fontSize: 14, fontWeight: 'bold', fontFamily: 'Microsoft YaHei, SimSun, serif' }
                         },
                         series: [{
                             name: 'Category Count',
                             type: 'bar',
-                            data: [{"name":"计算笔记","value":26},{"name":"咫闻周刊","value":25},{"name":"读书笔记","value":13}].map(category => category.value).reverse(),
+                            data: [{"name":"计算笔记","value":28},{"name":"咫闻周刊","value":25},{"name":"读书笔记","value":13}].map(category => category.value).reverse(),
                             label: {
                                 show: true,
                                 position: 'right',
@@ -1068,7 +1068,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
 
                     categoriesChart.on('click', function (params) {
-                        window.location.href = '/categories/' + params.name;
+                        window.location.href = '/blog/categories/' + params.name;
                     });
                 }
             });
@@ -1097,7 +1097,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         },
                         series: [{
                             type: 'tree',
-                            data: [{"name":"Categories","children":[{"name":"计算笔记","children":[],"count":26,"path":"计算笔记"},{"name":"读书笔记","children":[],"count":13,"path":"读书笔记"},{"name":"咫闻周刊","children":[],"count":25,"path":"咫闻周刊"}],"count":0,"path":""}],
+                            data: [{"name":"Categories","children":[{"name":"计算笔记","children":[],"count":28,"path":"计算笔记"},{"name":"读书笔记","children":[],"count":13,"path":"读书笔记"},{"name":"咫闻周刊","children":[],"count":25,"path":"咫闻周刊"}],"count":0,"path":""}],
                             initialTreeDepth: -1,
                             top: '5%',
                             bottom: '10%',
@@ -1136,7 +1136,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     treeChart.on('dblclick', function (params) {
                         if (params.data && params.data.path) {
-                            window.location.href = '/categories/' + params.data.path;
+                            window.location.href = '/blog/categories/' + params.data.path;
                         }
                     });
                 }

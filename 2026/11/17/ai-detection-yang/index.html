@@ -1,0 +1,1290 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>AI 检测 AI 检测（阳本）：有没有 AI 味难道要 AI 自己说了算？ | Joffoo&#39;s blog | The ethereal flight, oft rehearsed in the theater of one&#39;s dreams...</title>
+
+  
+    <link rel="icon" href="/blog/favicon_io/favicon.ico">
+    <link rel="apple-touch-icon" href="/blog/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/blog/favicon_io/android-chrome-192x192.png">
+    <link rel="manifest" href="/blog/favicon_io/site.webmanifest">
+  
+
+  
+  <meta name="author" content="Fengyukongzhou">
+  
+
+  
+  <meta name="description" content="之前说过，用 Skill 战胜不了 AI 检测器，本质是用规则战胜不了神经网络。
+但也有人说过，可以接入朱雀的 API，做一个反馈环路，让 Agent 自己决定怎么修改语句，你只需要指定目标，之后就看模型自己的智慧了。
+接入朱雀大家可能对下面这个页面更熟悉一些，登录账号之后每天有 20 次的免费检测">
+  
+
+  
+  
+  <meta name="keywords" content="AI,写作方法">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="AI 检测 AI 检测（阳本）：有没有 AI 味难道要 AI 自己说了算？"/>
+
+  <meta property="og:site_name" content="Joffoo&#39;s blog"/>
+
+  
+  <meta property="og:image" content="/blog/favicon.ico"/>
+  
+
+  <link href="/blog/favicon.ico" rel="icon">
+  <link rel="alternate" href="/blog/atom.xml" title="Joffoo&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/blog/css/style.css" media="screen" type="text/css">
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap">
+  <script>
+    // 主题切换功能
+    function initTheme() {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const savedTheme = localStorage.getItem('darkMode');
+      const darkModeEnabled = savedTheme !== null ? savedTheme === 'true' : prefersDark;
+      document.documentElement.setAttribute('data-theme', darkModeEnabled ? 'dark' : 'light');
+      const themeToggle = document.getElementById('theme-toggle');
+      if (themeToggle) {
+        themeToggle.innerHTML = darkModeEnabled ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+      }
+    }
+
+    function toggleTheme() {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('darkMode', newTheme === 'dark');
+      const themeToggle = document.getElementById('theme-toggle');
+      themeToggle.innerHTML = newTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    }
+    
+    // 回到顶部功能
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+    
+    // 控制回到顶部按钮的显示和隐藏
+    function toggleScrollTopButton() {
+      const scrollTopBtn = document.getElementById('scroll-top');
+      if (window.scrollY > 300) {
+        scrollTopBtn.classList.add('visible');
+      } else {
+        scrollTopBtn.classList.remove('visible');
+      }
+    }
+
+    // 在页面加载时初始化主题
+    document.addEventListener('DOMContentLoaded', function() {
+      initTheme();
+      // 监听滚动事件
+      window.addEventListener('scroll', toggleScrollTopButton);
+    });
+
+    // 监听系统主题变化
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+      if (localStorage.getItem('darkMode') === null) {
+        document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+          themeToggle.innerHTML = e.matches ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        }
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('figure.highlight').forEach(function(block) {
+        // 添加 MAC 风格按钮
+        const macButtons = document.createElement('div');
+        macButtons.className = 'mac-buttons';
+        macButtons.innerHTML = `
+          <span class="red"></span>
+          <span class="yellow"></span>
+          <span class="green"></span>
+        `;
+        block.appendChild(macButtons);
+        
+        // 获取代码语言
+        let language = '';
+        // 尝试从 class 获取语言
+        const classes = Array.from(block.classList);
+        const languageClass = classes.find(cls => cls !== 'highlight');
+        if (languageClass) {
+          language = languageClass;
+        }
+        // 尝试从 figcaption 获取语言
+        const figcaption = block.querySelector('figcaption');
+        if (!language && figcaption) {
+          language = figcaption.textContent.trim();
+        }
+        // 尝试从代码块的第一个元素获取语言
+        if (!language) {
+          const firstLine = block.querySelector('.code .line:first-child');
+          if (firstLine) {
+            const text = firstLine.textContent.trim();
+            if (text.startsWith('```')) {
+              language = text.replace('```', '').trim();
+            }
+          }
+        }
+        
+        // 添加语言标签
+        if (language) {
+          const langLabel = document.createElement('span');
+          langLabel.className = 'lang-label';
+          // 首字母大写
+          language = language.charAt(0).toUpperCase() + language.slice(1);
+          langLabel.textContent = language;
+          block.appendChild(langLabel);
+        }
+        
+        // 添加复制按钮
+        const copyButton = document.createElement('button');
+        copyButton.className = 'copy-button';
+        copyButton.innerHTML = '<i class="fas fa-copy"></i>';
+        block.appendChild(copyButton);
+
+        // 复制功能
+        copyButton.addEventListener('click', async function() {
+          try {
+            // 获取代码内容
+            let codeLines = [];
+            
+            // 获取所有代码行
+            if (block.querySelector('table')) {
+              // 如果是带行号的代码块，直接从 .line 元素获取内容
+              const rows = block.querySelectorAll('.code .line');
+              rows.forEach(row => {
+                // 移除每行开头的所有空白字符
+                const lineContent = row.textContent.replace(/^\s+/, '');
+                if (lineContent) {
+                  codeLines.push(lineContent);
+                }
+              });
+            } else {
+              // 如果是普通代码块
+              const codeBlock = block.querySelector('code');
+              const lines = codeBlock.textContent.split('\n');
+              lines.forEach(line => {
+                // 移除每行开头的所有空白字符
+                const lineContent = line.replace(/^\s+/, '');
+                if (lineContent) {
+                  codeLines.push(lineContent);
+                }
+              });
+            }
+            
+            // 组合处理后的代码
+            const processedCode = codeLines.join('\n').trim();
+            
+            // 使用 Clipboard API
+            await navigator.clipboard.writeText(processedCode);
+            
+            // 显示成功状态
+            copyButton.innerHTML = '<i class="fas fa-check"></i>';
+            
+            // 2秒后恢复
+            setTimeout(function() {
+              copyButton.innerHTML = '<i class="fas fa-copy"></i>';
+            }, 2000);
+          } catch (err) {
+            // 如果 Clipboard API 失败，使用传统方法
+            const textarea = document.createElement('textarea');
+            textarea.value = processedCode;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+              document.execCommand('copy');
+              copyButton.innerHTML = '<i class="fas fa-check"></i>';
+              setTimeout(function() {
+                copyButton.innerHTML = '<i class="fas fa-copy"></i>';
+              }, 2000);
+            } catch (err) {
+              console.error('复制失败:', err);
+            }
+            document.body.removeChild(textarea);
+          }
+        });
+      });
+    });
+  </script>
+  <style>
+    .floating-btn {
+      position: fixed;
+      bottom: 20px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--theme-color, #f03838);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2em;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .floating-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+    
+    #theme-toggle {
+      right: 20px;
+    }
+    
+    #scroll-top {
+      right: 70px; /* 位于夜间模式按钮旁边 */
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+    }
+    
+    #scroll-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+<button id="theme-toggle" class="floating-btn" onclick="toggleTheme()" aria-label="切换主题">
+  <i class="fas fa-moon"></i>
+</button>
+<button id="scroll-top" class="floating-btn" onclick="scrollToTop()" aria-label="回到顶部">
+  <i class="fas fa-arrow-up"></i>
+</button>
+<div class="blog">
+  <div class="content">
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/blog/">Joffoo&#39;s blog</a>
+    </h1>
+    <p class="site-description">The ethereal flight, oft rehearsed in the theater of one&#39;s dreams...</p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/blog/">主页</a></li>
+      
+        <li><a href="/blog/archives">归档</a></li>
+      
+        <li><a href="/blog/categories">分类</a></li>
+      
+        <li><a href="/blog/tags">标签</a></li>
+      
+    </ul>
+  </nav>
+</header>
+    
+    <main class="site-main posts-loop">
+      <article>
+
+  
+    
+    <h3 class="article-title"><span>AI 检测 AI 检测（阳本）：有没有 AI 味难道要 AI 自己说了算？</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/blog/2026/11/17/ai-detection-yang/" rel="bookmark">
+        <time class="entry-date published" datetime="2026-11-17T07:30:00.000Z">
+          2026-11-17
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p><img src="/blog/2026/11/17/ai-detection-yang/blog-261117-001.png" alt></p>
+<p>之前说过，用 Skill 战胜不了 AI 检测器，本质是用规则战胜不了神经网络。</p>
+<p>但也有人说过，可以接入朱雀的 API，做一个反馈环路，让 Agent 自己决定怎么修改语句，你只需要指定目标，之后就看模型自己的智慧了。</p>
+<h2 id="接入朱雀"><a href="#接入朱雀" class="headerlink" title="接入朱雀"></a>接入朱雀</h2><p>大家可能对下面这个页面更熟悉一些，登录账号之后每天有 20 次的免费检测机会。检测之后可以看到哪部分有 AI 创作嫌疑，哪部分人类创作特征是显著的。</p>
+<p><img src="/blog/2026/11/17/ai-detection-yang/blog-261117-002.png" alt></p>
+<p>其实你可以去 <a target="_blank" rel="noopener" href="https://console.cloud.tencent.com/edgeone/makers?tab=models&amp;subTab=apikey">EdgeOne 控制台</a> 实名申请一个 API key，之后把<a target="_blank" rel="noopener" href="https://cloud.tencent.com/document/product/1552/137539">教程</a>丢给 Agent 让它自己配置一个检测 Skill，如果有相关场景可以让它调用朱雀大模型自己检测。</p>
+<p>之前的两篇文章，我测过翻译、回译对 AI 率的影响（<a href="/2026/10/26/ai-taste-back-translation/">谁解 AI 味：为什么 AI 写的东西这么难读？AI 翻译会不会影响 AI 率？</a>），测过市面上两款 Skill 的效果，还开发了自己的遮味工作流（<a href="/2026/10/31/qu-ai-wei-zhi-wo-jian/">去 AI 味之我见：让 Agent 学会“因声求气”</a>），都是用朱雀 API 做的检测。</p>
+<p>经常在网上刷到 Lauren Tan（@poteto）说 AI 编程中验证是相当重要的一环。让 Agent 接入朱雀 API，其实就是把写作这个流程加上了验证反馈。</p>
+<p>但如果只是做成一个文章生产流水线，对我来说还没有那么有意思，我倒是喜欢让 Agent Cosplay 研究者，让它去研究朱雀这个不可解的黑盒，看一下能有什么局部的理解。</p>
+<h2 id="镜像实验"><a href="#镜像实验" class="headerlink" title="镜像实验"></a>镜像实验</h2><p>在公众号发过文章之后，会有一个自动转成贴图的功能，在我理解，就是用更轻量的形式，给自己的内容做广告。图片部分就是一个标题转成的封面，之后是文章中的插图，配的短文一看就是 AI 写的。</p>
+<p>于是我自己用 AI 重写了一版，测出来 AI 率很高 <code>0.9961</code>。</p>
+<p>既然我已经有一篇手写的长文，直接尽量使用原句让 AI 重写了一版，效果显著，AI 率直接掉到 <code>0.0093</code>。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">句号索引</th>
+<th style="text-align:center">所属段落</th>
+<th style="text-align:left">样本 A（<code>p = 0.9961</code>）</th>
+<th style="text-align:left">样本 B（<code>p = 0.0093</code>）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>S0</code></td>
+<td style="text-align:center"><code>P1</code></td>
+<td style="text-align:left">AI 翻译长篇小说常前后不一，前面是“施瓦辛格”，后面变成“舒华辛力加”。</td>
+<td style="text-align:left">AI 翻译长篇文本时容易前后不一致，前面是施瓦辛格，后面是舒华辛力加。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>S1</code></td>
+<td style="text-align:center"><code>P1</code></td>
+<td style="text-align:left">提前提取全书术语表虽能解决，却极耗 token 与人工筛选的精力。</td>
+<td style="text-align:left">我对提前跑一遍术语表感到厌烦，于是先切片，让 AI 先翻译，再把新词写入术语表，并检索后文，没再出现就不存。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>S2</code></td>
+<td style="text-align:center"><code>P2</code></td>
+<td style="text-align:left">我改用“边翻译边累积”的动态术语表，并检索后文剔除一次性词汇。</td>
+<td style="text-align:left">为了再省点 token，我想只把当前分片出现的术语放进提示词。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>S3</code></td>
+<td style="text-align:center"><code>P2</code></td>
+<td style="text-align:left">后来为进一步省钱，我尝试只向提示词注入当前分片出现的术语，结果栽了跟头：同一人名混用平假名与片假名，局部匹配失效，生生译出了“悠儿”和“佑二”两个角色。</td>
+<td style="text-align:left">结果遇到平假名和片假名：术语表里存了平假名，分片里却只出现片假名，匹配不上，于是生生多出两个人名，一个“悠儿”，一个“佑二”。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>S4</code></td>
+<td style="text-align:center"><code>P3</code></td>
+<td style="text-align:left">我最终放弃了过度优化。</td>
+<td style="text-align:left">我选择了放弃。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>S5</code></td>
+<td style="text-align:center"><code>P3</code></td>
+<td style="text-align:left">比起省下几块钱的 token，译本出现硬伤、消耗自己有限的注意力，才是更不能接受的代价。</td>
+<td style="text-align:left">我的注意力是有限的，token 成本不过降低几块，但译本出现硬伤，哪怕只是有这种风险，对我来说也是不能接受的。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>让我自己分析的话，人（我自己）的写法比较随意。AI 会写“前面是……后面变成……”，而我只是写“前面是……后面是……”，没有非要换个说法的强迫症属性。</p>
+<p>我之前可能不是这样写文章的，但现在确实没有“语不惊人死不休”的想法，写完就算。</p>
+<p>AI 的分析是：AI 写东西常常总结，而我保留了口语习惯（<em>流水账</em>）；AI 的句式更为工整，而我不是；AI 写得更抽象客观，而我有具象体感。</p>
+<p>自己分析或者让 AI 分析，都差不多，陈词滥调。既然我们有了反馈，就可以直接让 AI 自己去做“研究”。</p>
+<p><img src="/blog/2026/11/17/ai-detection-yang/blog-261117-003.png" alt></p>
+<p>这里的 <code>/better</code> 其实是来自 Felix Rieseberg 写的<a target="_blank" rel="noopener" href="https://felixrieseberg.com/how-to-be-more-ambitious-a-tutorial-for-humans-with-models/">一篇文章</a>，把文章里提升 Agent 回答深度的提示词封装成了技能，写下来大概是这样的：</p>
+<blockquote>
+<p>我希望你把这项任务做得更深入，而不是把任务范围扩大。在重写我的要求之前，请先回答四个问题：</p>
+<p>这个领域最顶尖的专业人士，会做哪些我目前没有要求你做的事情？</p>
+<p>相比那些已经整理、加工过的信息，他们会从哪些最原始的材料入手？</p>
+<p>他们会使用哪些具体的方法和工具？</p>
+<p>除了你和我自己的判断，还有什么外部证据能够证明结果是正确的？然后，根据这些答案，重新编写我的提示词，让它准确地要求完成上述工作。</p>
+</blockquote>
+<p>这篇文章的标题是“如何更有野心”，我现在的心明显野了。</p>
+<p>我常常无脑用这段深度提示词，封装成 <code>/better</code> 之后用起来就更加无脑，把我自己的“深度”直接转交给了 AI，但好处是你能学到一些之前全然无知的东西。</p>
+<p>AI 把之前的段落拆分成三部分  <code>(P1, P2, P3)</code>，在 AI 生成的样本 A 和我自己语言拼凑的样本 B 之间做全排列组合，测试输出的置信度 $p$ 和对数几率 $\ell$：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">段落组合 <code>(P1, P2, P3)</code></th>
+<th style="text-align:center">AI 段落数</th>
+<th style="text-align:center">朱雀置信度 $p$</th>
+<th style="text-align:center">对数几率 $\ell = \ln\frac{p}{1-p}$</th>
+<th style="text-align:center">相对全人类基线 (<code>BBB</code>) 的 $\Delta \ell$</th>
+<th style="text-align:center">判定分类</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>(B, B, B)</code></td>
+<td style="text-align:center">0</td>
+<td style="text-align:center"><code>0.0093</code></td>
+<td style="text-align:center"><code>-4.67</code></td>
+<td style="text-align:center"><code>0.00</code></td>
+<td style="text-align:center">人类 (<code>Label 0</code>)</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>(B, A, B)</code></td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"><code>0.1046</code></td>
+<td style="text-align:center"><code>-2.15</code></td>
+<td style="text-align:center"><code>+2.52</code></td>
+<td style="text-align:center">人类 (<code>Label 0</code>)</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>(A, B, B)</code></td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"><code>0.1513</code></td>
+<td style="text-align:center"><code>-1.72</code></td>
+<td style="text-align:center"><code>+2.95</code></td>
+<td style="text-align:center">人类 (<code>Label 0</code>)</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>(B, B, A)</code></td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"><strong><code>0.5059</code></strong></td>
+<td style="text-align:center"><strong><code>+0.02</code></strong></td>
+<td style="text-align:center"><strong><code>+4.69</code></strong></td>
+<td style="text-align:center"><strong>AI (<code>Label 1</code>)</strong></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>(B, A, A)</code></td>
+<td style="text-align:center">2</td>
+<td style="text-align:center"><code>0.5347</code></td>
+<td style="text-align:center"><code>+0.14</code></td>
+<td style="text-align:center"><code>+4.81</code></td>
+<td style="text-align:center">AI (<code>Label 1</code>)</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>(A, B, A)</code></td>
+<td style="text-align:center">2</td>
+<td style="text-align:center"><code>0.6988</code></td>
+<td style="text-align:center"><code>+0.84</code></td>
+<td style="text-align:center"><code>+5.51</code></td>
+<td style="text-align:center">AI (<code>Label 1</code>)</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>(A, A, B)</code></td>
+<td style="text-align:center">2</td>
+<td style="text-align:center"><code>0.7127</code></td>
+<td style="text-align:center"><code>+0.91</code></td>
+<td style="text-align:center"><code>+5.58</code></td>
+<td style="text-align:center">AI (<code>Label 1</code>)</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>(A, A, A)</code></td>
+<td style="text-align:center">3</td>
+<td style="text-align:center"><strong><code>0.9961</code></strong></td>
+<td style="text-align:center"><strong><code>+5.54</code></strong></td>
+<td style="text-align:center"><strong><code>+10.21</code></strong></td>
+<td style="text-align:center"><strong>AI (<code>Label 1</code>)</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>可以看出第三段 <code>P3</code> 的影响最为显著，当仅保留 1 个 AI 段落时，<code>(B, A, B)</code> 与 <code>(A, B, B)</code> 均停留在 <code>0.10</code> 至 <code>0.15</code> 的安全区；唯独 <code>(B, B, A)</code> 仅凭第 3 段短短 47 个字，就产生了 <code>+4.69</code> 的 Logit 增量，单独将整篇人类文本推过 <code>0.50</code> 阈值线（<code>0.5059</code>）。</p>
+<script type="math/tex; mode=display">\ell = \ln\frac{p}{1-p}</script><p>为什么要这样算？其实这个是二分类 Softmax 的反推公式。</p>
+<p>朱雀后台原本是按 <code>Label 0 / 1 / 2</code> 三分类算 Softmax 的，但它只暴露了一个汇总的置信度 $p$（<code>softmax_confidence</code>），没给三类各自的原始概率明细。所以我们用二分类的逆运算做近似反推。</p>
+<p>另一方面，还原成线性可以更为直观地理解每一段的作用，而不会被 Sigmoid 曲线的缓急所蒙蔽。</p>
+<p><img src="/blog/2026/11/17/ai-detection-yang/blog-261117-004.png" alt></p>
+<p>AI 还计算了单独某句话的置信度影响，影响最大的是 <code>S1</code> 和 <code>S5</code>，正是压缩内容最为明显的两句话。</p>
+<p>此外，还计算了标点的影响和虚词的影响，可以看出标点影响较小，而虚词影响极大，这些虚词分别是：</p>
+<ul>
+<li><code>常</code> → <code>时容易</code>（<code>AI 翻译长篇小说常前后不一</code> → <code>AI 翻译长篇小说时容易前后不一致</code>）</li>
+<li><code>虽……却极……与</code> → <code>虽然……但很……和</code>（<code>虽能解决，却极耗 token 与人工筛选的精力</code> → <code>虽然能解决，但很耗 token 和人工筛选的精力</code>）</li>
+<li><code>为进一步</code> → <code>为了再</code>（<code>后来为进一步省钱</code> → <code>后来为了再省钱</code>）</li>
+<li><code>只向……注入</code> → <code>只往……里放</code>（<code>只向提示词注入当前分片出现的术语</code> → <code>只往提示词里放当前分片出现的术语</code>）</li>
+<li><code>与</code> → <code>和</code>（<code>平假名与片假名</code> → <code>平假名和片假名</code>）</li>
+</ul>
+<p><img src="/blog/2026/11/17/ai-detection-yang/blog-261117-005.png" alt></p>
+<h2 id="自指引擎"><a href="#自指引擎" class="headerlink" title="自指引擎"></a>自指引擎</h2><p>之后我让 Agent 把前面的内容写成了一份报告，再把报告写成文章，并且检测文章的 AI 率，测出来是 <code>0.3546</code>。</p>
+<p>对 AI 率较高的段落，Agent 继续自行研究。</p>
+<p><img src="/blog/2026/11/17/ai-detection-yang/blog-261117-006.png" alt></p>
+<p><img src="/blog/2026/11/17/ai-detection-yang/blog-261117-007.png" alt></p>
+<p>我已经没什么参与的兴趣，于是让 Agent 调用“蜂群” <code>/Swarm</code> 写了一篇文章同步发表，作为另一种并置的镜像 <a href="/2026/11/17/ai-detection-yin/">AI 检测 AI 检测（阴本）：一次关于 AI 检测器的自指实验记录</a>。</p>
+<p>朱雀测不出来，但这篇 AI 味还是相当重，比如：“如果平时自己改 AI 辅助写的稿子想少走点弯路，从上面这五十多组测试数据里能直接拿走四条实话。”</p>
+<p>什么叫“直接拿走四条实话”，什么叫“拿走实话”，什么又叫“四条实话”？</p>
+<p>但毕竟是一份心意，这四条是说：</p>
+<ol>
+<li>术语和标点影响不算大；</li>
+<li>“让步转折”之类的写法拆成先后顺序，不要单字虚词；</li>
+<li>写具体细节；</li>
+<li>要降低检测率，就控制变量用检测器多次测试，不靠模型直觉。</li>
+</ol>
+<h2 id="划重点"><a href="#划重点" class="headerlink" title="划重点"></a>划重点</h2><ol>
+<li>你可以让 Agent 接入朱雀检测模型的 API，让 Agent 自行降低文字的 AI 率，但这种方式也不能有效减轻 AI 味。</li>
+<li>探索黑盒系统时，可以学习 Agent 的思路，把复杂问题拆解成一系列小的对照实验，逐点击破。</li>
+<li>使用 Agent 时善用技能、提示词和自带插件，比如文中提到的 <code>/better</code> 和 <code>/Swarm</code>。</li>
+</ol>
+<p>第四点，前面三点都是戏仿得到 APP 的课程结尾。我不认为这篇文章有任何重点，只是一次记录，并且我的兴趣（甚至是耐心）已经随着写作而消耗殆尽。</p>
+<p>说点有意思的。</p>
+<p>我之前还做过一次实验，脏话能不能影响朱雀的检测结果。最后发现，如果只是间歇性加脏话，或者是连续脏话宣泄都不行，只有纯粹骂街才可以，那种没有任何叙述、没有任何诉求的“纯粹”。</p>
+<p>朱雀说，<code>softmax_confidence</code> 0.2569，Label 0，纯人类创作。</p>
+<p>这算是 AI 检测对人的一种刻板印象吧。</p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/blog/tags/AI/">AI</a><a href="/blog/tags/%E5%86%99%E4%BD%9C%E6%96%B9%E6%B3%95/">写作方法</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+  
+
+
+
+
+	<section id="comment" class="comment">
+		<div id="utterances">
+			<script
+					src="https://utteranc.es/client.js"
+					repo="fengyukongzhou/fengyukongzhou.github.io"
+					issue-term="ai-detection-yang"
+					crossorigin="anonymous"
+					theme="preferred-color-scheme"
+					async
+			></script>
+		</div>
+	</section>
+
+
+
+
+
+
+<div class="like-button-container">
+  <button class="like-button" data-path="2026/11/17/ai-detection-yang/">
+    <i class="fas fa-heart"></i>
+    <span class="like-count">0</span>
+  </button>
+  <div class="like-message">
+    <img src="/blog/images/luoziwuhui.svg" alt="落子无悔" class="luoziwuhui-svg">
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/leancloud-storage@4.12.0/dist/av-min.js"></script>
+<script>
+// 初始化 LeanCloud
+try {
+  
+  AV.init({
+    appId: "2wNgIGj8UmE5AAQRTtIBZ4Mn-gzGzoHsz",
+    appKey: "gMFzQ0eRohuOkA8QcewcUjGA",
+    serverURL: "https://2wngigj8.lc-cn-n1-shared.com"
+  });
+  console.log('LeanCloud 初始化成功');
+  
+} catch (error) {
+  console.error('LeanCloud 初始化失败:', error);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const likeButton = document.querySelector('.like-button');
+  const likeCount = document.querySelector('.like-count');
+  const path = likeButton.dataset.path;
+  
+  // 检查是否已经点赞过
+  function hasLiked() {
+    const likedPosts = JSON.parse(localStorage.getItem('likedPosts') || '[]');
+    return likedPosts.includes(path);
+  }
+  
+  // 标记文章已点赞
+  function markAsLiked() {
+    const likedPosts = JSON.parse(localStorage.getItem('likedPosts') || '[]');
+    likedPosts.push(path);
+    localStorage.setItem('likedPosts', JSON.stringify(likedPosts));
+    updateLikeButtonState(true);
+  }
+  
+  // 取消文章点赞标记
+  function unmarkAsLiked() {
+    const likedPosts = JSON.parse(localStorage.getItem('likedPosts') || '[]');
+    const index = likedPosts.indexOf(path);
+    if (index > -1) {
+      likedPosts.splice(index, 1);
+      localStorage.setItem('likedPosts', JSON.stringify(likedPosts));
+    }
+    updateLikeButtonState(false);
+  }
+  
+  // 更新按钮状态
+  function updateLikeButtonState(isLiked) {
+    requestAnimationFrame(() => {
+      if (isLiked) {
+        likeButton.classList.add('liked');
+        likeButton.title = '点击取消点赞';
+      } else {
+        likeButton.classList.remove('liked');
+        likeButton.title = '点赞';
+      }
+    });
+  }
+  
+  // 查询当前文章的点赞数
+  async function getLikes() {
+    try {
+      const query = new AV.Query('Likes');
+      query.equalTo('path', path);
+      const result = await query.first();
+      console.log('查询结果:', result);
+      if (!result) {
+        const Like = AV.Object.extend('Likes');
+        const newLike = new Like();
+        newLike.set('path', path);
+        newLike.set('count', 0);
+        return newLike;
+      }
+      return result;
+    } catch (error) {
+      console.error('获取点赞数失败:', error);
+      return null;
+    }
+  }
+  
+  // 更新点赞显示
+  async function updateLikeCount() {
+    try {
+      const like = await getLikes();
+      if (like) {
+        const count = like.get('count') || 0;
+        console.log('当前点赞数:', count);
+        requestAnimationFrame(() => {
+          likeCount.textContent = count;
+        });
+      }
+    } catch (error) {
+      console.error('更新点赞显示失败:', error);
+    }
+  }
+  
+  // 处理点赞事件
+  async function handleLike(event) {
+    // 阻止默认行为和冒泡
+    event.preventDefault();
+    event.stopPropagation();
+    
+    const isLiked = hasLiked();
+    console.log('当前点赞状态:', isLiked);
+    
+    try {
+      let like = await getLikes();
+      if (!like) {
+        console.error('无法获取点赞对象');
+        return;
+      }
+      
+      if (isLiked) {
+        // 取消点赞前检查当前点赞数
+        const currentCount = like.get('count');
+        if (currentCount > 0) {
+          like.increment('count', -1);
+          await like.save();
+          unmarkAsLiked();
+        } else {
+          console.warn('点赞数已经为0，无法继续减少');
+          unmarkAsLiked();
+          return;
+        }
+      } else {
+        // 添加点赞
+        like.increment('count');
+        await like.save();
+        markAsLiked();
+      }
+      
+      const newCount = like.get('count');
+      console.log('操作成功，新的点赞数:', newCount);
+      requestAnimationFrame(() => {
+        likeCount.textContent = newCount;
+      });
+      
+    } catch (error) {
+      console.error('操作失败:', error);
+    }
+  }
+  
+  // 绑定点击和触摸事件
+  likeButton.addEventListener('click', handleLike);
+  likeButton.addEventListener('touchend', handleLike);
+  console.log('点赞按钮事件绑定成功');
+  
+  // 防止触摸滚动
+  likeButton.addEventListener('touchstart', (e) => e.preventDefault());
+  likeButton.addEventListener('touchmove', (e) => e.preventDefault());
+  
+  // 初始化
+  updateLikeCount();
+  updateLikeButtonState(hasLiked());
+});
+</script> 
+
+<div class="post-toc">
+  <div class="toc-toggle">
+    <i class="fas fa-chevron-left"></i>
+  </div>
+  <div class="post-toc-content">
+    <h2>文章目录</h2>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%85%A5%E6%9C%B1%E9%9B%80"><span class="toc-text">接入朱雀</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%95%9C%E5%83%8F%E5%AE%9E%E9%AA%8C"><span class="toc-text">镜像实验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E6%8C%87%E5%BC%95%E6%93%8E"><span class="toc-text">自指引擎</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%92%E9%87%8D%E7%82%B9"><span class="toc-text">划重点</span></a></li></ol>
+  </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const tocToggle = document.querySelector('.toc-toggle');
+  const postToc = document.querySelector('.post-toc');
+  const tocLinks = document.querySelectorAll('.toc-link');
+  const headers = document.querySelectorAll('article h1[id], article h2[id], article h3[id], article h4[id], article h5[id], article h6[id]');
+  let activeLink = null;
+  let isScrolling = false;
+  
+  // 检测是否是移动设备
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  
+  // 切换目录显示/隐藏
+  tocToggle.addEventListener('click', function() {
+    postToc.classList.toggle('toc-hidden');
+    tocToggle.classList.toggle('toc-toggle-hidden');
+    
+    // 在移动端，点击后立即应用样式
+    if (isMobile) {
+      requestAnimationFrame(() => {
+        tocToggle.querySelector('i').style.color = postToc.classList.contains('toc-hidden') ? '#F03838' : '';
+      });
+    }
+  });
+
+  // 点击目录项平滑滚动
+  tocLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = decodeURIComponent(link.getAttribute('href')).slice(1);
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        isScrolling = true;
+        const offset = 80; // 头部固定导航的高度
+        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - offset;
+        
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+
+        // 更新激活状态
+        if (activeLink) {
+          activeLink.classList.remove('active');
+        }
+        link.classList.add('active');
+        activeLink = link;
+
+        // 滚动结束后重置标志
+        setTimeout(() => {
+          isScrolling = false;
+        }, 1000);
+      }
+    });
+  });
+
+  // 滚动时高亮当前目录项
+  function updateActiveLink() {
+    if (isScrolling) return; // 如果是点击导航引起的滚动，不更新高亮
+
+    let currentSection = '';
+    let minDistance = Infinity;
+    const scrollPosition = window.scrollY + 100; // 考虑顶部偏移
+
+    headers.forEach(header => {
+      const distance = Math.abs(header.getBoundingClientRect().top);
+      if (distance < minDistance) {
+        minDistance = distance;
+        currentSection = '#' + header.id;
+      }
+    });
+
+    if (activeLink) {
+      activeLink.classList.remove('active');
+    }
+    
+    tocLinks.forEach(link => {
+      if (decodeURIComponent(link.getAttribute('href')) === currentSection) {
+        link.classList.add('active');
+        activeLink = link;
+        
+        // 确保当前项在视图中
+        const tocContainer = document.querySelector('.post-toc');
+        const linkRect = link.getBoundingClientRect();
+        const containerRect = tocContainer.getBoundingClientRect();
+        
+        if (linkRect.bottom > containerRect.bottom || linkRect.top < containerRect.top) {
+          link.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+            inline: 'nearest'
+          });
+        }
+      }
+    });
+  }
+
+  // 使用 requestAnimationFrame 优化滚动事件
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        updateActiveLink();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
+  // 初始化高亮
+  updateActiveLink();
+});
+</script>
+
+
+    
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+    
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2026 Fengyukongzhou
+    
+  </p>
+</footer>
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HSFDFFL0HT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HSFDFFL0HT');
+</script>
+
+    
+<script>
+    var _hmt = _hmt || [];
+    ( function () {
+        var hm = document.createElement( "script" );
+        hm.src = "https://hm.baidu.com/hm.js?b6d2577512b94cef71ed3db1d1ae70e4";
+        var s = document.getElementsByTagName( "script" )[ 0 ];
+        s.parentNode.insertBefore( hm, s );
+    } )();
+</script>
+
+    
+    
+    
+    <script src="/blog/js/lang-detector.js"></script>
+    
+    
+    <script src="/blog/js/footnote-popup.js"></script>
+    
+
+    <!-- Mermaid.js CDN 引入 -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+      // 初始化 mermaid
+      mermaid.initialize({ startOnLoad: true });
+      document.addEventListener('DOMContentLoaded', function() {
+        // 查找所有 mermaid 代码块
+        document.querySelectorAll('pre code.language-mermaid, pre code.mermaid').forEach(function(block) {
+          var div = document.createElement('div');
+          div.className = 'mermaid';
+          div.textContent = block.textContent;
+          block.parentNode.parentNode.replaceWith(div);
+        });
+        // 重新初始化 mermaid
+        if (window.mermaid) {
+          mermaid.init(undefined, document.querySelectorAll('.mermaid'));
+        }
+      });
+    </script>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const heatmapChartDom = document.getElementById('heatmapChart');
+                if(heatmapChartDom){
+                    const heatmapChart = echarts.init(heatmapChartDom, 'light');
+                    const cellSize = [18, 18];
+                    
+                    const groupByYear = (data) => {
+                        const result = {};
+                        data.forEach(([date, value]) => {
+                            const [year] = date.split('-').map(Number);
+                            if (!result[year]) {
+                                result[year] = [];
+                            }
+                            result[year].push([date, value]);
+                        });
+                        return result;
+                    };
+                    
+                    const groupedData = groupByYear([["2024-06-23",1],["2024-06-30",1],["2024-07-06",1],["2024-08-19",1],["2024-09-02",1],["2024-09-12",1],["2024-09-24",1],["2024-10-12",1],["2024-11-05",1],["2024-12-04",1],["2024-12-26",1],["2025-01-04",1],["2025-01-11",1],["2025-01-20",1],["2025-01-22",1],["2025-01-24",1],["2025-01-31",1],["2025-02-07",1],["2025-02-21",1],["2025-03-02",1],["2025-03-15",1],["2025-05-25",1],["2025-06-13",1],["2025-06-16",1],["2025-06-22",1],["2025-06-26",1],["2025-07-12",1],["2025-07-27",1],["2025-08-31",1],["2025-09-07",1],["2025-09-21",1],["2025-10-04",1],["2025-11-02",1],["2025-11-22",1],["2025-11-30",1],["2025-12-06",1],["2025-12-12",1],["2025-12-20",1],["2026-01-11",1],["2026-01-24",1],["2026-02-13",1],["2026-02-19",1],["2026-03-14",1],["2026-04-11",1],["2026-04-24",1],["2026-05-02",1],["2026-05-10",1],["2026-05-15",1],["2026-05-17",1],["2026-05-27",1],["2026-05-29",1],["2026-06-27",1],["2026-07-11",1],["2026-08-21",1],["2026-09-12",1],["2026-10-10",1],["2026-10-14",1],["2026-10-18",1],["2026-10-22",1],["2026-10-26",1],["2026-10-31",1],["2026-11-04",1],["2026-11-10",1],["2026-11-15",1],["2026-11-17",2]]);
+                    const years = Object.keys(groupedData).reverse();
+                    
+                    var initYear = parseInt(heatmapChartDom.getAttribute('year')) || new Date().getFullYear();
+                    const minYear = years[years.length - 1];
+                    const maxYear = years[0];
+                    if (initYear < minYear || initYear > maxYear) {
+                        initYear = maxYear;
+                    }
+                    console.log('[hexo-graph]generateHeatmapChart|initYear:', initYear, 'minYear:', minYear, 'maxYear:', maxYear);
+                    
+                    heatmapChart.setOption({
+                        grid: {},
+                        tooltip: { 
+                            position: 'top', 
+                            formatter: params => `${params.value[0]}: ${params.value[1]} Articles` 
+                        },
+                        calendar: { 
+                            top: '10%',
+                            left: 'left', 
+                            right: '8%',
+                            range: initYear,
+                            cellSize: cellSize, 
+                            splitLine: { lineStyle: { color: '#E0E0E0', width: 1 } }, 
+                            itemStyle: { borderWidth: 1, borderColor: '#E0E0E0' }, 
+                            dayLabel: { show: false },
+                            monthLabel: { show: true },
+                            yearLabel: { show: false },
+                        },
+                        visualMap: { 
+                            show: true,
+                            right: '8%',
+                            bottom: '5%',
+                            type: 'piecewise',
+                            orient: 'horizontal',
+                            text: ['More', 'Less'],
+                            min: 0,
+                            max: Math.max(...groupedData[initYear].map(item => item[1])),
+                            inRange: { color: ["#ACE7AE","#69C16D","#549F57"] }
+                        },
+                        legend: {
+                            type: 'scroll',
+                            icon: 'none',
+                            data: years,
+                            orient: 'vertical',
+                            top: '5%',
+                            right: 'right',
+                            itemWidth: 20,
+                            itemHeight: 20,
+                            itemGap: 10,
+                            pageIconSize: 10,
+                            pageTextStyle: { fontSize: 14 },
+                            selectedMode: 'single',
+                        },
+                        series: years.map(year => ({
+                            type: 'heatmap',
+                            coordinateSystem: 'calendar',
+                            data: groupedData[year],
+                            name: year,
+                            emphasis: {
+                                disabled: true,
+                            },
+                            silent: year !== initYear,
+                        })),
+                    });
+                    
+                    // init selected year
+                    heatmapChart.dispatchAction({
+                        type: 'legendSelect',
+                        name: initYear,
+                    });
+                    
+                    heatmapChart.on('legendselectchanged', function(params) {
+                        console.log('[hexo-graph]generateHeatmapChart|legendselectchanged:', params);
+                        const selectedYear = Object.keys(params.selected).find(key => params.selected[key]);
+                        if (selectedYear && groupedData[selectedYear]) {
+                            heatmapChart.setOption({
+                                calendar: {
+                                    range: selectedYear,
+                                },
+                                visualMap: {
+                                    max: Math.max(...groupedData[selectedYear].map(item => item[1])),
+                                },
+                                series: years.map(year => ({
+                                    type: 'heatmap',
+                                    coordinateSystem: 'calendar',
+                                    data: groupedData[year],
+                                    name: year,
+                                    emphasis: {
+                                        disabled: true,
+                                    },
+                                    silent: year !== selectedYear,
+                                })),
+                            });
+                        }
+                    });
+                    
+                    heatmapChart.on('click', function (params) {
+                        if (params.componentType === 'series') {
+                            const [year, month] = params.value[0].split('-');
+                            window.location.href = '/blog/archives/' + year + '/' + month;
+                        }
+                    });
+                }
+            });
+        </script>
+    
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const monthlyChartDom = document.getElementById('monthlyChart');
+                if(monthlyChartDom){
+                    const monthlyChart = echarts.init(monthlyChartDom, 'light');
+                    monthlyChart.setOption({
+                        xAxis: { 
+                            type: 'category', 
+                            data: ["2024-06","2024-07","2024-08","2024-09","2024-10","2024-11","2024-12","2025-01","2025-02","2025-03","2025-05","2025-06","2025-07","2025-08","2025-09","2025-10","2025-11","2025-12","2026-01","2026-02","2026-03","2026-04","2026-05","2026-06","2026-07","2026-08","2026-09","2026-10","2026-11"], 
+                            axisLabel: { fontSize: 14, fontWeight: 'bold', fontFamily: 'Microsoft YaHei, SimSun, serif' }
+                        },
+                        yAxis: { type: 'value', splitLine: { lineStyle: { type: 'dashed', color: '#ccc' } } },
+                        series: [{
+                            name: 'Articles',
+                            type: 'line',
+                            data: [2,1,1,3,1,1,2,6,2,2,1,4,2,1,2,1,3,3,2,2,1,2,6,1,1,1,1,6,5],
+                            smooth: true,
+                            lineStyle: { color: '#5470C6', width: 2 },
+                            itemStyle: { color: '#5470C6' },
+                            areaStyle: { color: 'rgba(84, 112, 198, 0.4)' },
+                            symbolSize: 10,
+                            label: {
+                                show: true,
+                                position: 'top',
+                                formatter: params => params.value,
+                                fontSize: 14,
+                                color: '#000',
+                                fontWeight: 'bold',
+                                fontFamily: 'Microsoft YaHei, SimSun, serif'
+                            }
+                        }]
+                    });
+
+                    monthlyChart.on('click', function (params) {
+                        const [year, month] = params.name.split('-');
+                        window.location.href = '/blog/archives/' + year + '/' + month;
+                    });
+                }
+            })
+        </script>
+    
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const tagsChartDom = document.getElementById('tagsChart');
+                if(tagsChartDom){
+                    const tagsChart = echarts.init(tagsChartDom, 'light');
+                    tagsChart.setOption({
+                        tooltip: { trigger: 'item', formatter: '{b}: {c} ({d}%)' },
+                        series: [{
+                            type: 'pie',
+                            radius: '60%',
+                            data: [{"name":"AI","value":51},{"name":"翻译","value":15},{"name":"现代生活","value":13},{"name":"设计","value":12},{"name":"读小说","value":10},{"name":"艺术","value":9},{"name":"Github","value":9},{"name":"写作方法","value":8}],
+                            label: {
+                                position: 'outside',
+                                formatter: '{b} {c} ({d}%)',
+                                fontSize: 14,
+                                fontWeight: 'bold',
+                                fontFamily: 'Microsoft YaHei, SimSun, serif'
+                            },
+                            color: ["#5470C6","#91CC75","#FAC858","#EE6666","#73C0DE","#3BA272","#FC8452","#9A60B4"],
+                            labelLine: { show: true }
+                        }],
+                        legend: {
+                            bottom: '0',
+                            left: 'center',
+                            data: [{"name":"AI","value":51},{"name":"翻译","value":15},{"name":"现代生活","value":13},{"name":"设计","value":12},{"name":"读小说","value":10},{"name":"艺术","value":9},{"name":"Github","value":9},{"name":"写作方法","value":8}].map(tag => tag.name),
+                            textStyle: { fontSize: 14, fontWeight: 'bold', fontFamily: 'Microsoft YaHei, SimSun, serif' }
+                        }
+                    });
+
+                    tagsChart.on('click', function (params) {
+                        window.location.href = '/blog/tags/' + params.name;
+                    });
+                }
+            })
+        </script>
+    
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const categoriesChartDom = document.getElementById('categoriesChart');
+                if(categoriesChartDom){
+                    const categoriesChart = echarts.init(categoriesChartDom, 'light');
+                    categoriesChart.setOption({
+                        xAxis: { type: 'value', splitLine: { lineStyle: { type: 'dashed', color: '#ccc' } } },
+                        yAxis: { 
+                            type: 'category', 
+                            data: [{"name":"计算笔记","value":28},{"name":"咫闻周刊","value":25},{"name":"读书笔记","value":13}].map(category => category.name).reverse(), 
+                            axisLabel: { fontSize: 14, fontWeight: 'bold', fontFamily: 'Microsoft YaHei, SimSun, serif' }
+                        },
+                        series: [{
+                            name: 'Category Count',
+                            type: 'bar',
+                            data: [{"name":"计算笔记","value":28},{"name":"咫闻周刊","value":25},{"name":"读书笔记","value":13}].map(category => category.value).reverse(),
+                            label: {
+                                show: true,
+                                position: 'right',
+                                formatter: params => params.value,
+                                fontSize: 14,
+                                color: '#000',
+                                fontWeight: 'bold',
+                                fontFamily: 'Microsoft YaHei, SimSun, serif'
+                            },
+                            itemStyle: {
+                                color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
+                                    { offset: 0, color: '#91CC75' },
+                                    { offset: 1, color: '#73C0DE' }
+                                ])
+                            }
+                        }]
+                    });
+
+                    categoriesChart.on('click', function (params) {
+                        window.location.href = '/blog/categories/' + params.name;
+                    });
+                }
+            });
+        </script>
+    
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const categoriesTreeChartDom = document.getElementById('categoriesTreeChart');
+                if(categoriesTreeChartDom){
+                    const treeChart = echarts.init(categoriesTreeChartDom, 'light');
+                    treeChart.setOption({
+                        title: {
+                            text: '操作提示：单击展开分类，双击进入具体分类页面',
+                            textStyle: {
+                                fontSize: 12,
+                                color: '#999',
+                                fontWeight: 'normal'
+                            },
+                            bottom: 0,
+                            left: 'center'
+                        },
+                        tooltip: {
+                            trigger: 'item',
+                            triggerOn: 'mousemove'
+                        },
+                        series: [{
+                            type: 'tree',
+                            data: [{"name":"Categories","children":[{"name":"计算笔记","children":[],"count":28,"path":"计算笔记"},{"name":"读书笔记","children":[],"count":13,"path":"读书笔记"},{"name":"咫闻周刊","children":[],"count":25,"path":"咫闻周刊"}],"count":0,"path":""}],
+                            initialTreeDepth: -1,
+                            top: '5%',
+                            bottom: '10%',
+                            left: '0%',
+                            right: '0%',
+                            symbolSize: 15,
+                            layout: 'orthogonal',
+                            orient: 'TB',
+                            itemStyle: {
+                                color: '#91CC75',
+                                borderColor: '#73C0DE'
+                            },
+                            label: {
+                                position: 'bottom',
+                                verticalAlign: 'middle',
+                                align: 'center',
+                                fontSize: 14,
+                                distance: 28,
+                                formatter: function(params) {
+                                    return params.data.name + (params.data.count ? ' (' + params.data.count + ')' : '');
+                                }
+                            },
+                            leaves: {
+                                label: {
+                                    position: 'top',
+                                    verticalAlign: 'middle',
+                                    align: 'center'
+                                }
+                            },
+                            emphasis: {
+                                focus: 'descendant'
+                            },
+                            expandAndCollapse: true
+                        }]
+                    });
+
+                    treeChart.on('dblclick', function (params) {
+                        if (params.data && params.data.path) {
+                            window.location.href = '/blog/categories/' + params.data.path;
+                        }
+                    });
+                }
+            });
+        </script>
+    
+    </body>
+</html>

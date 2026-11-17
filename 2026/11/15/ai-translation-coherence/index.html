@@ -6,10 +6,10 @@
   <title>对 AI 翻译连贯性问题的简单思索 | Joffoo&#39;s blog | The ethereal flight, oft rehearsed in the theater of one&#39;s dreams...</title>
 
   
-    <link rel="icon" href="/favicon_io/favicon.ico">
-    <link rel="apple-touch-icon" href="/favicon_io/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/favicon_io/android-chrome-192x192.png">
-    <link rel="manifest" href="/favicon_io/site.webmanifest">
+    <link rel="icon" href="/blog/favicon_io/favicon.ico">
+    <link rel="apple-touch-icon" href="/blog/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/blog/favicon_io/android-chrome-192x192.png">
+    <link rel="manifest" href="/blog/favicon_io/site.webmanifest">
   
 
   
@@ -34,12 +34,12 @@
   <meta property="og:site_name" content="Joffoo&#39;s blog"/>
 
   
-  <meta property="og:image" content="/favicon.ico"/>
+  <meta property="og:image" content="/blog/favicon.ico"/>
   
 
-  <link href="/favicon.ico" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Joffoo&#39;s blog" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link href="/blog/favicon.ico" rel="icon">
+  <link rel="alternate" href="/blog/atom.xml" title="Joffoo&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/blog/css/style.css" media="screen" type="text/css">
 <meta name="generator" content="Hexo 7.2.0"></head>
 
 <head>
@@ -277,20 +277,20 @@
     <header>
   <div class="site-branding">
     <h1 class="site-title">
-      <a href="/">Joffoo&#39;s blog</a>
+      <a href="/blog/">Joffoo&#39;s blog</a>
     </h1>
     <p class="site-description">The ethereal flight, oft rehearsed in the theater of one&#39;s dreams...</p>
   </div>
   <nav class="site-navigation">
     <ul>
       
-        <li><a href="/">主页</a></li>
+        <li><a href="/blog/">主页</a></li>
       
-        <li><a href="/archives">归档</a></li>
+        <li><a href="/blog/archives">归档</a></li>
       
-        <li><a href="/categories">分类</a></li>
+        <li><a href="/blog/categories">分类</a></li>
       
-        <li><a href="/tags">标签</a></li>
+        <li><a href="/blog/tags">标签</a></li>
       
     </ul>
   </nav>
@@ -307,7 +307,7 @@
 
   <div class="article-top-meta">
     <span class="posted-on">
-      <a href="/2026/11/15/ai-translation-coherence/" rel="bookmark">
+      <a href="/blog/2026/11/15/ai-translation-coherence/" rel="bookmark">
         <time class="entry-date published" datetime="2026-11-14T16:00:00.000Z">
           2026-11-15
         </time>
@@ -321,7 +321,7 @@
   <div class="article-content">
     <div class="entry">
       
-        <p><img src="/2026/11/15/ai-translation-coherence/blog-261115-003.png" alt></p>
+        <p><img src="/blog/2026/11/15/ai-translation-coherence/blog-261115-003.png" alt></p>
 <p>省流：AI 翻译长篇文本时容易前后翻译不一致，前面是施瓦辛格，后面是舒华辛力加。怎么办，我们切片翻译，提示词里配上术语表就行。</p>
 <span id="more"></span>
 <h2 id="我的方式不是快捷方式"><a href="#我的方式不是快捷方式" class="headerlink" title="我的方式不是快捷方式"></a>我的方式不是快捷方式</h2><p>所以，我在思索什么。</p>
@@ -343,7 +343,7 @@
 <h2 id="我的方式不是我的方式"><a href="#我的方式不是我的方式" class="headerlink" title="我的方式不是我的方式"></a>我的方式不是我的方式</h2><p>后来村上春树在七月份发表了一本小说《<a target="_blank" rel="noopener" href="https://book.douban.com/subject/38436115/">夏帆</a>》，主角是女插画师，我还记得书里有食蚁兽。</p>
 <p>这本书在发表的那天晚上，Z-library 就有人给了 AI 翻译的版本。直到现在，你也搜不到日语原版，只有各种中文翻译版挂在上面。人们几乎是清一色的好评，说是终于读到没有译者味的村上春树作品了。</p>
 <p>后来有人认领了，推出了一个开源项目 <a target="_blank" rel="noopener" href="https://github.com/BigDawnGhost/wenyi">Wenyi</a>。我偶然发现撞了思路，都是边翻译边补充术语表。</p>
-<p><img src="/2026/11/15/ai-translation-coherence/blog-261115-001.png" alt></p>
+<p><img src="/blog/2026/11/15/ai-translation-coherence/blog-261115-001.png" alt></p>
 <p>我知道，也写明白了，如果你不想先跑一遍术语表，你就没有第二种选择，所以“我的方式不是我的方式”——当然不是我的方式，这是谁都能想到的路子，我很能接受这一点。</p>
 <p>况且 Wenyi 没有在处理新增术语时检索后文，所以我还是有自己的东西在。</p>
 <p>但我却开始进一步创新了。注意，后面的思路请不要学，哪怕是管用的思路，也不要学。</p>
@@ -355,7 +355,7 @@
 <p>于是我选择了放弃。</p>
 <p>仔细想一下，漏洞是可以继续补的，比如人名地名之类的可以常驻术语表，剩下的部分模糊搜索也没有太大问题。我也实际测试过，没有太大问题，但还是放弃了。</p>
 <p>正如前面所说的，<strong>我的注意力是有限的，token 的成本不过降低了几块，但是译本却出现了硬伤，哪怕只是有了这种风险，对我来说也是不能接受的</strong>。</p>
-<h2 id="我的方式是适合我的方式"><a href="#我的方式是适合我的方式" class="headerlink" title="我的方式是适合我的方式"></a>我的方式是适合我的方式</h2><p><img src="/2026/11/15/ai-translation-coherence/blog-261115-002.png" alt></p>
+<h2 id="我的方式是适合我的方式"><a href="#我的方式是适合我的方式" class="headerlink" title="我的方式是适合我的方式"></a>我的方式是适合我的方式</h2><p><img src="/blog/2026/11/15/ai-translation-coherence/blog-261115-002.png" alt></p>
 <p>我要接受做东西没有人用，既然你没有往有人用这个角度努过力。</p>
 <p>我也要接受公众号文章没有推荐——那就是没有阅读量了，对我来说也是正常的状态。</p>
 <p>同样，我接受了现在这个翻译工作流，虽然不是最优化的方案。当然在此基础上，可以做一点引入风险的优化。</p>
@@ -386,7 +386,7 @@
 
     <span class="post-categories">
       <i class="icon-categories"></i>
-        <a href="/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
+        <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
     </span>
     
 
@@ -395,7 +395,7 @@
 
     <span class="post-tags">
       <i class="icon-tags"></i>
-        <a href="/tags/AI/">AI</a><a href="/tags/%E7%BF%BB%E8%AF%91/">翻译</a>
+        <a href="/blog/tags/AI/">AI</a><a href="/blog/tags/%E7%BF%BB%E8%AF%91/">翻译</a>
     </span>
     
 
@@ -434,7 +434,7 @@
     <span class="like-count">0</span>
   </button>
   <div class="like-message">
-    <img src="/images/luoziwuhui.svg" alt="落子无悔" class="luoziwuhui-svg">
+    <img src="/blog/images/luoziwuhui.svg" alt="落子无悔" class="luoziwuhui-svg">
   </div>
 </div>
 
@@ -793,10 +793,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     
     
-    <script src="/js/lang-detector.js"></script>
+    <script src="/blog/js/lang-detector.js"></script>
     
     
-    <script src="/js/footnote-popup.js"></script>
+    <script src="/blog/js/footnote-popup.js"></script>
     
 
     <!-- Mermaid.js CDN 引入 -->
@@ -841,7 +841,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         return result;
                     };
                     
-                    const groupedData = groupByYear([["2024-06-23",1],["2024-06-30",1],["2024-07-06",1],["2024-08-19",1],["2024-09-02",1],["2024-09-12",1],["2024-09-24",1],["2024-10-12",1],["2024-11-05",1],["2024-12-04",1],["2024-12-26",1],["2025-01-04",1],["2025-01-11",1],["2025-01-20",1],["2025-01-22",1],["2025-01-24",1],["2025-01-31",1],["2025-02-07",1],["2025-02-21",1],["2025-03-02",1],["2025-03-15",1],["2025-05-25",1],["2025-06-13",1],["2025-06-16",1],["2025-06-22",1],["2025-06-26",1],["2025-07-12",1],["2025-07-27",1],["2025-08-31",1],["2025-09-07",1],["2025-09-21",1],["2025-10-04",1],["2025-11-02",1],["2025-11-22",1],["2025-11-30",1],["2025-12-06",1],["2025-12-12",1],["2025-12-20",1],["2026-01-11",1],["2026-01-24",1],["2026-02-13",1],["2026-02-19",1],["2026-03-14",1],["2026-04-11",1],["2026-04-24",1],["2026-05-02",1],["2026-05-10",1],["2026-05-15",1],["2026-05-17",1],["2026-05-27",1],["2026-05-29",1],["2026-06-27",1],["2026-07-11",1],["2026-08-21",1],["2026-09-12",1],["2026-10-10",1],["2026-10-14",1],["2026-10-18",1],["2026-10-22",1],["2026-10-26",1],["2026-10-31",1],["2026-11-04",1],["2026-11-10",1],["2026-11-15",1]]);
+                    const groupedData = groupByYear([["2024-06-23",1],["2024-06-30",1],["2024-07-06",1],["2024-08-19",1],["2024-09-02",1],["2024-09-12",1],["2024-09-24",1],["2024-10-12",1],["2024-11-05",1],["2024-12-04",1],["2024-12-26",1],["2025-01-04",1],["2025-01-11",1],["2025-01-20",1],["2025-01-22",1],["2025-01-24",1],["2025-01-31",1],["2025-02-07",1],["2025-02-21",1],["2025-03-02",1],["2025-03-15",1],["2025-05-25",1],["2025-06-13",1],["2025-06-16",1],["2025-06-22",1],["2025-06-26",1],["2025-07-12",1],["2025-07-27",1],["2025-08-31",1],["2025-09-07",1],["2025-09-21",1],["2025-10-04",1],["2025-11-02",1],["2025-11-22",1],["2025-11-30",1],["2025-12-06",1],["2025-12-12",1],["2025-12-20",1],["2026-01-11",1],["2026-01-24",1],["2026-02-13",1],["2026-02-19",1],["2026-03-14",1],["2026-04-11",1],["2026-04-24",1],["2026-05-02",1],["2026-05-10",1],["2026-05-15",1],["2026-05-17",1],["2026-05-27",1],["2026-05-29",1],["2026-06-27",1],["2026-07-11",1],["2026-08-21",1],["2026-09-12",1],["2026-10-10",1],["2026-10-14",1],["2026-10-18",1],["2026-10-22",1],["2026-10-26",1],["2026-10-31",1],["2026-11-04",1],["2026-11-10",1],["2026-11-15",1],["2026-11-17",2]]);
                     const years = Object.keys(groupedData).reverse();
                     
                     var initYear = parseInt(heatmapChartDom.getAttribute('year')) || new Date().getFullYear();
@@ -941,7 +941,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     heatmapChart.on('click', function (params) {
                         if (params.componentType === 'series') {
                             const [year, month] = params.value[0].split('-');
-                            window.location.href = '/archives/' + year + '/' + month;
+                            window.location.href = '/blog/archives/' + year + '/' + month;
                         }
                     });
                 }
@@ -964,7 +964,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         series: [{
                             name: 'Articles',
                             type: 'line',
-                            data: [2,1,1,3,1,1,2,6,2,2,1,4,2,1,2,1,3,3,2,2,1,2,6,1,1,1,1,6,3],
+                            data: [2,1,1,3,1,1,2,6,2,2,1,4,2,1,2,1,3,3,2,2,1,2,6,1,1,1,1,6,5],
                             smooth: true,
                             lineStyle: { color: '#5470C6', width: 2 },
                             itemStyle: { color: '#5470C6' },
@@ -984,7 +984,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     monthlyChart.on('click', function (params) {
                         const [year, month] = params.name.split('-');
-                        window.location.href = '/archives/' + year + '/' + month;
+                        window.location.href = '/blog/archives/' + year + '/' + month;
                     });
                 }
             })
@@ -1001,7 +1001,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         series: [{
                             type: 'pie',
                             radius: '60%',
-                            data: [{"name":"AI","value":49},{"name":"翻译","value":14},{"name":"现代生活","value":13},{"name":"设计","value":12},{"name":"读小说","value":10},{"name":"艺术","value":9},{"name":"Github","value":9},{"name":"尝试集","value":6}],
+                            data: [{"name":"AI","value":51},{"name":"翻译","value":15},{"name":"现代生活","value":13},{"name":"设计","value":12},{"name":"读小说","value":10},{"name":"艺术","value":9},{"name":"Github","value":9},{"name":"写作方法","value":8}],
                             label: {
                                 position: 'outside',
                                 formatter: '{b} {c} ({d}%)',
@@ -1015,13 +1015,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         legend: {
                             bottom: '0',
                             left: 'center',
-                            data: [{"name":"AI","value":49},{"name":"翻译","value":14},{"name":"现代生活","value":13},{"name":"设计","value":12},{"name":"读小说","value":10},{"name":"艺术","value":9},{"name":"Github","value":9},{"name":"尝试集","value":6}].map(tag => tag.name),
+                            data: [{"name":"AI","value":51},{"name":"翻译","value":15},{"name":"现代生活","value":13},{"name":"设计","value":12},{"name":"读小说","value":10},{"name":"艺术","value":9},{"name":"Github","value":9},{"name":"写作方法","value":8}].map(tag => tag.name),
                             textStyle: { fontSize: 14, fontWeight: 'bold', fontFamily: 'Microsoft YaHei, SimSun, serif' }
                         }
                     });
 
                     tagsChart.on('click', function (params) {
-                        window.location.href = '/tags/' + params.name;
+                        window.location.href = '/blog/tags/' + params.name;
                     });
                 }
             })
@@ -1037,13 +1037,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         xAxis: { type: 'value', splitLine: { lineStyle: { type: 'dashed', color: '#ccc' } } },
                         yAxis: { 
                             type: 'category', 
-                            data: [{"name":"计算笔记","value":26},{"name":"咫闻周刊","value":25},{"name":"读书笔记","value":13}].map(category => category.name).reverse(), 
+                            data: [{"name":"计算笔记","value":28},{"name":"咫闻周刊","value":25},{"name":"读书笔记","value":13}].map(category => category.name).reverse(), 
                             axisLabel: { fontSize: 14, fontWeight: 'bold', fontFamily: 'Microsoft YaHei, SimSun, serif' }
                         },
                         series: [{
                             name: 'Category Count',
                             type: 'bar',
-                            data: [{"name":"计算笔记","value":26},{"name":"咫闻周刊","value":25},{"name":"读书笔记","value":13}].map(category => category.value).reverse(),
+                            data: [{"name":"计算笔记","value":28},{"name":"咫闻周刊","value":25},{"name":"读书笔记","value":13}].map(category => category.value).reverse(),
                             label: {
                                 show: true,
                                 position: 'right',
@@ -1063,7 +1063,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
 
                     categoriesChart.on('click', function (params) {
-                        window.location.href = '/categories/' + params.name;
+                        window.location.href = '/blog/categories/' + params.name;
                     });
                 }
             });
@@ -1092,7 +1092,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         },
                         series: [{
                             type: 'tree',
-                            data: [{"name":"Categories","children":[{"name":"计算笔记","children":[],"count":26,"path":"计算笔记"},{"name":"读书笔记","children":[],"count":13,"path":"读书笔记"},{"name":"咫闻周刊","children":[],"count":25,"path":"咫闻周刊"}],"count":0,"path":""}],
+                            data: [{"name":"Categories","children":[{"name":"计算笔记","children":[],"count":28,"path":"计算笔记"},{"name":"读书笔记","children":[],"count":13,"path":"读书笔记"},{"name":"咫闻周刊","children":[],"count":25,"path":"咫闻周刊"}],"count":0,"path":""}],
                             initialTreeDepth: -1,
                             top: '5%',
                             bottom: '10%',
@@ -1131,7 +1131,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     treeChart.on('dblclick', function (params) {
                         if (params.data && params.data.path) {
-                            window.location.href = '/categories/' + params.data.path;
+                            window.location.href = '/blog/categories/' + params.data.path;
                         }
                     });
                 }
