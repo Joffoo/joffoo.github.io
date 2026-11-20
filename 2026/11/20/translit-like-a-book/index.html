@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>TransLit：让AI翻译的书，更像一本书 | Joffoo&#39;s blog | The ethereal flight, oft rehearsed in the theater of one&#39;s dreams...</title>
+  <title>TransLit：让 AI 翻译的书，更像一本书 | Joffoo&#39;s blog | The ethereal flight, oft rehearsed in the theater of one&#39;s dreams...</title>
 
   
     <link rel="icon" href="/favicon_io/favicon.ico">
@@ -17,23 +17,21 @@
   
 
   
-  <meta name="description" content="![[blog-261120-001.png]]
-完成了 AI 翻译工作流，读到成品才发现版式的毛病一样让人难受。
+  <meta name="description" content="完成了 AI 翻译工作流，读到成品才发现版式的毛病一样让人难受。
 标题混进了正文，注释一个都点不开。哪怕翻译效果还不错，却总觉得自己在读盗版书（虽然不可谓不是）。
-于是重写了 TransLit，就是想让 AI 翻译的电子书，至少看起来像一本“书”。
-">
+于是重写了 TransLit，就是想让 AI 翻译的电子书，至少看起来像一本“书”。">
   
 
   
   
-  <meta name="keywords" content="领域/AI/翻译,来源/AIChat,工具/Antigravity,项目/小说翻译,博客/计算笔记">
+  <meta name="keywords" content="AI,翻译,设计,Github">
   
 
   <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-  <meta property="og:title" content="TransLit：让AI翻译的书，更像一本书"/>
+  <meta property="og:title" content="TransLit：让 AI 翻译的书，更像一本书"/>
 
   <meta property="og:site_name" content="Joffoo&#39;s blog"/>
 
@@ -305,15 +303,15 @@
 
   
     
-    <h3 class="article-title"><span>TransLit：让AI翻译的书，更像一本书</span></h3>
+    <h3 class="article-title"><span>TransLit：让 AI 翻译的书，更像一本书</span></h3>
     
   
 
   <div class="article-top-meta">
     <span class="posted-on">
-      <a href="/2026/11/19/translit-like-a-book/" rel="bookmark">
-        <time class="entry-date published" datetime="2026-11-18T16:00:00.000Z">
-          2026-11-19
+      <a href="/2026/11/20/translit-like-a-book/" rel="bookmark">
+        <time class="entry-date published" datetime="2026-11-20T12:16:00.000Z">
+          2026-11-20
         </time>
       </a>
     </span>
@@ -325,30 +323,31 @@
   <div class="article-content">
     <div class="entry">
       
-        <p>![[blog-261120-001.png]]</p>
+        <p><img src="/2026/11/20/translit-like-a-book/blog-261120-001.png" alt></p>
 <p>完成了 AI 翻译工作流，读到成品才发现版式的毛病一样让人难受。</p>
 <p>标题混进了正文，注释一个都点不开。哪怕翻译效果还不错，却总觉得自己在读盗版书（<em>虽然不可谓不是</em>）。</p>
 <p>于是重写了 TransLit，就是想让 AI 翻译的电子书，至少看起来像一本“书”。</p>
+<span id="more"></span>
 <h2 id="从能翻译到像本书"><a href="#从能翻译到像本书" class="headerlink" title="从能翻译到像本书"></a>从能翻译到像本书</h2><p>TransLit 是个打开浏览器网页就能用的电子书翻译工具。一切流程全都在你自己的浏览器完成，填你自己的模型 API 密钥就行。原书文件和 API 密钥都只保存在当前浏览器本地，不会传输到任何第三方服务器。</p>
 <p>这也意味着有一点得提前留意，所有数据都存在本地浏览器里，中途要是换了浏览器或者清掉缓存，还没导出的工作进度就会丢失，所以翻完记得顺手下载保存。</p>
 <p>这次重写，我是想保留原书的结构，但是按照中文书的排版习惯重排，导出能直接放进阅读器看的成品。界面也顺手全改成中文，换了个黑白极简风的新 Logo，你能看到“TransLit”的首字母 T 和书页折角，看着比以前要利落不少。</p>
 <p>先看一眼主界面吧：</p>
-<p>![[blog-261120-002.png]]</p>
+<p><img src="/2026/11/20/translit-like-a-book/blog-261120-002.png" alt></p>
 <h2 id="放弃-Markdown-中转，直接改-HTML"><a href="#放弃-Markdown-中转，直接改-HTML" class="headerlink" title="放弃 Markdown 中转，直接改 HTML"></a>放弃 Markdown 中转，直接改 HTML</h2><p>据说，Markdown 是 AI 的母语。</p>
 <p>之前版本的做法是，先把 EPUB 的每一页转换成 Markdown 格式，丢给模型翻译，整合后再转回 EPUB。</p>
 <p>流程很容易跑通，但电子书的部分样式，转化为 Markdown 之后就丢光了。因为原书的 EPUB 很可能只是在 CSS 文件里标注了样式信息，并没有用专门的标题标签。最常碰到的情况就是章节标题或者特殊引文丢了样式标记，导入阅读器后这些内容全部退化成普通正文。</p>
 <p>所以，新版弃用了那套 Markdown 中转流程。EPUB 里面本来就是打包好的 HTML 文件，程序会先识别一遍原书的版式语义，把哪块是标题、哪块居中、哪块是引文都标记出来，同时保留原书的骨架。模型翻完文本块之后，程序再把译文按位置填回原来的节点，最后用预设好的中文排版样式接管全书。</p>
 <p>这样原书的层次和结构可以保留，版面又能按中文阅读习惯重新排得整整齐齐。</p>
 <h2 id="引入“赫蹏”排版规范，所见即所得"><a href="#引入“赫蹏”排版规范，所见即所得" class="headerlink" title="引入“赫蹏”排版规范，所见即所得"></a>引入“赫蹏”排版规范，所见即所得</h2><p>为了让译文看着顺眼，新版参考了中文排版规范—— <a target="_blank" rel="noopener" href="https://github.com/sivan/heti">Heti（赫蹏）</a>。</p>
-<p>![[blog-261120-003.png]]</p>
+<p><img src="/2026/11/20/translit-like-a-book/blog-261120-003.png" alt></p>
 <p>很多改动都落在阅读时的细节上。</p>
 <p>比如，外文书里常拿斜体来表示书名或者强调，中文如果硬要用斜体，笔画很容易发虚、起锯齿，所以斜体样式统一转换成了楷体正排。独立成段的引文块也用楷体正排，配上一层浅色底纹和左侧细线。</p>
 <p>除了排版，界面布局也清爽了许多。</p>
 <p>右侧一大块区域本来全是控制台，现在留给实时排版预览，顶部可以实时切换译文、双语、原文三种视图，所见即所得。</p>
 <p>现在右侧底部为状态栏，可以展示章节数、术语数、Token 消耗量和缓存命中率等参数，想看详细日志时，点开右下角的按钮即可弹出控制台。</p>
-<p>![[blog-261120-004.png]]</p>
+<p><img src="/2026/11/20/translit-like-a-book/blog-261120-004.png" alt></p>
 <p>当前有 6 种版本 EPUB 可以导出。纯译文版、原文在前的双语对照版、译文在前的双语对照版，这三种版式各自又分微信读书专版和通用电子版。选择困难的话，也可以直接点击“导出电子书”按钮，打包成合集 ZIP 带走。</p>
-<p>![[blog-261120-005.png]]</p>
+<p><img src="/2026/11/20/translit-like-a-book/blog-261120-005.png" alt></p>
 <p>双语留了两种顺序，主要是应付不同的阅读场景。</p>
 <p>原文在前适合研读原文，卡住了再往下瞄一眼中文。译文在前更适合顺着中文往下读，碰到拿不准的词句再对照原文，毕竟 AI 翻译不是万无一失的。</p>
 <p>不过我只是想读完一本书，还是更喜欢纯译文版，最为沉浸。毕竟双语版篇幅长上一倍，哪怕不读原文，点屏幕也更费劲。但顺手留下双语版也是好的，万一哪天想学外语就能直接派上用场。</p>
@@ -357,25 +356,25 @@
 <p>新版在解包时会先扫描全书的引用关系，把独立文件里的注脚搬回对应的章节，同时把原注脚文件锁定，免得重复翻译。在 AI 翻译之前，先用占位符保护正文中的角标，防止模型顺手删改。</p>
 <p>导出时，程序会生成弹注气泡，就像前面预览图里展示的那样。</p>
 <p>导入手机上的微信读书之后，点一下注脚图标，也会原地弹出气泡。如果是双语版，中文角标弹中文译注，英文角标弹英文原注，两边互不干扰。</p>
-<p>![[blog-261120-006.png]]</p>
+<p><img src="/2026/11/20/translit-like-a-book/blog-261120-006.png" alt></p>
 <h2 id="打开网页就能用！"><a href="#打开网页就能用！" class="headerlink" title="打开网页就能用！"></a>打开网页就能用！</h2><p>作为一款网页应用，TransLit 免去了本地配环境的麻烦，点击链接就能体验（见文末分享卡片）。</p>
 <h3 id="配置自己的-API-接口"><a href="#配置自己的-API-接口" class="headerlink" title="配置自己的 API 接口"></a>配置自己的 API 接口</h3><p>先在左侧打开 API 接口配置，填好兼容 OpenAI 接口的地址、密钥和模型。</p>
 <p>这里支持保存多套 API 配置，随时可以新建、复制或者切换。万一翻到一半碰到某个接口限流，或者某个分片翻译不成功，切到备用模型就能分片重试，不用从头再来。</p>
 <p>面板里还做了一键拉取可用模型列表的功能，填完地址和密钥点一下就能选模型，省得再去翻文档复制粘贴一长串模型名字。早就该这样做了。</p>
-<p>![[blog-261120-007.png]]</p>
+<p><img src="/2026/11/20/translit-like-a-book/blog-261120-007.png" alt></p>
 <h3 id="拖入-EPUB-等待自动预处理"><a href="#拖入-EPUB-等待自动预处理" class="headerlink" title="拖入 EPUB 等待自动预处理"></a>拖入 EPUB 等待自动预处理</h3><p>把 EPUB 拖进页面后，程序会自动做完准备工作。</p>
 <p>原文语种自动识别、全书脚注提取，还有页面分类都会一并完成。比如自动跳过版权页、纯图封面保持原文、锁定注释源文件。切到右侧的章节目录就能看到每一页的分类结果。</p>
 <p>如果发现哪一章的页面分类不合心意，尽管手动修改，是正常翻译、保持原文还是直接丢弃，全由你决定。</p>
-<p>![[blog-261120-008.png]]</p>
-<h3 id="选好翻译策略并联动术语库"><a href="#选好翻译策略并联动术语库" class="headerlink" title="选好翻译策略并联动术语库"></a>选好翻译策略并联动术语库</h3><p>左侧提供了两种翻译策略，不过在我看来，大多数情况都更适合选择“轻量翻译”，“两步翻译”更像是给之前大模型打的补丁（详见 <a href="/2026/05/10/translit-evolution-two-step/">TransLit：AI翻译，多人一步</a>）。</p>
+<p><img src="/2026/11/20/translit-like-a-book/blog-261120-008.png" alt></p>
+<h3 id="选好翻译策略并联动术语库"><a href="#选好翻译策略并联动术语库" class="headerlink" title="选好翻译策略并联动术语库"></a>选好翻译策略并联动术语库</h3><p>左侧提供了两种翻译策略，不过在我看来，大多数情况都更适合选择“轻量翻译”，“两步翻译”更像是给之前大模型打的补丁（详见 <a href="/2026/05/10/translit-evolution-two-step/">TransLit：AI 翻译，多人一步</a>）。</p>
 <p>下面还可以填写“背景设定与补充说明”，把这本书的背景设定或语言风格交代给模型。不得不说，我几乎没有用过，一般情况下原文的约束就足够了。</p>
-<p>翻译过程中，大模型会一边翻译文段，一边抽取书里的“术语”，来确保前后一致性，实时显示到右侧的全书术语库表格里（详见<a href="/2026/05/02/translit-ai-translation-ebook/">TransLit：AI翻译电子书之我见</a>）。要是看到哪个词翻得不够妥帖，你直接在表格里手动修改，再点一下“联动已译章节”，新译名就会批量同步回前面已经翻完的章节里，不用自己逐章替换。</p>
-<p>![[blog-261120-009.png]]</p>
+<p>翻译过程中，大模型会一边翻译文段，一边抽取书里的“术语”，来确保前后一致性，实时显示到右侧的全书术语库表格里（详见<a href="/2026/05/02/translit-ai-translation-ebook/">TransLit：AI 翻译电子书之我见</a>）。要是看到哪个词翻得不够妥帖，你直接在表格里手动修改，再点一下“联动已译章节”，新译名就会批量同步回前面已经翻完的章节里，不用自己逐章替换。</p>
+<p><img src="/2026/11/20/translit-like-a-book/blog-261120-009.png" alt></p>
 <h2 id="问题出现我再告诉大家"><a href="#问题出现我再告诉大家" class="headerlink" title="问题出现我再告诉大家"></a>问题出现我再告诉大家</h2><p>说到底，<strong>TransLit 就是为了满足我的一己私欲做出来的翻译工具</strong>，与其说是开源，不如说是找了个可靠的网盘（<em>GitHub</em>）存着。</p>
 <p>每本电子书的底层写法千差万别，我不敢保证当前版本的 TransLit 是通用的，后面要是遇到什么新问题，我还会持续更新打磨。实话实说，之前做过的很多工具都做不到持续使用、持续迭代，幸好我读书的习惯没有完全丧失。</p>
 <p>如果你平时也常读外文 EPUB 电子书，却苦于繁琐的翻译流程或者糟糕的翻译效果，欢迎打开试试看，遇到问题随时来仓库提 Issue。</p>
 <p>我会鼓励你自己解决，让我们一同踏上“程序自由之路”。</p>
-<p>![[blog-261120-010.png]]</p>
+<p><img src="/2026/11/20/translit-like-a-book/blog-261120-010.png" alt></p>
 <ul>
 <li>在线体验： <a target="_blank" rel="noopener" href="https://translit.joffoo.workers.dev/">https://translit.joffoo.workers.dev/</a></li>
 <li>GitHub 仓库： <a target="_blank" rel="noopener" href="https://github.com/fengyukongzhou/TransLit">https://github.com/fengyukongzhou/TransLit</a></li>
@@ -390,13 +389,20 @@
     <div class="article-meta pull-left">
 
     
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">计算笔记</a>
+    </span>
+    
 
     
     
 
     <span class="post-tags">
       <i class="icon-tags"></i>
-        <a href="/tags/%E9%A2%86%E5%9F%9F%2FAI%2F%E7%BF%BB%E8%AF%91/">领域/AI/翻译</a><a href="/tags/%E6%9D%A5%E6%BA%90%2FAIChat/">来源/AIChat</a><a href="/tags/%E5%B7%A5%E5%85%B7%2FAntigravity/">工具/Antigravity</a><a href="/tags/%E9%A1%B9%E7%9B%AE%2F%E5%B0%8F%E8%AF%B4%E7%BF%BB%E8%AF%91/">项目/小说翻译</a><a href="/tags/%E5%8D%9A%E5%AE%A2%2F%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">博客/计算笔记</a>
+        <a href="/tags/AI/">AI</a><a href="/tags/%E7%BF%BB%E8%AF%91/">翻译</a><a href="/tags/%E8%AE%BE%E8%AE%A1/">设计</a><a href="/tags/Github/">Github</a>
     </span>
     
 
@@ -430,7 +436,7 @@
 
 
 <div class="like-button-container">
-  <button class="like-button" data-path="2026/11/19/translit-like-a-book/">
+  <button class="like-button" data-path="2026/11/20/translit-like-a-book/">
     <i class="fas fa-heart"></i>
     <span class="like-count">0</span>
   </button>
@@ -842,7 +848,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         return result;
                     };
                     
-                    const groupedData = groupByYear([["2024-06-23",1],["2024-06-30",1],["2024-07-06",1],["2024-08-19",1],["2024-09-02",1],["2024-09-12",1],["2024-09-24",1],["2024-10-12",1],["2024-11-05",1],["2024-12-04",1],["2024-12-26",1],["2025-01-04",1],["2025-01-11",1],["2025-01-20",1],["2025-01-22",1],["2025-01-24",1],["2025-01-31",1],["2025-02-07",1],["2025-02-21",1],["2025-03-02",1],["2025-03-15",1],["2025-05-25",1],["2025-06-13",1],["2025-06-16",1],["2025-06-22",1],["2025-06-26",1],["2025-07-12",1],["2025-07-27",1],["2025-08-31",1],["2025-09-07",1],["2025-09-21",1],["2025-10-04",1],["2025-11-02",1],["2025-11-22",1],["2025-11-30",1],["2025-12-06",1],["2025-12-12",1],["2025-12-20",1],["2026-01-11",1],["2026-01-24",1],["2026-02-13",1],["2026-02-19",1],["2026-03-14",1],["2026-04-11",1],["2026-04-24",1],["2026-05-02",1],["2026-05-10",1],["2026-05-15",1],["2026-05-17",1],["2026-05-27",1],["2026-05-29",1],["2026-06-27",1],["2026-07-11",1],["2026-08-21",1],["2026-09-12",1],["2026-10-10",1],["2026-10-14",1],["2026-10-18",1],["2026-10-22",1],["2026-10-26",1],["2026-10-31",1],["2026-11-04",1],["2026-11-10",1],["2026-11-15",1],["2026-11-17",2],["2026-11-19",1]]);
+                    const groupedData = groupByYear([["2024-06-23",1],["2024-06-30",1],["2024-07-06",1],["2024-08-19",1],["2024-09-02",1],["2024-09-12",1],["2024-09-24",1],["2024-10-12",1],["2024-11-05",1],["2024-12-04",1],["2024-12-26",1],["2025-01-04",1],["2025-01-11",1],["2025-01-20",1],["2025-01-22",1],["2025-01-24",1],["2025-01-31",1],["2025-02-07",1],["2025-02-21",1],["2025-03-02",1],["2025-03-15",1],["2025-05-25",1],["2025-06-13",1],["2025-06-16",1],["2025-06-22",1],["2025-06-26",1],["2025-07-12",1],["2025-07-27",1],["2025-08-31",1],["2025-09-07",1],["2025-09-21",1],["2025-10-04",1],["2025-11-02",1],["2025-11-22",1],["2025-11-30",1],["2025-12-06",1],["2025-12-12",1],["2025-12-20",1],["2026-01-11",1],["2026-01-24",1],["2026-02-13",1],["2026-02-19",1],["2026-03-14",1],["2026-04-11",1],["2026-04-24",1],["2026-05-02",1],["2026-05-10",1],["2026-05-15",1],["2026-05-17",1],["2026-05-27",1],["2026-05-29",1],["2026-06-27",1],["2026-07-11",1],["2026-08-21",1],["2026-09-12",1],["2026-10-10",1],["2026-10-14",1],["2026-10-18",1],["2026-10-22",1],["2026-10-26",1],["2026-10-31",1],["2026-11-04",1],["2026-11-10",1],["2026-11-15",1],["2026-11-17",2],["2026-11-20",1]]);
                     const years = Object.keys(groupedData).reverse();
                     
                     var initYear = parseInt(heatmapChartDom.getAttribute('year')) || new Date().getFullYear();
@@ -1002,7 +1008,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         series: [{
                             type: 'pie',
                             radius: '60%',
-                            data: [{"name":"AI","value":51},{"name":"翻译","value":15},{"name":"现代生活","value":13},{"name":"设计","value":12},{"name":"读小说","value":10},{"name":"艺术","value":9},{"name":"Github","value":9},{"name":"写作方法","value":8}],
+                            data: [{"name":"AI","value":52},{"name":"翻译","value":16},{"name":"设计","value":13},{"name":"现代生活","value":13},{"name":"读小说","value":10},{"name":"Github","value":10},{"name":"艺术","value":9},{"name":"写作方法","value":8}],
                             label: {
                                 position: 'outside',
                                 formatter: '{b} {c} ({d}%)',
@@ -1016,7 +1022,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         legend: {
                             bottom: '0',
                             left: 'center',
-                            data: [{"name":"AI","value":51},{"name":"翻译","value":15},{"name":"现代生活","value":13},{"name":"设计","value":12},{"name":"读小说","value":10},{"name":"艺术","value":9},{"name":"Github","value":9},{"name":"写作方法","value":8}].map(tag => tag.name),
+                            data: [{"name":"AI","value":52},{"name":"翻译","value":16},{"name":"设计","value":13},{"name":"现代生活","value":13},{"name":"读小说","value":10},{"name":"Github","value":10},{"name":"艺术","value":9},{"name":"写作方法","value":8}].map(tag => tag.name),
                             textStyle: { fontSize: 14, fontWeight: 'bold', fontFamily: 'Microsoft YaHei, SimSun, serif' }
                         }
                     });
@@ -1038,13 +1044,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         xAxis: { type: 'value', splitLine: { lineStyle: { type: 'dashed', color: '#ccc' } } },
                         yAxis: { 
                             type: 'category', 
-                            data: [{"name":"计算笔记","value":28},{"name":"咫闻周刊","value":25},{"name":"读书笔记","value":13}].map(category => category.name).reverse(), 
+                            data: [{"name":"计算笔记","value":29},{"name":"咫闻周刊","value":25},{"name":"读书笔记","value":13}].map(category => category.name).reverse(), 
                             axisLabel: { fontSize: 14, fontWeight: 'bold', fontFamily: 'Microsoft YaHei, SimSun, serif' }
                         },
                         series: [{
                             name: 'Category Count',
                             type: 'bar',
-                            data: [{"name":"计算笔记","value":28},{"name":"咫闻周刊","value":25},{"name":"读书笔记","value":13}].map(category => category.value).reverse(),
+                            data: [{"name":"计算笔记","value":29},{"name":"咫闻周刊","value":25},{"name":"读书笔记","value":13}].map(category => category.value).reverse(),
                             label: {
                                 show: true,
                                 position: 'right',
@@ -1093,7 +1099,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         },
                         series: [{
                             type: 'tree',
-                            data: [{"name":"Categories","children":[{"name":"计算笔记","children":[],"count":28,"path":"计算笔记"},{"name":"读书笔记","children":[],"count":13,"path":"读书笔记"},{"name":"咫闻周刊","children":[],"count":25,"path":"咫闻周刊"}],"count":0,"path":""}],
+                            data: [{"name":"Categories","children":[{"name":"计算笔记","children":[],"count":29,"path":"计算笔记"},{"name":"读书笔记","children":[],"count":13,"path":"读书笔记"},{"name":"咫闻周刊","children":[],"count":25,"path":"咫闻周刊"}],"count":0,"path":""}],
                             initialTreeDepth: -1,
                             top: '5%',
                             bottom: '10%',
