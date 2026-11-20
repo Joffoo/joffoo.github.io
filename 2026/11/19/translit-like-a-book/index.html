@@ -1,0 +1,1143 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>TransLit：让AI翻译的书，更像一本书 | Joffoo&#39;s blog | The ethereal flight, oft rehearsed in the theater of one&#39;s dreams...</title>
+
+  
+    <link rel="icon" href="/favicon_io/favicon.ico">
+    <link rel="apple-touch-icon" href="/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon_io/android-chrome-192x192.png">
+    <link rel="manifest" href="/favicon_io/site.webmanifest">
+  
+
+  
+  <meta name="author" content="Fengyukongzhou">
+  
+
+  
+  <meta name="description" content="![[blog-261120-001.png]]
+完成了 AI 翻译工作流，读到成品才发现版式的毛病一样让人难受。
+标题混进了正文，注释一个都点不开。哪怕翻译效果还不错，却总觉得自己在读盗版书（虽然不可谓不是）。
+于是重写了 TransLit，就是想让 AI 翻译的电子书，至少看起来像一本“书”。
+">
+  
+
+  
+  
+  <meta name="keywords" content="领域/AI/翻译,来源/AIChat,工具/Antigravity,项目/小说翻译,博客/计算笔记">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="TransLit：让AI翻译的书，更像一本书"/>
+
+  <meta property="og:site_name" content="Joffoo&#39;s blog"/>
+
+  
+  <meta property="og:image" content="/favicon.ico"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Joffoo&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap">
+  <script>
+    // 主题切换功能
+    function initTheme() {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const savedTheme = localStorage.getItem('darkMode');
+      const darkModeEnabled = savedTheme !== null ? savedTheme === 'true' : prefersDark;
+      document.documentElement.setAttribute('data-theme', darkModeEnabled ? 'dark' : 'light');
+      const themeToggle = document.getElementById('theme-toggle');
+      if (themeToggle) {
+        themeToggle.innerHTML = darkModeEnabled ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+      }
+    }
+
+    function toggleTheme() {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('darkMode', newTheme === 'dark');
+      const themeToggle = document.getElementById('theme-toggle');
+      themeToggle.innerHTML = newTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    }
+    
+    // 回到顶部功能
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+    
+    // 控制回到顶部按钮的显示和隐藏
+    function toggleScrollTopButton() {
+      const scrollTopBtn = document.getElementById('scroll-top');
+      if (window.scrollY > 300) {
+        scrollTopBtn.classList.add('visible');
+      } else {
+        scrollTopBtn.classList.remove('visible');
+      }
+    }
+
+    // 在页面加载时初始化主题
+    document.addEventListener('DOMContentLoaded', function() {
+      initTheme();
+      // 监听滚动事件
+      window.addEventListener('scroll', toggleScrollTopButton);
+    });
+
+    // 监听系统主题变化
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+      if (localStorage.getItem('darkMode') === null) {
+        document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+          themeToggle.innerHTML = e.matches ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        }
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('figure.highlight').forEach(function(block) {
+        // 添加 MAC 风格按钮
+        const macButtons = document.createElement('div');
+        macButtons.className = 'mac-buttons';
+        macButtons.innerHTML = `
+          <span class="red"></span>
+          <span class="yellow"></span>
+          <span class="green"></span>
+        `;
+        block.appendChild(macButtons);
+        
+        // 获取代码语言
+        let language = '';
+        // 尝试从 class 获取语言
+        const classes = Array.from(block.classList);
+        const languageClass = classes.find(cls => cls !== 'highlight');
+        if (languageClass) {
+          language = languageClass;
+        }
+        // 尝试从 figcaption 获取语言
+        const figcaption = block.querySelector('figcaption');
+        if (!language && figcaption) {
+          language = figcaption.textContent.trim();
+        }
+        // 尝试从代码块的第一个元素获取语言
+        if (!language) {
+          const firstLine = block.querySelector('.code .line:first-child');
+          if (firstLine) {
+            const text = firstLine.textContent.trim();
+            if (text.startsWith('```')) {
+              language = text.replace('```', '').trim();
+            }
+          }
+        }
+        
+        // 添加语言标签
+        if (language) {
+          const langLabel = document.createElement('span');
+          langLabel.className = 'lang-label';
+          // 首字母大写
+          language = language.charAt(0).toUpperCase() + language.slice(1);
+          langLabel.textContent = language;
+          block.appendChild(langLabel);
+        }
+        
+        // 添加复制按钮
+        const copyButton = document.createElement('button');
+        copyButton.className = 'copy-button';
+        copyButton.innerHTML = '<i class="fas fa-copy"></i>';
+        block.appendChild(copyButton);
+
+        // 复制功能
+        copyButton.addEventListener('click', async function() {
+          try {
+            // 获取代码内容
+            let codeLines = [];
+            
+            // 获取所有代码行
+            if (block.querySelector('table')) {
+              // 如果是带行号的代码块，直接从 .line 元素获取内容
+              const rows = block.querySelectorAll('.code .line');
+              rows.forEach(row => {
+                // 移除每行开头的所有空白字符
+                const lineContent = row.textContent.replace(/^\s+/, '');
+                if (lineContent) {
+                  codeLines.push(lineContent);
+                }
+              });
+            } else {
+              // 如果是普通代码块
+              const codeBlock = block.querySelector('code');
+              const lines = codeBlock.textContent.split('\n');
+              lines.forEach(line => {
+                // 移除每行开头的所有空白字符
+                const lineContent = line.replace(/^\s+/, '');
+                if (lineContent) {
+                  codeLines.push(lineContent);
+                }
+              });
+            }
+            
+            // 组合处理后的代码
+            const processedCode = codeLines.join('\n').trim();
+            
+            // 使用 Clipboard API
+            await navigator.clipboard.writeText(processedCode);
+            
+            // 显示成功状态
+            copyButton.innerHTML = '<i class="fas fa-check"></i>';
+            
+            // 2秒后恢复
+            setTimeout(function() {
+              copyButton.innerHTML = '<i class="fas fa-copy"></i>';
+            }, 2000);
+          } catch (err) {
+            // 如果 Clipboard API 失败，使用传统方法
+            const textarea = document.createElement('textarea');
+            textarea.value = processedCode;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+              document.execCommand('copy');
+              copyButton.innerHTML = '<i class="fas fa-check"></i>';
+              setTimeout(function() {
+                copyButton.innerHTML = '<i class="fas fa-copy"></i>';
+              }, 2000);
+            } catch (err) {
+              console.error('复制失败:', err);
+            }
+            document.body.removeChild(textarea);
+          }
+        });
+      });
+    });
+  </script>
+  <style>
+    .floating-btn {
+      position: fixed;
+      bottom: 20px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--theme-color, #f03838);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2em;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .floating-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+    
+    #theme-toggle {
+      right: 20px;
+    }
+    
+    #scroll-top {
+      right: 70px; /* 位于夜间模式按钮旁边 */
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+    }
+    
+    #scroll-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+<button id="theme-toggle" class="floating-btn" onclick="toggleTheme()" aria-label="切换主题">
+  <i class="fas fa-moon"></i>
+</button>
+<button id="scroll-top" class="floating-btn" onclick="scrollToTop()" aria-label="回到顶部">
+  <i class="fas fa-arrow-up"></i>
+</button>
+<div class="blog">
+  <div class="content">
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">Joffoo&#39;s blog</a>
+    </h1>
+    <p class="site-description">The ethereal flight, oft rehearsed in the theater of one&#39;s dreams...</p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">主页</a></li>
+      
+        <li><a href="/archives">归档</a></li>
+      
+        <li><a href="/categories">分类</a></li>
+      
+        <li><a href="/tags">标签</a></li>
+      
+    </ul>
+  </nav>
+</header>
+    
+    <main class="site-main posts-loop">
+      <article>
+
+  
+    
+    <h3 class="article-title"><span>TransLit：让AI翻译的书，更像一本书</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2026/11/19/translit-like-a-book/" rel="bookmark">
+        <time class="entry-date published" datetime="2026-11-18T16:00:00.000Z">
+          2026-11-19
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>![[blog-261120-001.png]]</p>
+<p>完成了 AI 翻译工作流，读到成品才发现版式的毛病一样让人难受。</p>
+<p>标题混进了正文，注释一个都点不开。哪怕翻译效果还不错，却总觉得自己在读盗版书（<em>虽然不可谓不是</em>）。</p>
+<p>于是重写了 TransLit，就是想让 AI 翻译的电子书，至少看起来像一本“书”。</p>
+<h2 id="从能翻译到像本书"><a href="#从能翻译到像本书" class="headerlink" title="从能翻译到像本书"></a>从能翻译到像本书</h2><p>TransLit 是个打开浏览器网页就能用的电子书翻译工具。一切流程全都在你自己的浏览器完成，填你自己的模型 API 密钥就行。原书文件和 API 密钥都只保存在当前浏览器本地，不会传输到任何第三方服务器。</p>
+<p>这也意味着有一点得提前留意，所有数据都存在本地浏览器里，中途要是换了浏览器或者清掉缓存，还没导出的工作进度就会丢失，所以翻完记得顺手下载保存。</p>
+<p>这次重写，我是想保留原书的结构，但是按照中文书的排版习惯重排，导出能直接放进阅读器看的成品。界面也顺手全改成中文，换了个黑白极简风的新 Logo，你能看到“TransLit”的首字母 T 和书页折角，看着比以前要利落不少。</p>
+<p>先看一眼主界面吧：</p>
+<p>![[blog-261120-002.png]]</p>
+<h2 id="放弃-Markdown-中转，直接改-HTML"><a href="#放弃-Markdown-中转，直接改-HTML" class="headerlink" title="放弃 Markdown 中转，直接改 HTML"></a>放弃 Markdown 中转，直接改 HTML</h2><p>据说，Markdown 是 AI 的母语。</p>
+<p>之前版本的做法是，先把 EPUB 的每一页转换成 Markdown 格式，丢给模型翻译，整合后再转回 EPUB。</p>
+<p>流程很容易跑通，但电子书的部分样式，转化为 Markdown 之后就丢光了。因为原书的 EPUB 很可能只是在 CSS 文件里标注了样式信息，并没有用专门的标题标签。最常碰到的情况就是章节标题或者特殊引文丢了样式标记，导入阅读器后这些内容全部退化成普通正文。</p>
+<p>所以，新版弃用了那套 Markdown 中转流程。EPUB 里面本来就是打包好的 HTML 文件，程序会先识别一遍原书的版式语义，把哪块是标题、哪块居中、哪块是引文都标记出来，同时保留原书的骨架。模型翻完文本块之后，程序再把译文按位置填回原来的节点，最后用预设好的中文排版样式接管全书。</p>
+<p>这样原书的层次和结构可以保留，版面又能按中文阅读习惯重新排得整整齐齐。</p>
+<h2 id="引入“赫蹏”排版规范，所见即所得"><a href="#引入“赫蹏”排版规范，所见即所得" class="headerlink" title="引入“赫蹏”排版规范，所见即所得"></a>引入“赫蹏”排版规范，所见即所得</h2><p>为了让译文看着顺眼，新版参考了中文排版规范—— <a target="_blank" rel="noopener" href="https://github.com/sivan/heti">Heti（赫蹏）</a>。</p>
+<p>![[blog-261120-003.png]]</p>
+<p>很多改动都落在阅读时的细节上。</p>
+<p>比如，外文书里常拿斜体来表示书名或者强调，中文如果硬要用斜体，笔画很容易发虚、起锯齿，所以斜体样式统一转换成了楷体正排。独立成段的引文块也用楷体正排，配上一层浅色底纹和左侧细线。</p>
+<p>除了排版，界面布局也清爽了许多。</p>
+<p>右侧一大块区域本来全是控制台，现在留给实时排版预览，顶部可以实时切换译文、双语、原文三种视图，所见即所得。</p>
+<p>现在右侧底部为状态栏，可以展示章节数、术语数、Token 消耗量和缓存命中率等参数，想看详细日志时，点开右下角的按钮即可弹出控制台。</p>
+<p>![[blog-261120-004.png]]</p>
+<p>当前有 6 种版本 EPUB 可以导出。纯译文版、原文在前的双语对照版、译文在前的双语对照版，这三种版式各自又分微信读书专版和通用电子版。选择困难的话，也可以直接点击“导出电子书”按钮，打包成合集 ZIP 带走。</p>
+<p>![[blog-261120-005.png]]</p>
+<p>双语留了两种顺序，主要是应付不同的阅读场景。</p>
+<p>原文在前适合研读原文，卡住了再往下瞄一眼中文。译文在前更适合顺着中文往下读，碰到拿不准的词句再对照原文，毕竟 AI 翻译不是万无一失的。</p>
+<p>不过我只是想读完一本书，还是更喜欢纯译文版，最为沉浸。毕竟双语版篇幅长上一倍，哪怕不读原文，点屏幕也更费劲。但顺手留下双语版也是好的，万一哪天想学外语就能直接派上用场。</p>
+<h2 id="脚注，从能用到好用"><a href="#脚注，从能用到好用" class="headerlink" title="脚注，从能用到好用"></a>脚注，从能用到好用</h2><p>翻译非虚构或者学术书，脚注最容易出岔子。很多书习惯把注释统一放在独立页面，以前做格式转换时经常断链，几乎不可用。</p>
+<p>本着“宁愿不想用也不能不可用”的心态，我添加了双语对照版，也更新了脚注处理方式。</p>
+<p>新版在解包时会先扫描全书的引用关系，把独立文件里的注脚搬回对应的章节，同时把原注脚文件锁定，免得重复翻译。在 AI 翻译之前，先用占位符保护正文中的角标，防止模型顺手删改。</p>
+<p>导出时，程序会生成弹注气泡，就像前面预览图里展示的那样。</p>
+<p>导入手机上的微信读书之后，点一下注脚图标，也会原地弹出气泡。如果是双语版，中文角标弹中文译注，英文角标弹英文原注，两边互不干扰。</p>
+<p>![[blog-261120-006.png]]</p>
+<h2 id="打开网页就能用！"><a href="#打开网页就能用！" class="headerlink" title="打开网页就能用！"></a>打开网页就能用！</h2><p>作为一款网页应用，TransLit 免去了本地配环境的麻烦，点击链接就能体验（见文末分享卡片）。</p>
+<h3 id="配置自己的-API-接口"><a href="#配置自己的-API-接口" class="headerlink" title="配置自己的 API 接口"></a>配置自己的 API 接口</h3><p>先在左侧打开 API 接口配置，填好兼容 OpenAI 接口的地址、密钥和模型。</p>
+<p>这里支持保存多套 API 配置，随时可以新建、复制或者切换。万一翻到一半碰到某个接口限流，或者某个分片翻译不成功，切到备用模型就能分片重试，不用从头再来。</p>
+<p>面板里还做了一键拉取可用模型列表的功能，填完地址和密钥点一下就能选模型，省得再去翻文档复制粘贴一长串模型名字。早就该这样做了。</p>
+<p>![[blog-261120-007.png]]</p>
+<h3 id="拖入-EPUB-等待自动预处理"><a href="#拖入-EPUB-等待自动预处理" class="headerlink" title="拖入 EPUB 等待自动预处理"></a>拖入 EPUB 等待自动预处理</h3><p>把 EPUB 拖进页面后，程序会自动做完准备工作。</p>
+<p>原文语种自动识别、全书脚注提取，还有页面分类都会一并完成。比如自动跳过版权页、纯图封面保持原文、锁定注释源文件。切到右侧的章节目录就能看到每一页的分类结果。</p>
+<p>如果发现哪一章的页面分类不合心意，尽管手动修改，是正常翻译、保持原文还是直接丢弃，全由你决定。</p>
+<p>![[blog-261120-008.png]]</p>
+<h3 id="选好翻译策略并联动术语库"><a href="#选好翻译策略并联动术语库" class="headerlink" title="选好翻译策略并联动术语库"></a>选好翻译策略并联动术语库</h3><p>左侧提供了两种翻译策略，不过在我看来，大多数情况都更适合选择“轻量翻译”，“两步翻译”更像是给之前大模型打的补丁（详见 <a href="/2026/05/10/translit-evolution-two-step/">TransLit：AI翻译，多人一步</a>）。</p>
+<p>下面还可以填写“背景设定与补充说明”，把这本书的背景设定或语言风格交代给模型。不得不说，我几乎没有用过，一般情况下原文的约束就足够了。</p>
+<p>翻译过程中，大模型会一边翻译文段，一边抽取书里的“术语”，来确保前后一致性，实时显示到右侧的全书术语库表格里（详见<a href="/2026/05/02/translit-ai-translation-ebook/">TransLit：AI翻译电子书之我见</a>）。要是看到哪个词翻得不够妥帖，你直接在表格里手动修改，再点一下“联动已译章节”，新译名就会批量同步回前面已经翻完的章节里，不用自己逐章替换。</p>
+<p>![[blog-261120-009.png]]</p>
+<h2 id="问题出现我再告诉大家"><a href="#问题出现我再告诉大家" class="headerlink" title="问题出现我再告诉大家"></a>问题出现我再告诉大家</h2><p>说到底，<strong>TransLit 就是为了满足我的一己私欲做出来的翻译工具</strong>，与其说是开源，不如说是找了个可靠的网盘（<em>GitHub</em>）存着。</p>
+<p>每本电子书的底层写法千差万别，我不敢保证当前版本的 TransLit 是通用的，后面要是遇到什么新问题，我还会持续更新打磨。实话实说，之前做过的很多工具都做不到持续使用、持续迭代，幸好我读书的习惯没有完全丧失。</p>
+<p>如果你平时也常读外文 EPUB 电子书，却苦于繁琐的翻译流程或者糟糕的翻译效果，欢迎打开试试看，遇到问题随时来仓库提 Issue。</p>
+<p>我会鼓励你自己解决，让我们一同踏上“程序自由之路”。</p>
+<p>![[blog-261120-010.png]]</p>
+<ul>
+<li>在线体验： <a target="_blank" rel="noopener" href="https://translit.joffoo.workers.dev/">https://translit.joffoo.workers.dev/</a></li>
+<li>GitHub 仓库： <a target="_blank" rel="noopener" href="https://github.com/fengyukongzhou/TransLit">https://github.com/fengyukongzhou/TransLit</a></li>
+</ul>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/%E9%A2%86%E5%9F%9F%2FAI%2F%E7%BF%BB%E8%AF%91/">领域/AI/翻译</a><a href="/tags/%E6%9D%A5%E6%BA%90%2FAIChat/">来源/AIChat</a><a href="/tags/%E5%B7%A5%E5%85%B7%2FAntigravity/">工具/Antigravity</a><a href="/tags/%E9%A1%B9%E7%9B%AE%2F%E5%B0%8F%E8%AF%B4%E7%BF%BB%E8%AF%91/">项目/小说翻译</a><a href="/tags/%E5%8D%9A%E5%AE%A2%2F%E8%AE%A1%E7%AE%97%E7%AC%94%E8%AE%B0/">博客/计算笔记</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+  
+
+
+
+
+	<section id="comment" class="comment">
+		<div id="utterances">
+			<script
+					src="https://utteranc.es/client.js"
+					repo="fengyukongzhou/fengyukongzhou.github.io"
+					issue-term="translit-like-a-book"
+					crossorigin="anonymous"
+					theme="preferred-color-scheme"
+					async
+			></script>
+		</div>
+	</section>
+
+
+
+
+
+
+<div class="like-button-container">
+  <button class="like-button" data-path="2026/11/19/translit-like-a-book/">
+    <i class="fas fa-heart"></i>
+    <span class="like-count">0</span>
+  </button>
+  <div class="like-message">
+    <img src="/images/luoziwuhui.svg" alt="落子无悔" class="luoziwuhui-svg">
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/leancloud-storage@4.12.0/dist/av-min.js"></script>
+<script>
+// 初始化 LeanCloud
+try {
+  
+  AV.init({
+    appId: "2wNgIGj8UmE5AAQRTtIBZ4Mn-gzGzoHsz",
+    appKey: "gMFzQ0eRohuOkA8QcewcUjGA",
+    serverURL: "https://2wngigj8.lc-cn-n1-shared.com"
+  });
+  console.log('LeanCloud 初始化成功');
+  
+} catch (error) {
+  console.error('LeanCloud 初始化失败:', error);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const likeButton = document.querySelector('.like-button');
+  const likeCount = document.querySelector('.like-count');
+  const path = likeButton.dataset.path;
+  
+  // 检查是否已经点赞过
+  function hasLiked() {
+    const likedPosts = JSON.parse(localStorage.getItem('likedPosts') || '[]');
+    return likedPosts.includes(path);
+  }
+  
+  // 标记文章已点赞
+  function markAsLiked() {
+    const likedPosts = JSON.parse(localStorage.getItem('likedPosts') || '[]');
+    likedPosts.push(path);
+    localStorage.setItem('likedPosts', JSON.stringify(likedPosts));
+    updateLikeButtonState(true);
+  }
+  
+  // 取消文章点赞标记
+  function unmarkAsLiked() {
+    const likedPosts = JSON.parse(localStorage.getItem('likedPosts') || '[]');
+    const index = likedPosts.indexOf(path);
+    if (index > -1) {
+      likedPosts.splice(index, 1);
+      localStorage.setItem('likedPosts', JSON.stringify(likedPosts));
+    }
+    updateLikeButtonState(false);
+  }
+  
+  // 更新按钮状态
+  function updateLikeButtonState(isLiked) {
+    requestAnimationFrame(() => {
+      if (isLiked) {
+        likeButton.classList.add('liked');
+        likeButton.title = '点击取消点赞';
+      } else {
+        likeButton.classList.remove('liked');
+        likeButton.title = '点赞';
+      }
+    });
+  }
+  
+  // 查询当前文章的点赞数
+  async function getLikes() {
+    try {
+      const query = new AV.Query('Likes');
+      query.equalTo('path', path);
+      const result = await query.first();
+      console.log('查询结果:', result);
+      if (!result) {
+        const Like = AV.Object.extend('Likes');
+        const newLike = new Like();
+        newLike.set('path', path);
+        newLike.set('count', 0);
+        return newLike;
+      }
+      return result;
+    } catch (error) {
+      console.error('获取点赞数失败:', error);
+      return null;
+    }
+  }
+  
+  // 更新点赞显示
+  async function updateLikeCount() {
+    try {
+      const like = await getLikes();
+      if (like) {
+        const count = like.get('count') || 0;
+        console.log('当前点赞数:', count);
+        requestAnimationFrame(() => {
+          likeCount.textContent = count;
+        });
+      }
+    } catch (error) {
+      console.error('更新点赞显示失败:', error);
+    }
+  }
+  
+  // 处理点赞事件
+  async function handleLike(event) {
+    // 阻止默认行为和冒泡
+    event.preventDefault();
+    event.stopPropagation();
+    
+    const isLiked = hasLiked();
+    console.log('当前点赞状态:', isLiked);
+    
+    try {
+      let like = await getLikes();
+      if (!like) {
+        console.error('无法获取点赞对象');
+        return;
+      }
+      
+      if (isLiked) {
+        // 取消点赞前检查当前点赞数
+        const currentCount = like.get('count');
+        if (currentCount > 0) {
+          like.increment('count', -1);
+          await like.save();
+          unmarkAsLiked();
+        } else {
+          console.warn('点赞数已经为0，无法继续减少');
+          unmarkAsLiked();
+          return;
+        }
+      } else {
+        // 添加点赞
+        like.increment('count');
+        await like.save();
+        markAsLiked();
+      }
+      
+      const newCount = like.get('count');
+      console.log('操作成功，新的点赞数:', newCount);
+      requestAnimationFrame(() => {
+        likeCount.textContent = newCount;
+      });
+      
+    } catch (error) {
+      console.error('操作失败:', error);
+    }
+  }
+  
+  // 绑定点击和触摸事件
+  likeButton.addEventListener('click', handleLike);
+  likeButton.addEventListener('touchend', handleLike);
+  console.log('点赞按钮事件绑定成功');
+  
+  // 防止触摸滚动
+  likeButton.addEventListener('touchstart', (e) => e.preventDefault());
+  likeButton.addEventListener('touchmove', (e) => e.preventDefault());
+  
+  // 初始化
+  updateLikeCount();
+  updateLikeButtonState(hasLiked());
+});
+</script> 
+
+<div class="post-toc">
+  <div class="toc-toggle">
+    <i class="fas fa-chevron-left"></i>
+  </div>
+  <div class="post-toc-content">
+    <h2>文章目录</h2>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E8%83%BD%E7%BF%BB%E8%AF%91%E5%88%B0%E5%83%8F%E6%9C%AC%E4%B9%A6"><span class="toc-text">从能翻译到像本书</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BE%E5%BC%83-Markdown-%E4%B8%AD%E8%BD%AC%EF%BC%8C%E7%9B%B4%E6%8E%A5%E6%94%B9-HTML"><span class="toc-text">放弃 Markdown 中转，直接改 HTML</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E5%85%A5%E2%80%9C%E8%B5%AB%E8%B9%8F%E2%80%9D%E6%8E%92%E7%89%88%E8%A7%84%E8%8C%83%EF%BC%8C%E6%89%80%E8%A7%81%E5%8D%B3%E6%89%80%E5%BE%97"><span class="toc-text">引入“赫蹏”排版规范，所见即所得</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%84%9A%E6%B3%A8%EF%BC%8C%E4%BB%8E%E8%83%BD%E7%94%A8%E5%88%B0%E5%A5%BD%E7%94%A8"><span class="toc-text">脚注，从能用到好用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%93%E5%BC%80%E7%BD%91%E9%A1%B5%E5%B0%B1%E8%83%BD%E7%94%A8%EF%BC%81"><span class="toc-text">打开网页就能用！</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E8%87%AA%E5%B7%B1%E7%9A%84-API-%E6%8E%A5%E5%8F%A3"><span class="toc-text">配置自己的 API 接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%96%E5%85%A5-EPUB-%E7%AD%89%E5%BE%85%E8%87%AA%E5%8A%A8%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-text">拖入 EPUB 等待自动预处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%89%E5%A5%BD%E7%BF%BB%E8%AF%91%E7%AD%96%E7%95%A5%E5%B9%B6%E8%81%94%E5%8A%A8%E6%9C%AF%E8%AF%AD%E5%BA%93"><span class="toc-text">选好翻译策略并联动术语库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E5%87%BA%E7%8E%B0%E6%88%91%E5%86%8D%E5%91%8A%E8%AF%89%E5%A4%A7%E5%AE%B6"><span class="toc-text">问题出现我再告诉大家</span></a></li></ol>
+  </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const tocToggle = document.querySelector('.toc-toggle');
+  const postToc = document.querySelector('.post-toc');
+  const tocLinks = document.querySelectorAll('.toc-link');
+  const headers = document.querySelectorAll('article h1[id], article h2[id], article h3[id], article h4[id], article h5[id], article h6[id]');
+  let activeLink = null;
+  let isScrolling = false;
+  
+  // 检测是否是移动设备
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  
+  // 切换目录显示/隐藏
+  tocToggle.addEventListener('click', function() {
+    postToc.classList.toggle('toc-hidden');
+    tocToggle.classList.toggle('toc-toggle-hidden');
+    
+    // 在移动端，点击后立即应用样式
+    if (isMobile) {
+      requestAnimationFrame(() => {
+        tocToggle.querySelector('i').style.color = postToc.classList.contains('toc-hidden') ? '#F03838' : '';
+      });
+    }
+  });
+
+  // 点击目录项平滑滚动
+  tocLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = decodeURIComponent(link.getAttribute('href')).slice(1);
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        isScrolling = true;
+        const offset = 80; // 头部固定导航的高度
+        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - offset;
+        
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+
+        // 更新激活状态
+        if (activeLink) {
+          activeLink.classList.remove('active');
+        }
+        link.classList.add('active');
+        activeLink = link;
+
+        // 滚动结束后重置标志
+        setTimeout(() => {
+          isScrolling = false;
+        }, 1000);
+      }
+    });
+  });
+
+  // 滚动时高亮当前目录项
+  function updateActiveLink() {
+    if (isScrolling) return; // 如果是点击导航引起的滚动，不更新高亮
+
+    let currentSection = '';
+    let minDistance = Infinity;
+    const scrollPosition = window.scrollY + 100; // 考虑顶部偏移
+
+    headers.forEach(header => {
+      const distance = Math.abs(header.getBoundingClientRect().top);
+      if (distance < minDistance) {
+        minDistance = distance;
+        currentSection = '#' + header.id;
+      }
+    });
+
+    if (activeLink) {
+      activeLink.classList.remove('active');
+    }
+    
+    tocLinks.forEach(link => {
+      if (decodeURIComponent(link.getAttribute('href')) === currentSection) {
+        link.classList.add('active');
+        activeLink = link;
+        
+        // 确保当前项在视图中
+        const tocContainer = document.querySelector('.post-toc');
+        const linkRect = link.getBoundingClientRect();
+        const containerRect = tocContainer.getBoundingClientRect();
+        
+        if (linkRect.bottom > containerRect.bottom || linkRect.top < containerRect.top) {
+          link.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+            inline: 'nearest'
+          });
+        }
+      }
+    });
+  }
+
+  // 使用 requestAnimationFrame 优化滚动事件
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        updateActiveLink();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
+  // 初始化高亮
+  updateActiveLink();
+});
+</script>
+
+
+    
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+    
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2026 Fengyukongzhou
+    
+  </p>
+</footer>
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HSFDFFL0HT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HSFDFFL0HT');
+</script>
+
+    
+<script>
+    var _hmt = _hmt || [];
+    ( function () {
+        var hm = document.createElement( "script" );
+        hm.src = "https://hm.baidu.com/hm.js?b6d2577512b94cef71ed3db1d1ae70e4";
+        var s = document.getElementsByTagName( "script" )[ 0 ];
+        s.parentNode.insertBefore( hm, s );
+    } )();
+</script>
+
+    
+    
+    
+    <script src="/js/lang-detector.js"></script>
+    
+    
+    <script src="/js/footnote-popup.js"></script>
+    
+
+    <!-- Mermaid.js CDN 引入 -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+      // 初始化 mermaid
+      mermaid.initialize({ startOnLoad: true });
+      document.addEventListener('DOMContentLoaded', function() {
+        // 查找所有 mermaid 代码块
+        document.querySelectorAll('pre code.language-mermaid, pre code.mermaid').forEach(function(block) {
+          var div = document.createElement('div');
+          div.className = 'mermaid';
+          div.textContent = block.textContent;
+          block.parentNode.parentNode.replaceWith(div);
+        });
+        // 重新初始化 mermaid
+        if (window.mermaid) {
+          mermaid.init(undefined, document.querySelectorAll('.mermaid'));
+        }
+      });
+    </script>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const heatmapChartDom = document.getElementById('heatmapChart');
+                if(heatmapChartDom){
+                    const heatmapChart = echarts.init(heatmapChartDom, 'light');
+                    const cellSize = [18, 18];
+                    
+                    const groupByYear = (data) => {
+                        const result = {};
+                        data.forEach(([date, value]) => {
+                            const [year] = date.split('-').map(Number);
+                            if (!result[year]) {
+                                result[year] = [];
+                            }
+                            result[year].push([date, value]);
+                        });
+                        return result;
+                    };
+                    
+                    const groupedData = groupByYear([["2024-06-23",1],["2024-06-30",1],["2024-07-06",1],["2024-08-19",1],["2024-09-02",1],["2024-09-12",1],["2024-09-24",1],["2024-10-12",1],["2024-11-05",1],["2024-12-04",1],["2024-12-26",1],["2025-01-04",1],["2025-01-11",1],["2025-01-20",1],["2025-01-22",1],["2025-01-24",1],["2025-01-31",1],["2025-02-07",1],["2025-02-21",1],["2025-03-02",1],["2025-03-15",1],["2025-05-25",1],["2025-06-13",1],["2025-06-16",1],["2025-06-22",1],["2025-06-26",1],["2025-07-12",1],["2025-07-27",1],["2025-08-31",1],["2025-09-07",1],["2025-09-21",1],["2025-10-04",1],["2025-11-02",1],["2025-11-22",1],["2025-11-30",1],["2025-12-06",1],["2025-12-12",1],["2025-12-20",1],["2026-01-11",1],["2026-01-24",1],["2026-02-13",1],["2026-02-19",1],["2026-03-14",1],["2026-04-11",1],["2026-04-24",1],["2026-05-02",1],["2026-05-10",1],["2026-05-15",1],["2026-05-17",1],["2026-05-27",1],["2026-05-29",1],["2026-06-27",1],["2026-07-11",1],["2026-08-21",1],["2026-09-12",1],["2026-10-10",1],["2026-10-14",1],["2026-10-18",1],["2026-10-22",1],["2026-10-26",1],["2026-10-31",1],["2026-11-04",1],["2026-11-10",1],["2026-11-15",1],["2026-11-17",2],["2026-11-19",1]]);
+                    const years = Object.keys(groupedData).reverse();
+                    
+                    var initYear = parseInt(heatmapChartDom.getAttribute('year')) || new Date().getFullYear();
+                    const minYear = years[years.length - 1];
+                    const maxYear = years[0];
+                    if (initYear < minYear || initYear > maxYear) {
+                        initYear = maxYear;
+                    }
+                    console.log('[hexo-graph]generateHeatmapChart|initYear:', initYear, 'minYear:', minYear, 'maxYear:', maxYear);
+                    
+                    heatmapChart.setOption({
+                        grid: {},
+                        tooltip: { 
+                            position: 'top', 
+                            formatter: params => `${params.value[0]}: ${params.value[1]} Articles` 
+                        },
+                        calendar: { 
+                            top: '10%',
+                            left: 'left', 
+                            right: '8%',
+                            range: initYear,
+                            cellSize: cellSize, 
+                            splitLine: { lineStyle: { color: '#E0E0E0', width: 1 } }, 
+                            itemStyle: { borderWidth: 1, borderColor: '#E0E0E0' }, 
+                            dayLabel: { show: false },
+                            monthLabel: { show: true },
+                            yearLabel: { show: false },
+                        },
+                        visualMap: { 
+                            show: true,
+                            right: '8%',
+                            bottom: '5%',
+                            type: 'piecewise',
+                            orient: 'horizontal',
+                            text: ['More', 'Less'],
+                            min: 0,
+                            max: Math.max(...groupedData[initYear].map(item => item[1])),
+                            inRange: { color: ["#ACE7AE","#69C16D","#549F57"] }
+                        },
+                        legend: {
+                            type: 'scroll',
+                            icon: 'none',
+                            data: years,
+                            orient: 'vertical',
+                            top: '5%',
+                            right: 'right',
+                            itemWidth: 20,
+                            itemHeight: 20,
+                            itemGap: 10,
+                            pageIconSize: 10,
+                            pageTextStyle: { fontSize: 14 },
+                            selectedMode: 'single',
+                        },
+                        series: years.map(year => ({
+                            type: 'heatmap',
+                            coordinateSystem: 'calendar',
+                            data: groupedData[year],
+                            name: year,
+                            emphasis: {
+                                disabled: true,
+                            },
+                            silent: year !== initYear,
+                        })),
+                    });
+                    
+                    // init selected year
+                    heatmapChart.dispatchAction({
+                        type: 'legendSelect',
+                        name: initYear,
+                    });
+                    
+                    heatmapChart.on('legendselectchanged', function(params) {
+                        console.log('[hexo-graph]generateHeatmapChart|legendselectchanged:', params);
+                        const selectedYear = Object.keys(params.selected).find(key => params.selected[key]);
+                        if (selectedYear && groupedData[selectedYear]) {
+                            heatmapChart.setOption({
+                                calendar: {
+                                    range: selectedYear,
+                                },
+                                visualMap: {
+                                    max: Math.max(...groupedData[selectedYear].map(item => item[1])),
+                                },
+                                series: years.map(year => ({
+                                    type: 'heatmap',
+                                    coordinateSystem: 'calendar',
+                                    data: groupedData[year],
+                                    name: year,
+                                    emphasis: {
+                                        disabled: true,
+                                    },
+                                    silent: year !== selectedYear,
+                                })),
+                            });
+                        }
+                    });
+                    
+                    heatmapChart.on('click', function (params) {
+                        if (params.componentType === 'series') {
+                            const [year, month] = params.value[0].split('-');
+                            window.location.href = '/archives/' + year + '/' + month;
+                        }
+                    });
+                }
+            });
+        </script>
+    
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const monthlyChartDom = document.getElementById('monthlyChart');
+                if(monthlyChartDom){
+                    const monthlyChart = echarts.init(monthlyChartDom, 'light');
+                    monthlyChart.setOption({
+                        xAxis: { 
+                            type: 'category', 
+                            data: ["2024-06","2024-07","2024-08","2024-09","2024-10","2024-11","2024-12","2025-01","2025-02","2025-03","2025-05","2025-06","2025-07","2025-08","2025-09","2025-10","2025-11","2025-12","2026-01","2026-02","2026-03","2026-04","2026-05","2026-06","2026-07","2026-08","2026-09","2026-10","2026-11"], 
+                            axisLabel: { fontSize: 14, fontWeight: 'bold', fontFamily: 'Microsoft YaHei, SimSun, serif' }
+                        },
+                        yAxis: { type: 'value', splitLine: { lineStyle: { type: 'dashed', color: '#ccc' } } },
+                        series: [{
+                            name: 'Articles',
+                            type: 'line',
+                            data: [2,1,1,3,1,1,2,6,2,2,1,4,2,1,2,1,3,3,2,2,1,2,6,1,1,1,1,6,6],
+                            smooth: true,
+                            lineStyle: { color: '#5470C6', width: 2 },
+                            itemStyle: { color: '#5470C6' },
+                            areaStyle: { color: 'rgba(84, 112, 198, 0.4)' },
+                            symbolSize: 10,
+                            label: {
+                                show: true,
+                                position: 'top',
+                                formatter: params => params.value,
+                                fontSize: 14,
+                                color: '#000',
+                                fontWeight: 'bold',
+                                fontFamily: 'Microsoft YaHei, SimSun, serif'
+                            }
+                        }]
+                    });
+
+                    monthlyChart.on('click', function (params) {
+                        const [year, month] = params.name.split('-');
+                        window.location.href = '/archives/' + year + '/' + month;
+                    });
+                }
+            })
+        </script>
+    
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const tagsChartDom = document.getElementById('tagsChart');
+                if(tagsChartDom){
+                    const tagsChart = echarts.init(tagsChartDom, 'light');
+                    tagsChart.setOption({
+                        tooltip: { trigger: 'item', formatter: '{b}: {c} ({d}%)' },
+                        series: [{
+                            type: 'pie',
+                            radius: '60%',
+                            data: [{"name":"AI","value":51},{"name":"翻译","value":15},{"name":"现代生活","value":13},{"name":"设计","value":12},{"name":"读小说","value":10},{"name":"艺术","value":9},{"name":"Github","value":9},{"name":"写作方法","value":8}],
+                            label: {
+                                position: 'outside',
+                                formatter: '{b} {c} ({d}%)',
+                                fontSize: 14,
+                                fontWeight: 'bold',
+                                fontFamily: 'Microsoft YaHei, SimSun, serif'
+                            },
+                            color: ["#5470C6","#91CC75","#FAC858","#EE6666","#73C0DE","#3BA272","#FC8452","#9A60B4"],
+                            labelLine: { show: true }
+                        }],
+                        legend: {
+                            bottom: '0',
+                            left: 'center',
+                            data: [{"name":"AI","value":51},{"name":"翻译","value":15},{"name":"现代生活","value":13},{"name":"设计","value":12},{"name":"读小说","value":10},{"name":"艺术","value":9},{"name":"Github","value":9},{"name":"写作方法","value":8}].map(tag => tag.name),
+                            textStyle: { fontSize: 14, fontWeight: 'bold', fontFamily: 'Microsoft YaHei, SimSun, serif' }
+                        }
+                    });
+
+                    tagsChart.on('click', function (params) {
+                        window.location.href = '/tags/' + params.name;
+                    });
+                }
+            })
+        </script>
+    
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const categoriesChartDom = document.getElementById('categoriesChart');
+                if(categoriesChartDom){
+                    const categoriesChart = echarts.init(categoriesChartDom, 'light');
+                    categoriesChart.setOption({
+                        xAxis: { type: 'value', splitLine: { lineStyle: { type: 'dashed', color: '#ccc' } } },
+                        yAxis: { 
+                            type: 'category', 
+                            data: [{"name":"计算笔记","value":28},{"name":"咫闻周刊","value":25},{"name":"读书笔记","value":13}].map(category => category.name).reverse(), 
+                            axisLabel: { fontSize: 14, fontWeight: 'bold', fontFamily: 'Microsoft YaHei, SimSun, serif' }
+                        },
+                        series: [{
+                            name: 'Category Count',
+                            type: 'bar',
+                            data: [{"name":"计算笔记","value":28},{"name":"咫闻周刊","value":25},{"name":"读书笔记","value":13}].map(category => category.value).reverse(),
+                            label: {
+                                show: true,
+                                position: 'right',
+                                formatter: params => params.value,
+                                fontSize: 14,
+                                color: '#000',
+                                fontWeight: 'bold',
+                                fontFamily: 'Microsoft YaHei, SimSun, serif'
+                            },
+                            itemStyle: {
+                                color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
+                                    { offset: 0, color: '#91CC75' },
+                                    { offset: 1, color: '#73C0DE' }
+                                ])
+                            }
+                        }]
+                    });
+
+                    categoriesChart.on('click', function (params) {
+                        window.location.href = '/categories/' + params.name;
+                    });
+                }
+            });
+        </script>
+    
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const categoriesTreeChartDom = document.getElementById('categoriesTreeChart');
+                if(categoriesTreeChartDom){
+                    const treeChart = echarts.init(categoriesTreeChartDom, 'light');
+                    treeChart.setOption({
+                        title: {
+                            text: '操作提示：单击展开分类，双击进入具体分类页面',
+                            textStyle: {
+                                fontSize: 12,
+                                color: '#999',
+                                fontWeight: 'normal'
+                            },
+                            bottom: 0,
+                            left: 'center'
+                        },
+                        tooltip: {
+                            trigger: 'item',
+                            triggerOn: 'mousemove'
+                        },
+                        series: [{
+                            type: 'tree',
+                            data: [{"name":"Categories","children":[{"name":"计算笔记","children":[],"count":28,"path":"计算笔记"},{"name":"读书笔记","children":[],"count":13,"path":"读书笔记"},{"name":"咫闻周刊","children":[],"count":25,"path":"咫闻周刊"}],"count":0,"path":""}],
+                            initialTreeDepth: -1,
+                            top: '5%',
+                            bottom: '10%',
+                            left: '0%',
+                            right: '0%',
+                            symbolSize: 15,
+                            layout: 'orthogonal',
+                            orient: 'TB',
+                            itemStyle: {
+                                color: '#91CC75',
+                                borderColor: '#73C0DE'
+                            },
+                            label: {
+                                position: 'bottom',
+                                verticalAlign: 'middle',
+                                align: 'center',
+                                fontSize: 14,
+                                distance: 28,
+                                formatter: function(params) {
+                                    return params.data.name + (params.data.count ? ' (' + params.data.count + ')' : '');
+                                }
+                            },
+                            leaves: {
+                                label: {
+                                    position: 'top',
+                                    verticalAlign: 'middle',
+                                    align: 'center'
+                                }
+                            },
+                            emphasis: {
+                                focus: 'descendant'
+                            },
+                            expandAndCollapse: true
+                        }]
+                    });
+
+                    treeChart.on('dblclick', function (params) {
+                        if (params.data && params.data.path) {
+                            window.location.href = '/categories/' + params.data.path;
+                        }
+                    });
+                }
+            });
+        </script>
+    
+    </body>
+</html>
